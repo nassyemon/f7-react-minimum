@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import styled from "styled-components";
 import {
     Page,
     Navbar,
@@ -13,6 +14,11 @@ import {
     Col,
     Button,
 } from 'framework7-react';
+
+
+const Image = styled.img`
+  max-width: 90%;
+`;
 
 export default ({
   pictures = [],
@@ -31,7 +37,7 @@ export default ({
       <NavLeft>
         <Link iconIos="f7:menu" iconMd="material:menu" link onClick={onOpenLeftPanel}></Link>
       </NavLeft>
-      <NavTitle>My App</NavTitle>
+      <NavTitle><RedText>My App</RedText></NavTitle>
     </Navbar>
     <Block strong>
       <p>App example.</p>
@@ -47,7 +53,9 @@ export default ({
           </Row>
         <List simple-list>
           {pictures.map(({ uri }) => (
-          <ListItem><img src={uri} style={{ maxWidth: "400px" }} /></ListItem>
+            <ListItem>
+              <Img>img src={uri}</Img>
+            </ListItem>
           ))}
         </List>
         </Fragment>

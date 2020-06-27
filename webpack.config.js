@@ -52,7 +52,15 @@ let webpackConfig = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/react', '@babel/preset-env'],
-            plugins: ['@babel/plugin-proposal-object-rest-spread'].concat(devMode ? ['react-hot-loader/babel'] : []),
+            plugins: [
+              [
+                "babel-plugin-styled-components",
+                {
+                  "ssr": false
+                }
+              ],
+              '@babel/plugin-proposal-object-rest-spread'
+            ].concat(devMode ? ['react-hot-loader/babel'] : []),
           }
         }]
       },
