@@ -1,5 +1,13 @@
-import React from 'react';
-import { Panel, Page, Navbar, Block, BlockTitle, List, ListItem } from 'framework7-react';
+import React from "react";
+import {
+  Panel,
+  Page,
+  Navbar,
+  Block,
+  BlockTitle,
+  List,
+  ListItem,
+} from "framework7-react";
 
 export default ({ onGoToAbout, onGoToForm, onClosePanelLeft, onLogout }) => (
   <Panel left cover themeDark onPanelBackdropClick={onClosePanelLeft}>
@@ -10,9 +18,9 @@ export default ({ onGoToAbout, onGoToForm, onClosePanelLeft, onLogout }) => (
       </Block>
       <BlockTitle>Load page in main view</BlockTitle>
       <List>
-        <ListItem link title="About" onClick={onGoToAbout}></ListItem>
-        <ListItem link title="Form" onClick={onGoToForm}></ListItem>
-        <ListItem link title="Logout" onClick={onLogout}></ListItem>
+        <ListItem link title="About" onClick={onGoToAbout} />
+        <ListItem link title="Form" onClick={onGoToForm} />
+        <ListItem link title="Logout" onClick={onLogout} />
       </List>
     </Page>
   </Panel>

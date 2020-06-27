@@ -1,12 +1,13 @@
-import React from 'react';
-import Camera from 'react-html5-camera-photo';
-import { Popup } from 'framework7-react';
-
+import React from "react";
+import Camera from "react-html5-camera-photo";
+import { Popup } from "framework7-react";
 
 export default ({ handleTakePhoto }) => (
-<Popup>
+  <Popup>
     <Camera
-        onTakePhoto = { (dataUri) => { handleTakePhoto(dataUri); } }
+      onTakePhoto={dataUri => {
+        handleTakePhoto(dataUri);
+      }}
     />
-</Popup>
+  </Popup>
 );

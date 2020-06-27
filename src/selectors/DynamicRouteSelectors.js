@@ -1,6 +1,6 @@
 import { getCurrentRoute } from "framework7-redux";
 
-export const getRouteInfo = (state) => {
+export const getRouteInfo = state => {
   const currentUrl = getCurrentRoute(state);
   const parsedUrl = new URL(`http://test${currentUrl}`);
   const query = {};

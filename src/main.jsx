@@ -43,11 +43,11 @@ const rootElement = document.getElementById("app");
 ReactDOM.render(
   <AppContainer>
     <Provider store={store}>
-          <PersistGate persistor={persistor}>
+      <PersistGate persistor={persistor}>
         <App />
       </PersistGate>
-      </Provider>
-    </AppContainer>,
+    </Provider>
+  </AppContainer>,
   rootElement
 );
 
@@ -57,11 +57,11 @@ if (module.hot) {
     ReactDOM.render(
       <AppContainer>
         <Provider store={store}>
-              <PersistGate persistor={persistor}>
+          <PersistGate persistor={persistor}>
             <NextApp />
           </PersistGate>
-          </Provider>
-        </AppContainer>,
+        </Provider>
+      </AppContainer>,
       rootElement
     );
   });

@@ -1,7 +1,24 @@
-import React from 'react';
-import { View, Page, LoginScreen, LoginScreenTitle, List, ListItem, Label, Input, ListButton, BlockFooter } from 'framework7-react';
+import React from "react";
+import {
+  View,
+  Page,
+  LoginScreen,
+  LoginScreenTitle,
+  List,
+  ListItem,
+  Label,
+  Input,
+  ListButton,
+  BlockFooter,
+} from "framework7-react";
 
-export default ({ onUsernameUpdated, onPasswordUpdated, onLogin, username, password }) => (
+export default ({
+  onUsernameUpdated,
+  onPasswordUpdated,
+  onLogin,
+  username,
+  password,
+}) => (
   <LoginScreen id="login-screen">
     <View>
       <Page loginScreen>
@@ -14,7 +31,7 @@ export default ({ onUsernameUpdated, onPasswordUpdated, onLogin, username, passw
               placeholder="Username"
               type="text"
               onChange={({ target }) => onUsernameUpdated(target.value)}
-              value={username} 
+              value={username}
             />
           </ListItem>
           <ListItem>
@@ -29,12 +46,12 @@ export default ({ onUsernameUpdated, onPasswordUpdated, onLogin, username, passw
           </ListItem>
         </List>
         <List>
-          <ListButton title="Sign In" onClick={onLogin}></ListButton>
+          <ListButton title="Sign In" onClick={onLogin} />
           <BlockFooter>
             <p>Click Sign In to see if you entered the correct password</p>
           </BlockFooter>
         </List>
       </Page>
     </View>
-  </LoginScreen>    
+  </LoginScreen>
 );

@@ -4,15 +4,14 @@ import { loginValid } from "../selectors/LoginSelectors";
 import { getHistoryMain } from "../selectors/Framework7Selector";
 
 export const openLogin = () => navigateTo("/login/");
-export const closeLogin = (canGoBack) =>
-  canGoBack ? goBack() : navigateTo("/");
+export const closeLogin = canGoBack => (canGoBack ? goBack() : navigateTo("/"));
 
-export const usernameUpdated = (username) => ({
+export const usernameUpdated = username => ({
   type: "USERNAME_UPDATED",
   payload: username,
 });
 
-export const passwordUpdated = (password) => ({
+export const passwordUpdated = password => ({
   type: "PASSWORD_UPDATED",
   payload: password,
 });
@@ -22,7 +21,7 @@ export const loginSuccess = () => ({
 });
 
 export const logout = () => {
-  return (dispatch, getState) => {
+  return dispatch => {
     dispatch({
       type: "LOGOUT",
     });

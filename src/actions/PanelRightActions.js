@@ -6,15 +6,15 @@ import { goToAbout } from "./AboutActions";
 export const openPanelRight = () => navigateTo("/panel-right/");
 export const closePanelRight = () => goBack();
 
-export const goToAboutPageFromRightPanel = (dispatch) => {
-  return (dispatch) => {
+export const goToAboutPageFromRightPanel = () => {
+  return dispatch => {
     dispatch(closePanelRight());
     dispatch(goToAbout());
   };
 };
 
-export const goToFormPageFromRightPanel = (dispatch) => {
-  return (dispatch) => {
+export const goToFormPageFromRightPanel = () => {
+  return dispatch => {
     dispatch(closePanelRight());
     dispatch(goToForm());
   };

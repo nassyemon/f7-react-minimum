@@ -50,7 +50,7 @@ const f7params = {
 
 export default () => (
   <App params={f7params}>
-        <Statusbar />
+    <Statusbar />
     <View id="main-view" url="/" main className="ios-edges" />
-    </App>
+  </App>
 );

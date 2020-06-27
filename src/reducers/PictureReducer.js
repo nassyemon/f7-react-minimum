@@ -3,11 +3,12 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
+  const { payload } = action;
   switch (action.type) {
     case "ADD_PICTURE":
       return {
         ...state,
-        pictures: [...state.pictures, { uri: action.payload }],
+        pictures: [...state.pictures, { uri: payload.uri, name: payload.name || "<<NO NAME>>" }],
       };
     case "CLEAR_PICTURE":
       return {

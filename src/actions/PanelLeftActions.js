@@ -7,14 +7,14 @@ export const openPanelLeft = () => navigateTo("/panel-left/");
 export const closePanelLeft = () => goBack();
 
 export const goToAboutPageFromLeftPanel = () => {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(closePanelLeft());
     dispatch(goToAbout());
   };
 };
 
 export const goToFormPageFromLeftPanel = () => {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(closePanelLeft());
     dispatch(goToForm());
   };

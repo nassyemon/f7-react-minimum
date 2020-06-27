@@ -8,17 +8,17 @@ import {
 } from "../actions/LoginActions";
 import { getUsername, getPassword } from "../selectors/LoginSelectors";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     username: getUsername(state),
     password: getPassword(state),
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    onUsernameUpdated: (username) => dispatch(usernameUpdated(username)),
-    onPasswordUpdated: (password) => dispatch(passwordUpdated(password)),
+    onUsernameUpdated: username => dispatch(usernameUpdated(username)),
+    onPasswordUpdated: password => dispatch(passwordUpdated(password)),
     onLogin: () => dispatch(login()),
   };
 };

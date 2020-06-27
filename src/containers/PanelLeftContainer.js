@@ -8,7 +8,7 @@ import {
 } from "../actions/PanelLeftActions";
 import { logout } from "../actions/LoginActions";
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     onClosePanelLeft: () => dispatch(closePanelLeft()),
     onGoToAbout: () => dispatch(goToAboutPageFromLeftPanel()),

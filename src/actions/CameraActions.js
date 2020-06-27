@@ -4,9 +4,12 @@ export const openWebApiCamera = () => navigateTo("/camera/");
 
 export const closeWebApiCamera = () => goBack();
 
-export const addPicture = (imageURI) => ({
+export const addPicture = (imageURI, name) => ({
   type: "ADD_PICTURE",
-  payload: imageURI,
+  payload: {
+    uri: imageURI,
+    name,
+  }
 });
 
 export const clearPicture = () => ({

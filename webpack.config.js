@@ -35,7 +35,7 @@ let webpackConfig = {
   },
   
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.css', '.html', '.styl'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.css', '.html', '.styl'],
     modules: [
       path.resolve(__dirname, 'src'),
       'node_modules'
@@ -45,24 +45,26 @@ let webpackConfig = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         include: path.resolve(__dirname, 'src'),
-        use: [{
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/react', '@babel/preset-env'],
-            plugins: [
-              [
-                "babel-plugin-styled-components",
-                {
-                  "ssr": false
-                }
-              ],
-              '@babel/plugin-proposal-object-rest-spread'
-            ].concat(devMode ? ['react-hot-loader/babel'] : []),
-          }
-        }]
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/react', '@babel/preset-env', '@babel/preset-typescript'],
+              plugins: [
+                [
+                  "babel-plugin-styled-components",
+                  {
+                    "ssr": false
+                  }
+                ],
+                '@babel/plugin-proposal-object-rest-spread'
+              ].concat(devMode ? ['react-hot-loader/babel'] : []),
+            }
+          },
+        ]
       },
       {
         test: /\.html$/,

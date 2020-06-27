@@ -7,7 +7,7 @@ import {
   goToFormPageFromRightPanel,
 } from "../actions/PanelRightActions";
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     onClosePanelRight: () => dispatch(closePanelRight()),
     onGoToAbout: () => dispatch(goToAboutPageFromRightPanel()),

@@ -4,13 +4,13 @@ import DynamicRoutePage from "../components/pages/DynamicRoutePage";
 import { goBackToHomePage } from "../actions/DynamicRouteActions";
 import { getRouteInfo } from "../selectors/DynamicRouteSelectors";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     ...getRouteInfo(state),
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     onGoBackToHomePage: () => dispatch(goBackToHomePage()),
   };

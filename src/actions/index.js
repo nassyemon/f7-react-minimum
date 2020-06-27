@@ -1,6 +1,8 @@
-import { v4 as generateId } from "node-uuid";
-
 import { queryWeather } from "../api";
+
+function generateId() {
+  return null;
+}
 
 export const ADD_LOCATION = "ADD_LOCATION";
 export const REMOVE_LOCATION = "REMOVE_LOCATION";
@@ -13,23 +15,23 @@ export const SET_FETCH_ERROR = "SET_FETCH_ERROR";
 export const OPEN_DIALOG = "OPEN_DIALOG";
 export const CLOSE_DIALOG = "CLOSE_DIALOG";
 
-export const addLocation = (name) => ({
+export const addLocation = name => ({
   type: ADD_LOCATION,
   id: generateId(),
   name,
 });
 
-export const removeLocation = (id) => ({
+export const removeLocation = id => ({
   type: REMOVE_LOCATION,
   id,
 });
 
-export const selectLocation = (id) => ({
+export const selectLocation = id => ({
   type: SELECT_LOCATION,
   id,
 });
 
-export const requestWeather = (id) => ({
+export const requestWeather = id => ({
   type: REQUEST_WEATHER,
   id,
 });
@@ -40,12 +42,12 @@ export const receiveWeather = (id, data) => ({
   ...data,
 });
 
-export const setFetchError = (id) => ({
+export const setFetchError = id => ({
   type: SET_FETCH_ERROR,
   id,
 });
 
-export const fetchWeather = (id) => {
+export const fetchWeather = id => {
   /*
    * This function requests and receives the
    * weather data asynchronously.
@@ -56,12 +58,12 @@ export const fetchWeather = (id) => {
     dispatch(requestWeather(id));
     queryWeather(name)
       .catch(() => dispatch(setFetchError(id)))
-      .then((data) => dispatch(receiveWeather(id, data)));
+      .then(data => dispatch(receiveWeather(id, data)));
   };
 };
 
-export const addLocationAndFetchWeather = (name) => {
-  return (dispatch, getState) => {
+export const addLocationAndFetchWeather = name => {
+  return dispatch => {
     const { id } = dispatch(addLocation(name));
     dispatch(fetchWeather(id));
   };
