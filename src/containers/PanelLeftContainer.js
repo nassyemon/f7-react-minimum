@@ -1,8 +1,12 @@
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
 
-import PanelLeft from '../components/modals/PanelLeft';
-import { closePanelLeft, goToAboutPageFromLeftPanel, goToFormPageFromLeftPanel } from '../actions/PanelLeftActions';
-import { logout } from '../actions/LoginActions';
+import PanelLeft from "../components/modals/PanelLeft";
+import {
+  closePanelLeft,
+  goToAboutPageFromLeftPanel,
+  goToFormPageFromLeftPanel,
+} from "../actions/PanelLeftActions";
+import { logout } from "../actions/LoginActions";
 
 const mapDispatchToProps = (dispatch) => {
   return {

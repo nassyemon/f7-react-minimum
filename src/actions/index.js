@@ -1,48 +1,48 @@
-import {v4 as generateId} from 'node-uuid';
+import { v4 as generateId } from "node-uuid";
 
-import {queryWeather} from '../api';
+import { queryWeather } from "../api";
 
-export const ADD_LOCATION = 'ADD_LOCATION';
-export const REMOVE_LOCATION = 'REMOVE_LOCATION';
-export const SELECT_LOCATION = 'SELECT_LOCATION';
+export const ADD_LOCATION = "ADD_LOCATION";
+export const REMOVE_LOCATION = "REMOVE_LOCATION";
+export const SELECT_LOCATION = "SELECT_LOCATION";
 
-export const REQUEST_WEATHER = 'REQUEST_WEATHER';
-export const RECEIVE_WEATHER = 'RECEIVE_WEATHER';
-export const SET_FETCH_ERROR = 'SET_FETCH_ERROR';
+export const REQUEST_WEATHER = "REQUEST_WEATHER";
+export const RECEIVE_WEATHER = "RECEIVE_WEATHER";
+export const SET_FETCH_ERROR = "SET_FETCH_ERROR";
 
-export const OPEN_DIALOG = 'OPEN_DIALOG';
-export const CLOSE_DIALOG = 'CLOSE_DIALOG';
+export const OPEN_DIALOG = "OPEN_DIALOG";
+export const CLOSE_DIALOG = "CLOSE_DIALOG";
 
 export const addLocation = (name) => ({
   type: ADD_LOCATION,
   id: generateId(),
-  name
+  name,
 });
 
-export const removeLocation = id => ({
+export const removeLocation = (id) => ({
   type: REMOVE_LOCATION,
-  id
+  id,
 });
 
-export const selectLocation = id => ({
+export const selectLocation = (id) => ({
   type: SELECT_LOCATION,
-  id
+  id,
 });
 
 export const requestWeather = (id) => ({
   type: REQUEST_WEATHER,
-  id
+  id,
 });
 
 export const receiveWeather = (id, data) => ({
   type: RECEIVE_WEATHER,
   id,
-  ...data
+  ...data,
 });
 
-export const setFetchError = id => ({
+export const setFetchError = (id) => ({
   type: SET_FETCH_ERROR,
-  id
+  id,
 });
 
 export const fetchWeather = (id) => {
@@ -51,7 +51,7 @@ export const fetchWeather = (id) => {
    * weather data asynchronously.
    */
   return (dispatch, getState) => {
-    const name = getState().locations[id].name;
+    const { name } = getState().locations[id];
 
     dispatch(requestWeather(id));
     queryWeather(name)
@@ -60,17 +60,17 @@ export const fetchWeather = (id) => {
   };
 };
 
-export const addLocationAndFetchWeather = name => {
+export const addLocationAndFetchWeather = (name) => {
   return (dispatch, getState) => {
-    const id = dispatch(addLocation(name)).id;
+    const { id } = dispatch(addLocation(name));
     dispatch(fetchWeather(id));
   };
 };
 
 export const openDialog = () => ({
-  type: OPEN_DIALOG
+  type: OPEN_DIALOG,
 });
 
 export const closeDialog = () => ({
-  type: CLOSE_DIALOG
+  type: CLOSE_DIALOG,
 });

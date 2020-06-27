@@ -1,93 +1,95 @@
 const initialState = {
-  name: '',
-  email: '',
-  url: '',
-  password: '',
-  phone: '',
-  gender: '',
-  birthdate: '1999-04-05',
+  name: "",
+  email: "",
+  url: "",
+  password: "",
+  phone: "",
+  gender: "",
+  birthdate: "1999-04-05",
   toggle: false,
   slider: 50,
-  textArea: '',
-  resizable: '',
+  textArea: "",
+  resizable: "",
   checkboxGroup: {
     checkbox1: false,
     checkbox2: false,
     checkbox3: false,
   },
-  radioButtonsGroup: 0
+  radioButtonsGroup: 0,
 };
-  
+
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'FORM_NAME_UPDATED':
+    case "FORM_NAME_UPDATED":
       return {
         ...state,
-        name: action.payload
+        name: action.payload,
       };
-    case 'FORM_EMAIL_UPDATED':
+    case "FORM_EMAIL_UPDATED":
       return {
         ...state,
-        email: action.payload
+        email: action.payload,
       };
-    case 'FORM_URL_UPDATED':
+    case "FORM_URL_UPDATED":
       return {
         ...state,
-        url: action.payload
+        url: action.payload,
       };
-    case 'FORM_PASSWORD_UPDATED':
+    case "FORM_PASSWORD_UPDATED":
       return {
         ...state,
-        password: action.payload
+        password: action.payload,
       };
-    case 'FORM_PHONE_UPDATED':
+    case "FORM_PHONE_UPDATED":
       return {
         ...state,
-        phone: action.payload
+        phone: action.payload,
       };
-    case 'FORM_GENDER_UPDATED':
+    case "FORM_GENDER_UPDATED":
       return {
         ...state,
-        gender: action.payload
+        gender: action.payload,
       };
-    case 'FORM_BIRTHDATE_UPDATED':
+    case "FORM_BIRTHDATE_UPDATED":
       return {
         ...state,
-        birthdate: action.payload
+        birthdate: action.payload,
       };
-    case 'FORM_TOGGLE_UPDATED':
+    case "FORM_TOGGLE_UPDATED":
       return {
         ...state,
-        toggle: !state.toggle
+        toggle: !state.toggle,
       };
-    case 'FORM_SLIDER_UPDATED':
+    case "FORM_SLIDER_UPDATED":
       return {
         ...state,
-        slider: action.payload
+        slider: action.payload,
       };
-    case 'FORM_TEXTAREA_UPDATED':
+    case "FORM_TEXTAREA_UPDATED":
       return {
         ...state,
-        textArea: action.payload
+        textArea: action.payload,
       };
-    case 'FORM_RESIZABLE_UPDATED':
+    case "FORM_RESIZABLE_UPDATED":
       return {
         ...state,
-        resizable: action.payload
+        resizable: action.payload,
       };
-    case 'FORM_CHECKBOX_UPDATED':
+    case "FORM_CHECKBOX_UPDATED":
       return {
         ...state,
         checkboxGroup: {
           ...state.checkboxGroup,
-          [`checkbox${action.payload}`]: !state.checkboxGroup[`checkbox${action.payload}`]
-        }
-      };  
-    case 'FORM_RADIO_BUTTON_UPDATED':
+          [`checkbox${action.payload}`]: !state.checkboxGroup[
+            `checkbox${action.payload}`
+          ],
+        },
+      };
+    case "FORM_RADIO_BUTTON_UPDATED":
       return {
         ...state,
-        radioButtonsGroup: action.payload
-      };        
+        radioButtonsGroup: action.payload,
+      };
     default:
       return state;
   }

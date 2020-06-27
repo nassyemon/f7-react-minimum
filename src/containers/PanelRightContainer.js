@@ -1,7 +1,11 @@
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
 
-import PanelRight from '../components/modals/PanelRight';
-import { closePanelRight, goToAboutPageFromRightPanel, goToFormPageFromRightPanel } from '../actions/PanelRightActions';
+import PanelRight from "../components/modals/PanelRight";
+import {
+  closePanelRight,
+  goToAboutPageFromRightPanel,
+  goToFormPageFromRightPanel,
+} from "../actions/PanelRightActions";
 
 const mapDispatchToProps = (dispatch) => {
   return {

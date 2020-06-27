@@ -1,3 +1,3 @@
 export const getFormData = (state) => {
-    return state.form;
+  return state.form;
 };

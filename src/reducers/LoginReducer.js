@@ -1,27 +1,27 @@
 const initialState = {
-  username: '',
-  password: '',
+  username: "",
+  password: "",
   login: false,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'USERNAME_UPDATED':
+    case "USERNAME_UPDATED":
       return {
         ...state,
-        username: action.payload
+        username: action.payload,
       };
-    case 'PASSWORD_UPDATED':
+    case "PASSWORD_UPDATED":
       return {
         ...state,
-        password: action.payload
+        password: action.payload,
       };
-    case 'LOGIN_SUCCESS':
+    case "LOGIN_SUCCESS":
       return {
         ...state,
         login: true,
       };
-    case 'LOGOUT':
+    case "LOGOUT":
       return {
         ...state,
         login: false,

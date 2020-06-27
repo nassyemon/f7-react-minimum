@@ -1,11 +1,11 @@
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
 
-import NotFoundPage from '../components/pages/NotFoundPage';
-import { goBackToHomePage } from '../actions/DefaultRouteActions';
+import NotFoundPage from "../components/pages/NotFoundPage";
+import { goBackToHomePage } from "../actions/DefaultRouteActions";
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onGoBackToHomePage: () => dispatch(goBackToHomePage())
+    onGoBackToHomePage: () => dispatch(goBackToHomePage()),
   };
 };
 
