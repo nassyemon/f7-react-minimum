@@ -3,6 +3,7 @@
         "react-app",
         "airbnb-typescript",
         "prettier/@typescript-eslint",
+        "@cordova/eslint-config/node",
         "plugin:prettier/recommended"
     ],
     "rules": {

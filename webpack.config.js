@@ -13,10 +13,15 @@ const port = argvs.port || DEFAULT_PORT;
 const wss = process.env.MONACA_TERMINAL ? true : false;
 const socketPort = port + 1; //it is used for webpack-hot-client
 
+
+function resolvePath(dir) {
+  return path.join(__dirname, dir);
+}
+
 let webpackConfig = {
   mode: devMode ? 'development' : 'production',
   entry: {
-    app: ['./src/main.jsx']
+    app: ['./src/main.js']
   },
 
   output: {
@@ -47,20 +52,28 @@ let webpackConfig = {
       {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
+        include: [
+          resolvePath('src'),
+        ],
         use: [
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/react', '@babel/preset-env', '@babel/preset-typescript'],
+              presets: [
+                '@babel/react',
+                '@babel/preset-env',
+                '@babel/preset-typescript',
+              ],
               plugins: [
+                '@babel/plugin-proposal-object-rest-spread',
+                '@babel/plugin-proposal-class-properties',
+                '@babel/plugin-proposal-optional-chaining',
                 [
                   "babel-plugin-styled-components",
                   {
                     "ssr": false
                   }
-                ],
-                '@babel/plugin-proposal-object-rest-spread'
+                ]
               ].concat(devMode ? ['react-hot-loader/babel'] : []),
             }
           },

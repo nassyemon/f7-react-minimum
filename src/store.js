@@ -1,19 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import {
-  Framework7StateKernel,
-  framework7Reducer,
-  syncFramework7WithStore,
-} from "framework7-redux";
 import thunk from "redux-thunk";
 import { createLogger } from "redux-logger";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 
-import loginReducer from "./reducers/LoginReducer";
-import formReducer from "./reducers/FormReducer";
-import pictureReducer from "./reducers/PictureReducer";
-
-export const stateKernel = new Framework7StateKernel();
+import login from "./reducers/login";
+import sidepanel from "./reducers/sidepanel";
+import picture from "./reducers/picture";
+import settings from "./reducers/settings";
 
 const preloadedState = {};
 
@@ -26,17 +20,17 @@ const middlewares = [
 ].filter(Boolean);
 
 const rootReducer = combineReducers({
-  framework7: framework7Reducer,
-  login: loginReducer,
-  form: formReducer,
-  picture: pictureReducer,
+  login,
+  picture,
+  settings,
+  sidepanel,
 });
 
 const persistedReducer = persistReducer(
   {
     key: "root",
     storage,
-    whitelist: ["login"],
+    whitelist: ["login", "settings"],
   },
   rootReducer
 );
@@ -48,5 +42,3 @@ export const store = createStore(
 );
 
 export const persistor = persistStore(store);
-
-syncFramework7WithStore(store, stateKernel);
