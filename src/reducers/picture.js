@@ -9,8 +9,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         pictures: [
+          { uri: payload.uri, name: payload.name || "NO_NAME" },
           ...state.pictures,
-          { uri: payload.uri, name: payload.name || "<<NO NAME>>" },
         ],
       };
     case "CLEAR_PICTURE":

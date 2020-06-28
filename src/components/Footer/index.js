@@ -1,24 +1,30 @@
 import { connect } from "react-redux";
-import { clearPicture, openWebApiCamera } from "../../actions/picture";
 import getNativePicture from "../../modules/camera/getNativePicture";
 import { getPictures } from "../../selectors/picture";
+import { usingCordova } from "../../modules/cordovaUtils";
+import { moveToWebCamera } from "../../actions/navigation";
 import Footer from "./Footer";
 
 const mapStateToProps = state => {
   return {
-    pictures: getPictures(state),
-    hasHTML5mediaDevice: !!navigator.mediaDevices,
+    isApp: usingCordova(),
+    hasWebCamera: !!navigator.mediaDevices,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onClickCameraButton: () =>
-      getNativePicture(
-        Camera.PictureSourceType.CAMERA,
-        Camera.DestinationType.FILE_URI,
-        dispatch
-      ),
+    onClickCameraButton: () => {
+        if (usingCordova()){
+            return getNativePicture(
+                Camera.PictureSourceType.CAMERA,
+                Camera.DestinationType.FILE_URI,
+                dispatch
+            );
+        } else {
+            return dispatch(moveToWebCamera());
+        }
+    },
     /*
     onClickAlbumButton: () =>
       getNativePicture(
@@ -27,8 +33,6 @@ const mapDispatchToProps = dispatch => {
         dispatch
       ),
     */
-    onClickWebApiCameraButton: () => dispatch(openWebApiCamera()),
-    onClickClearPicture: () => dispatch(clearPicture()),
   };
 };
 

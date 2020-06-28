@@ -5,6 +5,9 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const path = require('path');
 const argvs = require('yargs').argv;
+const history = require('connect-history-api-fallback');
+const convert = require('koa-connect');
+
 const devMode = process.env.WEBPACK_SERVE || argvs.mode === 'development';
 
 const DEFAULT_PORT = 8080;
@@ -138,6 +141,14 @@ if(devMode) {
   webpackConfig.serve = {
     port: port,
     host: host,
+    add: (app, middleware, options) => {
+      const historyOptions = {
+        rewrites: [
+          { from: /\/[^.]*$/, to: '/index.html'}
+        ]
+      };
+      app.use(convert(history(historyOptions)));
+    },
     devMiddleware: {
       publicPath: '/',
       stats: {

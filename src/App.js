@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ConnectedRouter } from 'connected-react-router'
+import { Switch } from 'react-router';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {
   StylesProvider,
@@ -10,12 +11,16 @@ import styled, {
   ThemeProvider as StyledThemeProvider,
 } from "styled-components";
 import { connect } from "react-redux";
+import { history } from "./store";
 
-import Home from "./containers/Home";
-import Setting from "./containers/Setting";
+import DefaultRoute from "./routes/DefaultRoute";
+import EmptyRoute from "./routes/EmptyRoute";
 
-import MainLayout from "./layouts/MainLayout";
-import EmptyLayout from "./layouts/EmptyLayout";
+import Home from "./components/Home";
+import Camera from "./components/Camera";
+import Setting from "./components/Setting";
+import SubmitPicture from "./components/SubmitPicture";
+
 
 /*
 import { openLogin } from "./actions/LoginActions";
@@ -46,32 +51,6 @@ const NotFound = () => {
   return <div>NotFound</div>;
 };
 
-const DashboardRoute = ({ component: RouteComponent, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={matchProps => (
-        <MainLayout>
-          <RouteComponent {...matchProps} />
-        </MainLayout>
-      )}
-    />
-  );
-};
-
-const EmptyRoute = ({ component: RouteComponent, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={matchProps => (
-        <EmptyLayout>
-          <RouteComponent {...matchProps} />
-        </EmptyLayout>
-      )}
-    />
-  );
-};
-
 function App({ settings }) {
   return (
     <StylesProvider injectFirst>
@@ -79,14 +58,16 @@ function App({ settings }) {
         <StyledThemeProvider theme={theme}>
           <CssBaseline />
           <Root>
-            <Router>
+            <ConnectedRouter history={history}>
               <Switch>
-                <DashboardRoute path="/dashboard" component={Home} />
-                <DashboardRoute path="/setting" component={Setting} />
-                <DashboardRoute exact path="/" component={Home} />
+                <DefaultRoute path="/home" component={Home} />
+                <DefaultRoute path="/setting" component={Setting} />
+                <EmptyRoute exact path="/camera" component={Camera} />
+                <DefaultRoute exact path="/submit-picture" component={SubmitPicture} />
+                <DefaultRoute exact path="/" component={Home} />
                 <EmptyRoute component={NotFound} />
               </Switch>
-            </Router>
+            </ConnectedRouter>
           </Root>
         </StyledThemeProvider>
       </MuiThemeProvider>
