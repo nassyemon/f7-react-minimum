@@ -1,1 +1,1 @@
-# f7-react-camera
+# react-minimum
