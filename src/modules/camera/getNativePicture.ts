@@ -7,7 +7,7 @@ export default function getNativePicture(
   dispatch: any
 ) {
     return navigator.camera.getPicture(
-      onSuccess(dispatch),
+      onSuccess(dispatch, destinationType),
       onFail(dispatch),
       getCameraOptions(sourceType, destinationType),
     );
@@ -25,10 +25,13 @@ function getCameraOptions(sourceType, destinationType) {
   };
 }
 
-function onSuccess(dispatch: any) {
-  return (fileUri: string) => {
-    console.log(fileUri);
-    dispatch(addPicture(fileUri, Date.now()));
+function onSuccess(dispatch: any, destinationType: any) {
+  return (uri: string) => {
+    if (destinationType === Camera.DestinationType.DATA_URL) {
+      dispatch(addPicture("data:image/jpeg;base64, " + uri, Date.now()));
+    } else {
+      dispatch(addPicture(uri, Date.now()));
+    }
     return dispatch(moveToSubmitPicture());
   };
 }

@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
         if (usingCordova()){
             return getNativePicture(
                 Camera.PictureSourceType.CAMERA,
-                Camera.DestinationType.FILE_URI,
+                Camera.DestinationType.DATA_URL,
                 dispatch
             );
         } else {
