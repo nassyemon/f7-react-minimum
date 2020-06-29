@@ -13,10 +13,15 @@ const port = argvs.port || DEFAULT_PORT;
 const wss = process.env.MONACA_TERMINAL ? true : false;
 const socketPort = port + 1; //it is used for webpack-hot-client
 
+
+function resolvePath(dir) {
+  return path.join(__dirname, dir);
+}
+
 let webpackConfig = {
   mode: devMode ? 'development' : 'production',
   entry: {
-    app: ['./src/main.jsx']
+    app: ['./src/main.js']
   },
 
   output: {
@@ -35,7 +40,7 @@ let webpackConfig = {
   },
   
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.css', '.html', '.styl'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.css', '.html', '.styl'],
     modules: [
       path.resolve(__dirname, 'src'),
       'node_modules'
@@ -45,24 +50,34 @@ let webpackConfig = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
-        use: [{
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/react', '@babel/preset-env'],
-            plugins: [
-              [
-                "babel-plugin-styled-components",
-                {
-                  "ssr": false
-                }
+        include: [
+          resolvePath('src'),
+        ],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/react',
+                '@babel/preset-env',
+                '@babel/preset-typescript',
               ],
-              '@babel/plugin-proposal-object-rest-spread'
-            ].concat(devMode ? ['react-hot-loader/babel'] : []),
-          }
-        }]
+              plugins: [
+                '@babel/plugin-proposal-object-rest-spread',
+                '@babel/plugin-proposal-class-properties',
+                '@babel/plugin-proposal-optional-chaining',
+                [
+                  "babel-plugin-styled-components",
+                  {
+                    "ssr": false
+                  }
+                ]
+              ].concat(devMode ? ['react-hot-loader/babel'] : []),
+            }
+          },
+        ]
       },
       {
         test: /\.html$/,
