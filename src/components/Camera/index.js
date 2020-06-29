@@ -1,12 +1,13 @@
 import { connect } from "react-redux";
-import Camera from "../components/modals/Camera";
-import { addPicture, closeWebApiCamera } from "../actions/CameraActions";
+import { addPicture } from "../../actions/picture";
+import { replaceToSubmitPicture } from "../../actions/navigation";
+import Camera from "./Camera";
 
 const mapDispatchToProps = dispatch => {
   return {
     handleTakePhoto: dataUri => {
       dispatch(addPicture(dataUri, Date.now()));
-      dispatch(closeWebApiCamera());
+      dispatch(replaceToSubmitPicture());
     },
   };
 };

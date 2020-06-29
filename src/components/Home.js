@@ -5,16 +5,18 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
+import styled from "styled-components";
+
+const Root = styled.div`
+  display: flex;
+  alignItems: center;
+  justify-content: center;
+`;
+
 
 const Home = props => {
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <Root>
       <Card>
         <CardContent>
           <Typography variant="h3">Redux Example</Typography>
@@ -35,7 +37,7 @@ const Home = props => {
           </Button>
         </CardActions>
       </Card>
-    </div>
+    </Root>
   );
 };
 

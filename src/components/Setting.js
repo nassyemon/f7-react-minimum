@@ -17,7 +17,7 @@ import { toggleThemeMode, swapThemeColors } from "../reducers/settings";
 
 const Settings = props => (
   <div>
-    <Typography variant="headline">Settings</Typography>
+    <Typography variant="h5">Settings</Typography>
     <Card>
       <CardContent>
         <List>

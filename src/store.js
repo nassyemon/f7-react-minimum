@@ -1,13 +1,15 @@
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import { createBrowserHistory, createHashHistory } from "history";
 import thunk from "redux-thunk";
 import { createLogger } from "redux-logger";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+import { persistStore } from "redux-persist";
+import { routerMiddleware } from 'connected-react-router'
+import { usingCordova } from "./modules/cordovaUtils";
 
-import login from "./reducers/login";
-import sidepanel from "./reducers/sidepanel";
-import picture from "./reducers/picture";
-import settings from "./reducers/settings";
+
+export const history = usingCordova() ? createHashHistory() : createBrowserHistory();
+
+import createReducer from "./reducers";
 
 const preloadedState = {};
 
@@ -15,28 +17,13 @@ const logger = createLogger();
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middlewares = [
+  routerMiddleware(history),
   thunk,
   process.env.NODE_ENV === "development" && logger,
 ].filter(Boolean);
 
-const rootReducer = combineReducers({
-  login,
-  picture,
-  settings,
-  sidepanel,
-});
-
-const persistedReducer = persistReducer(
-  {
-    key: "root",
-    storage,
-    whitelist: ["login", "settings"],
-  },
-  rootReducer
-);
-
 export const store = createStore(
-  persistedReducer,
+  createReducer(history),
   preloadedState,
   composeEnhancers(applyMiddleware(...middlewares))
 );

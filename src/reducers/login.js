@@ -1,30 +1,20 @@
+import { LOGIN_SUCCESS, LOGOUT } from "../actions/login";
+
 const initialState = {
-  username: "",
-  password: "",
-  login: false,
+  accessToken: null,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "USERNAME_UPDATED":
+    case LOGIN_SUCCESS:
       return {
         ...state,
-        username: action.payload,
+        accessToken: action.payload,
       };
-    case "PASSWORD_UPDATED":
+    case LOGOUT:
       return {
         ...state,
-        password: action.payload,
-      };
-    case "LOGIN_SUCCESS":
-      return {
-        ...state,
-        login: true,
-      };
-    case "LOGOUT":
-      return {
-        ...state,
-        login: false,
+        accessToken: null,
       };
     default:
       return state;
