@@ -16,6 +16,7 @@ import { history } from "./store";
 import DefaultRoute from "./routes/DefaultRoute";
 import EmptyRoute from "./routes/EmptyRoute";
 
+import Login from "./components/Login";
 import Home from "./components/Home";
 import Camera from "./components/Camera";
 import Setting from "./components/Setting";
@@ -61,6 +62,7 @@ function App({ settings }) {
           <Root>
             <ConnectedRouter history={history}>
               <Switch>
+                <DefaultRoute path="/login" component={Login} />
                 <DefaultRoute path="/home" component={Home} />
                 <DefaultRoute path="/setting" component={Setting} />
                 <EmptyRoute path="/camera" component={Camera} />

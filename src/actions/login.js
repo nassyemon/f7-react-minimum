@@ -1,4 +1,5 @@
 import { replace } from "connected-react-router";
+import { authCheck } from "../api/auth";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGOUT = "LOGOUT";
@@ -21,18 +22,14 @@ export const logout = () => {
 };
 
 export const login = (accessToken) => {
-  return (dispatch, getState) => {
-    const state = getState();
-    if (valudateAccessToken(accessToken)) {
-      dispatch(loginSuccess(accessToken));
-    } else {
-      alert('incorrect accessToken');
-      // TODO;
+  return async (dispatch, getState) => {
+    // const state = getState();
+    try {
+      const res = await authCheck(accessToken);
+      return dispatch(loginSuccess(accessToken));
+    } catch(error) {
+      console.error(error);
+      alert('Incorrect accessToken');
     }
   };
 };
-
-function valudateAccessToken(accessToken) {
-  // TODO;
-  return !!accessToken;
-}

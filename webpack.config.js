@@ -24,7 +24,7 @@ function resolvePath(dir) {
 let webpackConfig = {
   mode: devMode ? 'development' : 'production',
   entry: {
-    app: ['./src/main.js']
+    app: ['@babel/polyfill', './src/main.js']
   },
 
   output: {

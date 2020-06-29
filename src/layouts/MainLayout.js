@@ -10,7 +10,7 @@ import Sidebar from "../components/Sidebar";
 
 import { isOpen } from "../selectors/sidepanel";
 
-const sideBarWidth = "60vw";
+const sideBarWidth = "70vw";
 
 const styles = () => ({});
 
