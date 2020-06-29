@@ -20,6 +20,8 @@ import Home from "./components/Home";
 import Camera from "./components/Camera";
 import Setting from "./components/Setting";
 import SubmitPicture from "./components/SubmitPicture";
+import { withRouter } from "react-router";
+
 
 
 /*
@@ -47,8 +49,10 @@ const Root = styled.div`
   height: 100vh;
 `;
 
-const NotFound = () => {
-  return <div>NotFound</div>;
+const NotFound = (props) => {
+  const { match, location, history } = props;
+  console.log(match, location, history);
+  return <div>NotFound???</div>;
 };
 
 function App({ settings }) {
@@ -62,9 +66,9 @@ function App({ settings }) {
               <Switch>
                 <DefaultRoute path="/home" component={Home} />
                 <DefaultRoute path="/setting" component={Setting} />
-                <EmptyRoute exact path="/camera" component={Camera} />
-                <DefaultRoute exact path="/submit-picture" component={SubmitPicture} />
-                <DefaultRoute exact path="/" component={Home} />
+                <EmptyRoute path="/camera" component={Camera} />
+                <DefaultRoute path="/submit-picture" component={SubmitPicture} />
+                <DefaultRoute path="/" component={Home} />
                 <EmptyRoute component={NotFound} />
               </Switch>
             </ConnectedRouter>
