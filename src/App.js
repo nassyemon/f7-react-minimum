@@ -20,7 +20,6 @@ import Home from "./components/Home";
 import Camera from "./components/Camera";
 import Setting from "./components/Setting";
 import SubmitPicture from "./components/SubmitPicture";
-import { withRouter } from "react-router";
 
 
 
@@ -49,9 +48,7 @@ const Root = styled.div`
   height: 100vh;
 `;
 
-const NotFound = (props) => {
-  const { match, location, history } = props;
-  console.log(match, location, history);
+const NotFound = () => {
   return <div>NotFound???</div>;
 };
 
