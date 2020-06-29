@@ -7,6 +7,7 @@
     "@material-ui/icons": "^4.9.1",
     "connected-react-router": "^6.8.0",
     "cordova-custom-config": "5.1.0",
+    "cordova-ios": "^5.1.1",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-inappbrowser": "^4.0.0",
     "cordova-plugin-splashscreen": "5.0.2",
@@ -51,7 +52,10 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-camera": {},
       "cordova-plugin-inappbrowser": {}
-    }
+    },
+    "platforms": [
+      "ios"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
