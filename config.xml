@@ -77,7 +77,6 @@
     <edit-config target="NSPhotoLibraryAddUsageDescription" file="*-Info.plist" mode="merge">
       <string>need photo library access to save pictures there</string>
     </edit-config>
-
   </platform>
   <platform name="android">
     <icon src="/res/android/icon/ldpi.png" density="ldpi"/>
