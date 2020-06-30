@@ -9,10 +9,9 @@ import styled from "styled-components";
 
 const Root = styled.div`
   display: flex;
-  alignItems: center;
+  alignitems: center;
   justify-content: center;
 `;
-
 
 const Home = props => {
   return (

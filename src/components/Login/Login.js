@@ -9,8 +9,7 @@ import styled from "styled-components";
 
 const styles = theme => ({});
 
-const Root = styled(Container)`
-`;
+const Root = styled(Container)``;
 
 const TitleButtonContainer = styled(Container)`
   display: flex;
@@ -33,21 +32,25 @@ const LoginButtonContainer = styled(Container)`
   height: 20vh;
 `;
 
-
-function Login({
-  onClickLogin
-}) {
+function Login({ onClickLogin }) {
   return (
-    <Root> 
+    <Root>
       <Box>
         <TitleButtonContainer>
           <Typography variant="h4" component="h4">
             ログイン
           </Typography>
-          </TitleButtonContainer>
-        <ContentContainer></ContentContainer>
+        </TitleButtonContainer>
+        <ContentContainer />
         <LoginButtonContainer maxWidth="sm">
-          <Button onClick={onClickLogin} variant="contained" size="large" color="primary">ログイン</Button>
+          <Button
+            onClick={onClickLogin}
+            variant="contained"
+            size="large"
+            color="primary"
+          >
+            ログイン
+          </Button>
         </LoginButtonContainer>
       </Box>
     </Root>

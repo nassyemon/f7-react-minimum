@@ -16,7 +16,7 @@ function Header(props) {
   const { classes, onClicHamberger } = props;
   return (
     <AppBar position="fixed">
-      <Toolbar disableGutters={true} classes={{ root: classes.toolbarRoot }}>
+      <Toolbar disableGutters classes={{ root: classes.toolbarRoot }}>
         <IconButton
           color="inherit"
           aria-label="Open drawer"

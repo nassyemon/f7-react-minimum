@@ -7,7 +7,7 @@ export const LOGOUT = "LOGOUT";
 export const openLogin = () => replace("/login");
 export const closeLogin = () => replace("/");
 
-const loginSuccess = (accessToken) => ({
+const loginSuccess = accessToken => ({
   type: LOGIN_SUCCESS,
   payload: accessToken,
 });
@@ -21,15 +21,15 @@ export const logout = () => {
   };
 };
 
-export const login = (accessToken) => {
+export const login = accessToken => {
   return async (dispatch, getState) => {
     // const state = getState();
     try {
       const res = await authCheck(accessToken);
       return dispatch(loginSuccess(accessToken));
-    } catch(error) {
+    } catch (error) {
       console.error(error);
-      alert('Incorrect accessToken');
+      alert("Incorrect accessToken");
     }
   };
 };

@@ -6,8 +6,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import SettingsIcon from "@material-ui/icons/Settings";
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import VpnKeyIcon from "@material-ui/icons/VpnKey";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
@@ -45,7 +45,12 @@ const StyledDrawer = styled(Drawer)`
 
 function Sidebar({ open, onClickSidepanel, sideBarWidth, onClickLogin }) {
   return (
-    <StyledDrawer variant="permanent" width={sideBarWidth} open={open} onClick={onClickSidepanel}>
+    <StyledDrawer
+      variant="permanent"
+      width={sideBarWidth}
+      open={open}
+      onClick={onClickSidepanel}
+    >
       <List>
         <Link to="/">
           <ListItem button>

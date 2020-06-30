@@ -6,15 +6,15 @@ export default function getNativePicture(
   destinationType: any,
   dispatch: any
 ) {
-    return navigator.camera.getPicture(
-      onSuccess(dispatch, destinationType),
-      onFail(dispatch),
-      getCameraOptions(sourceType, destinationType),
-    );
-  }
+  return navigator.camera.getPicture(
+    onSuccess(dispatch, destinationType),
+    onFail(dispatch),
+    getCameraOptions(sourceType, destinationType)
+  );
+}
 
 function getCameraOptions(sourceType, destinationType) {
-  return  {
+  return {
     quality: 90,
     sourceType,
     destinationType,

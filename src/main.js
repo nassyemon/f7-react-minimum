@@ -20,18 +20,17 @@ import "react-html5-camera-photo/build/css/index.css";
 // Custom app styles
 import "./css/app.css";
 
-
 const rootElement = document.getElementById("app");
 awaitReady().then(() => {
   setWindowOpenToInAppBrower();
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-        <PersistGate persistor={persistor}>
+            <PersistGate persistor={persistor}>
           <App />
         </PersistGate>
-      </Provider>
-    </AppContainer>,
+        </Provider>
+      </AppContainer>,
     rootElement
   );
 
@@ -42,8 +41,8 @@ awaitReady().then(() => {
         <AppContainer>
           <Provider store={store}>
             <NextApp />
-          </Provider>
-        </AppContainer>,
+            </Provider>
+          </AppContainer>,
         rootElement
       );
     });

@@ -3,13 +3,14 @@ import { createBrowserHistory, createHashHistory } from "history";
 import thunk from "redux-thunk";
 import { createLogger } from "redux-logger";
 import { persistStore } from "redux-persist";
-import { routerMiddleware } from 'connected-react-router'
+import { routerMiddleware } from "connected-react-router";
 import { usingCordova } from "./modules/cordovaUtils";
 
-
-export const history = usingCordova() ? createHashHistory() : createBrowserHistory();
-
 import createReducer from "./reducers";
+
+export const history = usingCordova()
+  ? createHashHistory()
+  : createBrowserHistory();
 
 const preloadedState = {};
 

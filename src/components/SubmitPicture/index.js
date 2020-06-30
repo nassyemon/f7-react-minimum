@@ -14,15 +14,14 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onClickRetakeButton: () => {
-        if (usingCordova()){
-            return getNativePicture(
-                Camera.PictureSourceType.CAMERA,
-                Camera.DestinationType.FILE_URI,
-                dispatch
-            );
-        } else {
-            return dispatch(replaceToWebCamera());
-        }
+      if (usingCordova()) {
+        return getNativePicture(
+          Camera.PictureSourceType.CAMERA,
+          Camera.DestinationType.FILE_URI,
+          dispatch
+        );
+      }
+      return dispatch(replaceToWebCamera());
     },
     /*
     onClickAlbumButton: () =>

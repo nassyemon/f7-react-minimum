@@ -1,4 +1,4 @@
-import { push, replace, goBack } from 'connected-react-router'
+import { push, replace, goBack } from "connected-react-router";
 
 export const replaceToLogin = () => replace("/login");
 export const moveToWebCamera = () => push("/camera");

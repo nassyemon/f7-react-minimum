@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { ConnectedRouter } from 'connected-react-router'
-import { Switch } from 'react-router';
+import { ConnectedRouter } from "connected-react-router";
+import { Switch } from "react-router";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {
   StylesProvider,
@@ -21,8 +21,6 @@ import Home from "./components/Home";
 import Camera from "./components/Camera";
 import Setting from "./components/Setting";
 import SubmitPicture from "./components/SubmitPicture";
-
-
 
 /*
 import { openLogin } from "./actions/LoginActions";
@@ -59,22 +57,25 @@ function App({ settings }) {
       <MuiThemeProvider theme={theme}>
         <StyledThemeProvider theme={theme}>
           <CssBaseline />
-          <Root>
+              <Root>
             <ConnectedRouter history={history}>
               <Switch>
-                <DefaultRoute path="/login" component={Login} />
+                    <DefaultRoute path="/login" component={Login} />
                 <DefaultRoute path="/home" component={Home} />
-                <DefaultRoute path="/setting" component={Setting} />
-                <EmptyRoute path="/camera" component={Camera} />
-                <DefaultRoute path="/submit-picture" component={SubmitPicture} />
-                <DefaultRoute path="/" component={Home} />
-                <EmptyRoute component={NotFound} />
-              </Switch>
-            </ConnectedRouter>
+                    <DefaultRoute path="/setting" component={Setting} />
+                    <EmptyRoute path="/camera" component={Camera} />
+                    <DefaultRoute
+                  path="/submit-picture"
+                      component={SubmitPicture}
+                  />
+                    <DefaultRoute path="/" component={Home} />
+                    <EmptyRoute component={NotFound} />
+                </Switch>
+                  </ConnectedRouter>
           </Root>
-        </StyledThemeProvider>
-      </MuiThemeProvider>
-    </StylesProvider>
+          </StyledThemeProvider>
+        </MuiThemeProvider>
+      </StylesProvider>
   );
 }
 

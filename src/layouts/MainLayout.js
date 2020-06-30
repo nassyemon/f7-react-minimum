@@ -53,13 +53,15 @@ const mapStateToProps = state => {
 function MainLayout({ isSidePanelOpen, children }) {
   return (
     <Fragment>
-      <Root>
+          <Root>
         <Header />
-        <Main isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth}>{children}</Main>
+            <Main isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth}>
+          {children}
+        </Main>
       </Root>
-      <Sidebar open={isSidePanelOpen} sideBarWidth={sideBarWidth} />
+          <Sidebar open={isSidePanelOpen} sideBarWidth={sideBarWidth} />
       <Footer />
-    </Fragment>
+      </Fragment>
   );
 }
 

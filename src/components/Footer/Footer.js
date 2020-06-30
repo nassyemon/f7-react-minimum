@@ -10,26 +10,25 @@ import styled from "styled-components";
 const styles = theme => ({});
 
 const Root = styled.div`
-    position: fixed;
-    z-index: 2000;
-    width: 100vw;
-    max-height: 15vw;
-    bottom: 0;
+  position: fixed;
+  z-index: 2000;
+  width: 100vw;
+  max-height: 15vw;
+  bottom: 0;
 `;
 
-function Footer({
-    onClickCameraButton,
-}) {
+function Footer({ onClickCameraButton }) {
   return (
-      <Root>
-        <BottomNavigation
-          showLabels
-        >
-            <BottomNavigationAction label="ホーム" icon={<HomeIcon />} />
-            <BottomNavigationAction label="カメラ" icon={<CameraIcon fontSize="large" onClick={onClickCameraButton} />} />
-            <BottomNavigationAction label="レシート" icon={<ListAltIcon />} />
-        </BottomNavigation>
-      </Root>
+    <Root>
+      <BottomNavigation showLabels>
+        <BottomNavigationAction label="ホーム" icon={<HomeIcon />} />
+        <BottomNavigationAction
+          label="カメラ"
+          icon={<CameraIcon fontSize="large" onClick={onClickCameraButton} />}
+        />
+        <BottomNavigationAction label="レシート" icon={<ListAltIcon />} />
+      </BottomNavigation>
+    </Root>
   );
 }
 
