@@ -1,20 +1,24 @@
 import { LOGIN_SUCCESS, LOGOUT } from "../actions/login";
 
-const initialState = {
-  accessToken: null,
-};
+const initialState = Object.freeze({
+  session: null,
+  user_id: null,
+  user_name: null,
+});
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
+      const { session, user_id, user_name } = action.payload;
       return {
-        ...state,
-        accessToken: action.payload,
+        ...initialState,
+        session,
+        user_id,
+        user_name,
       };
     case LOGOUT:
       return {
-        ...state,
-        accessToken: null,
+        ...initialState,
       };
     default:
       return state;

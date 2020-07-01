@@ -21,29 +21,30 @@ const StyledDrawer = styled(Drawer)`
     white-space: nowrap;
     width: ${props => props.width};
     transition: ${({ theme }) =>
-      theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      })};
+    theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    })};
     ${props =>
-      !props.open
-        ? `
+    !props.open
+      ? `
     overflow-x: hidden;
     width: 0vw;
     transition: ${({ theme }) =>
-      theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      })};
+        theme.transitions.create("width", {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        })};
     ${({ theme }) => theme.breakpoints.up("sm")}: {
       width: ${({ theme }) => theme.spacing.unit * 9}
     };
     `
-        : ""}
+      : ""}
   }
 `;
 
-function Sidebar({ open, onClickSidepanel, sideBarWidth, onClickLogin }) {
+function Sidebar(props) {
+  const { open, isLoggedIn, onClickSidepanel, sideBarWidth, onClickLogin, onClickLogout, onClickDocuments, onClickSetting } = props;
   return (
     <StyledDrawer
       variant="permanent"
@@ -52,38 +53,33 @@ function Sidebar({ open, onClickSidepanel, sideBarWidth, onClickLogin }) {
       onClick={onClickSidepanel}
     >
       <List>
-        <Link to="/">
-          <ListItem button>
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="なんとかかんとか一覧" />
-          </ListItem>
-        </Link>
-        <Link onClick={onClickLogin}>
-          <ListItem button>
+        <ListItem button onClick={onClickDocuments}>
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          <ListItemText primary="レシート一覧" />
+        </ListItem>
+        {!isLoggedIn ? (
+          <ListItem button onClick={onClickLogin} >
             <ListItemIcon>
               <VpnKeyIcon />
             </ListItemIcon>
             <ListItemText primary="ログイン" />
           </ListItem>
-        </Link>
-        <Link to="/">
-          <ListItem button>
-            <ListItemIcon>
-              <ExitToAppIcon />
-            </ListItemIcon>
-            <ListItemText primary="ログアウト" />
-          </ListItem>
-        </Link>
-        <Link to="/setting">
-          <ListItem button>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary="設定" />
-          </ListItem>
-        </Link>
+        ) : (
+            <ListItem button onClick={onClickLogout}>
+              <ListItemIcon>
+                <ExitToAppIcon />
+              </ListItemIcon>
+              <ListItemText primary="ログアウト" />
+            </ListItem>
+          )}
+        <ListItem button onClick={onClickSetting}>
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
+          <ListItemText primary="設定" />
+        </ListItem>
       </List>
     </StyledDrawer>
   );
