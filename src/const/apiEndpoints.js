@@ -16,3 +16,5 @@ export const OAUTH2_LOGOUT_ENDPOINT =
 
 export const DOCUMENT_LIST_ENDPOINT =
   `${API_ENDPOINT_HOST}/documents`;
+
+export const DOCUMENT_ENDPOINT = `${API_ENDPOINT_HOST}/document`;

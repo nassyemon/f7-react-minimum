@@ -10,10 +10,9 @@ const Root = styled.div`
 export default ({ handleTakePhoto }) => (
   <Root>
     <Camera
-      isMaxResolution
       idealResolution={{
-        width: 1080,
-        height: 1920,
+        width: 480,
+        height: 720,
       }}
       idealFacingMode="FACING_MODES.ENVIRONMENT"
       onTakePhoto={dataUri => {

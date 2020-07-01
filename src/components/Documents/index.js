@@ -1,6 +1,6 @@
 import { compose } from "recompose";
 import { connect } from "react-redux";
-import { fetchDocuments } from "../../actions/documents";
+import { fetchDocuments } from "../../actions/document";
 import { getData, isLoaded } from "../../selectors/documents";
 import Documents from "./Documents";
 

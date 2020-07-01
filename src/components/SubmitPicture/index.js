@@ -3,6 +3,7 @@ import getNativePicture from "../../modules/camera/getNativePicture";
 import { getLastPicture } from "../../selectors/picture";
 import { usingCordova } from "../../modules/cordovaUtils";
 import { replaceToWebCamera } from "../../actions/navigation";
+import { createDocument } from "../../actions/document";
 import SubmitPicture from "./SubmitPicture";
 
 const mapStateToProps = state => {
@@ -22,6 +23,9 @@ const mapDispatchToProps = dispatch => {
         );
       }
       return dispatch(replaceToWebCamera());
+    },
+    onClickSubmitButton: async () => {
+      await dispatch(createDocument());
     },
     /*
     onClickAlbumButton: () =>

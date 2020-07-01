@@ -1,4 +1,4 @@
-import { FETCH_DOCUMENTS_SUCCESS, CLEAR_DOCUMENTS } from "../actions/documents";
+import { FETCH_DOCUMENTS_SUCCESS, CLEAR_DOCUMENTS } from "../actions/document";
 
 const initialState = Object.freeze({
   data: null,

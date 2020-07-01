@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router";
 import Container from "@material-ui/core/Container";
+import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
@@ -23,7 +24,14 @@ const Image = styled.img`
   object-fit: scale-down;
 `;
 
-function SubmitPicture({ picture }) {
+const ButtonContainer = styled(Container)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+`;
+
+function SubmitPicture({ picture, onClickSubmitButton }) {
   if (typeof picture?.uri !== "string") {
     return <Redirect to="/" />;
   }
@@ -32,6 +40,16 @@ function SubmitPicture({ picture }) {
       <ImageBox>
         <Image src={picture.uri} />
       </ImageBox>
+      <ButtonContainer maxWidth="sm">
+        <Button
+          onClick={onClickSubmitButton}
+          variant="contained"
+          size="large"
+          color="primary"
+        >
+          投稿
+        </Button>
+      </ButtonContainer>
     </Root>
   );
 }
