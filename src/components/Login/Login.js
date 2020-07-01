@@ -9,7 +9,20 @@ import styled from "styled-components";
 
 const styles = theme => ({});
 
-const Root = styled(Container)``;
+const Root = styled(Container)`
+  position: fixed;
+  min-height: 100vh;
+  background-color: #ffffff;
+  top: 100vh;
+  ${({ theme }) => /* TODO: refactor */`
+  padding: ${theme.spacing(2)}px;
+  margin-top: ${theme.spacing(7)}px;
+  transition: ${theme.transitions.create(["transform"], {
+  easing: theme.transitions.easing.easeOut,
+  duration: theme.transitions.duration.standard,
+})}; `}
+  transform: ${(props) => `translate(${props.isSidePanelOpen ? props.sideBarWidth : "0"}, ${props.isLoggedIn ? "0" : "-100vh"})`};
+`;
 
 const TitleButtonContainer = styled(Container)`
   display: flex;
@@ -32,9 +45,9 @@ const LoginButtonContainer = styled(Container)`
   height: 20vh;
 `;
 
-function Login({ onClickLogin }) {
+function Login({ onClickLogin, isSidePanelOpen, isLoggedIn, sideBarWidth }) {
   return (
-    <Root>
+    <Root isLoggedIn={isLoggedIn} isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth}>
       <Box>
         <TitleButtonContainer>
           <Typography variant="h4" component="h4">

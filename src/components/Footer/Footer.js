@@ -17,16 +17,18 @@ const Root = styled.div`
   bottom: 0;
 `;
 
-function Footer({ onClickCameraButton }) {
+function Footer({ onClickCameraButton, onClickDocumentButton, onClickHomeButton }) {
   return (
     <Root>
       <BottomNavigation showLabels>
-        <BottomNavigationAction label="ホーム" icon={<HomeIcon />} />
+        <BottomNavigationAction label="ホーム"
+          icon={<HomeIcon onClick={onClickHomeButton} />} />
         <BottomNavigationAction
           label="カメラ"
           icon={<CameraIcon fontSize="large" onClick={onClickCameraButton} />}
         />
-        <BottomNavigationAction label="レシート" icon={<ListAltIcon />} />
+        <BottomNavigationAction label="レシート"
+          icon={<ListAltIcon onClick={onClickDocumentButton} />} />
       </BottomNavigation>
     </Root>
   );

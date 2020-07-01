@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import getNativePicture from "../../modules/camera/getNativePicture";
-import { getPictures } from "../../selectors/picture";
+// import { getPictures } from "../../selectors/picture";
 import { usingCordova } from "../../modules/cordovaUtils";
-import { moveToWebCamera } from "../../actions/navigation";
+import { moveToWebCamera, moveToHome, moveToDocuments } from "../../actions/navigation";
 import Footer from "./Footer";
 
 const mapStateToProps = state => {
@@ -14,6 +14,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    onClickHomeButton: () => dispatch(moveToHome()),
     onClickCameraButton: () => {
       if (usingCordova()) {
         return getNativePicture(
@@ -24,6 +25,7 @@ const mapDispatchToProps = dispatch => {
       }
       return dispatch(moveToWebCamera());
     },
+    onClickDocumentButton: () => dispatch(moveToDocuments()),
     /*
     onClickAlbumButton: () =>
       getNativePicture(

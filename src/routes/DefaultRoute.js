@@ -7,10 +7,10 @@ export default function DefautlRoute({ component: RouteComponent, ...rest }) {
     <Route
       {...rest}
       render={matchProps => (
-            <MainLayout>
+        <MainLayout>
           <RouteComponent {...matchProps} />
         </MainLayout>
       )}
-      />
+    />
   );
 }

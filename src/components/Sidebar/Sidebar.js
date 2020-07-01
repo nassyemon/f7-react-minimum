@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -6,9 +6,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import SettingsIcon from "@material-ui/icons/Settings";
-import VpnKeyIcon from "@material-ui/icons/VpnKey";
+// import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -53,27 +53,33 @@ function Sidebar(props) {
       onClick={onClickSidepanel}
     >
       <List>
-        <ListItem button onClick={onClickDocuments}>
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary="レシート一覧" />
-        </ListItem>
-        {!isLoggedIn ? (
-          <ListItem button onClick={onClickLogin} >
-            <ListItemIcon>
-              <VpnKeyIcon />
-            </ListItemIcon>
-            <ListItemText primary="ログイン" />
-          </ListItem>
-        ) : (
+        {isLoggedIn ? (
+          <Fragment>
+            <ListItem button onClick={onClickDocuments}>
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary="レシート一覧" />
+            </ListItem>
             <ListItem button onClick={onClickLogout}>
               <ListItemIcon>
                 <ExitToAppIcon />
               </ListItemIcon>
               <ListItemText primary="ログアウト" />
             </ListItem>
-          )}
+          </Fragment>
+        ) : null
+          /*
+            (
+            <ListItem button onClick={onClickLogin} >
+              <ListItemIcon>
+                <VpnKeyIcon />
+              </ListItemIcon>
+              <ListItemText primary="ログイン" />
+            </ListItem>
+          )
+        */
+        }
         <ListItem button onClick={onClickSetting}>
           <ListItemIcon>
             <SettingsIcon />

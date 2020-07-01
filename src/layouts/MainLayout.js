@@ -7,6 +7,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
+import Login from "../components/Login";
 
 import { isOpen } from "../selectors/sidepanel";
 
@@ -16,52 +17,41 @@ const styles = () => ({});
 
 const Root = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 
 const Main = styled.main`
   width: 100vw;
   overflow-x: hidden;
-  ${({ theme, isSidePanelOpen, sideBarWidth }) => `
+  ${({ theme }) => `
   padding: ${theme.spacing(2)}px;
   margin-top: ${theme.spacing(7)}px;
   transition: ${theme.transitions.create(["transform"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  })};
-  ${
-    isSidePanelOpen
-      ? `
-  transform: translateX(${sideBarWidth});
-  transition: ${theme.transitions.create(["transform"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  })};`
-      : `
-  transition: ${theme.transitions.create(["transform"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  })};`
-  }
-  `}
+  easing: theme.transitions.easing.sharp,
+  duration: theme.transitions.duration.standard,
+})}; `}
+  transform: ${({ isSidePanelOpen, sideBarWidth }) => isSidePanelOpen ? `translateX(${sideBarWidth})` : ""};
 `;
+
 const mapStateToProps = state => {
   return {
     isSidePanelOpen: isOpen(state),
   };
 };
 
-function MainLayout({ isSidePanelOpen, children }) {
+function MainLayout({ isSidePanelOpen, isLoggedIn, children }) {
   return (
     <Fragment>
-          <Root>
+      <Root>
         <Header />
-            <Main isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth}>
+        <Main isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth}>
           {children}
         </Main>
+        <Login isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth} />
       </Root>
-          <Sidebar open={isSidePanelOpen} sideBarWidth={sideBarWidth} />
+      <Sidebar open={isSidePanelOpen} sideBarWidth={sideBarWidth} />
       <Footer />
-      </Fragment>
+    </Fragment>
   );
 }
 

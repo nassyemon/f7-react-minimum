@@ -1,13 +1,9 @@
-import { replace } from "connected-react-router";
 import { authCheck, getSession } from "../api/auth";
 import { hasSession } from "../selectors/login";
 import { replaceToLogin } from "./navigation";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGOUT = "LOGOUT";
-
-export const openLogin = () => replace("/login");
-export const closeLogin = () => replace("/");
 
 const loginSuccess = ({ session, user_id, user_name }) => ({
   type: LOGIN_SUCCESS,
@@ -54,7 +50,7 @@ export const refresh = () => {
       dispatch({ type: LOGOUT });
     }
     try {
-      const { session, userid, name } = await getSession(code);
+      const { session, userid, name } = await authCheck(code);
       return dispatch(loginSuccess({
         session,
         userid,
@@ -64,7 +60,6 @@ export const refresh = () => {
       dispatch({ type: LOGOUT });
       console.error(error);
       // TODO:
-      alert("Incorrect accessToken");
     }
   };
 }

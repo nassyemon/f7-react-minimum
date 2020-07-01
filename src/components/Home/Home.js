@@ -1,41 +1,42 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
+import React, { Fragment } from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { withStyles } from "@material-ui/core";
 
 const Root = styled.div`
   display: flex;
   alignitems: center;
   justify-content: center;
+  flex-direction: column;
 `;
 
-const Home = props => {
+const ContentCard = styled(Card)`
+  position: relative;
+  width: 100%;
+  margin-bottom: ${props => props.theme.spacing(1)}px;
+`
+
+function Home({ userName }) {
   return (
     <Root>
-      <Card>
+      <ContentCard>
         <CardContent>
-          <Typography variant="h3">Redux Example</Typography>
-          <Typography align="center" variant="subtitle1">
-            Counter: {props.settings}
-          </Typography>
+          {userName && (
+            <Fragment>
+              <Typography variant="h5">ようこそ</Typography>
+              <Typography align="center" variant="subtitle1">
+                {userName} さん
+              </Typography>
+            </Fragment>
+          )}
         </CardContent>
         <CardActions>
-          <Button color="primary" variant="contained" onClick={props.increment}>
-            Increment
-          </Button>
-          <Button
-            color="secondary"
-            variant="contained"
-            onClick={props.decrement}
-          >
-            Decrement
-          </Button>
         </CardActions>
-      </Card>
+      </ContentCard>
     </Root>
   );
 };
@@ -51,4 +52,4 @@ const mapDispatchToProps = dispatch => ({
   decrement: () => dispatch({ type: "NULL" }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default withStyles(() => ({}))(Home);

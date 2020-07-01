@@ -1,7 +1,7 @@
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import { hasSession, getUserName } from "../../selectors/login";
-import { replaceToLogin, moveToDocuments, moveToSetting } from "../../actions/navigation";
+import { moveToDocuments, moveToSetting } from "../../actions/navigation";
 import { closeSidepanel } from "../../actions/sidepanel";
 import Sidebar from "./Sidebar";
 import { logout } from "../../actions/login";
@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onClickSidepanel: () => dispatch(closeSidepanel()),
     onClickDocuments: () => dispatch(moveToDocuments()),
-    onClickLogin: () => dispatch(replaceToLogin()),
+    // onClickLogin: () => dispatch(replaceToLogin()),
     onClickLogout: () => dispatch(logout()),
     onClickSetting: () => dispatch(moveToSetting()),
   };
