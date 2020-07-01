@@ -10,7 +10,6 @@ const Root = styled.div`
 export default ({ handleTakePhoto }) => (
   <Root>
     <Camera
-      isFullscreen
       isMaxResolution
       idealResolution={{
         width: 1080,

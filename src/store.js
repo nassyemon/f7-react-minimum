@@ -5,6 +5,8 @@ import { createLogger } from "redux-logger";
 import { persistStore } from "redux-persist";
 import { routerMiddleware } from "connected-react-router";
 import { usingCordova } from "./modules/cordovaUtils";
+import { hasSession } from "./selectors/login";
+import { reauth } from "./actions/login";
 
 import createReducer from "./reducers";
 
@@ -29,4 +31,9 @@ export const store = createStore(
   composeEnhancers(applyMiddleware(...middlewares))
 );
 
-export const persistor = persistStore(store);
+export const persistor = persistStore(store, null, async () => {
+  const state = store.getState();
+  if (hasSession(state)) {
+    store.dispatch(reauth());
+  }
+});

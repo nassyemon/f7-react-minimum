@@ -5,6 +5,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import DashboardIcon from "@material-ui/icons/Dashboard";
+import CachedIcon from "@material-ui/icons/Cached";
 import SettingsIcon from "@material-ui/icons/Settings";
 // import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
@@ -44,7 +45,7 @@ const StyledDrawer = styled(Drawer)`
 `;
 
 function Sidebar(props) {
-  const { open, isLoggedIn, onClickSidepanel, sideBarWidth, onClickLogin, onClickLogout, onClickDocuments, onClickSetting } = props;
+  const { open, isLoggedIn, onClickSidepanel, sideBarWidth, onClickRefresh, onClickLogout, onClickDocuments, onClickSetting } = props;
   return (
     <StyledDrawer
       variant="permanent"
@@ -60,6 +61,12 @@ function Sidebar(props) {
                 <DashboardIcon />
               </ListItemIcon>
               <ListItemText primary="レシート一覧" />
+            </ListItem>
+            <ListItem button onClick={onClickRefresh}>
+              <ListItemIcon>
+                <CachedIcon />
+              </ListItemIcon>
+              <ListItemText primary="再読み込み" />
             </ListItem>
             <ListItem button onClick={onClickLogout}>
               <ListItemIcon>

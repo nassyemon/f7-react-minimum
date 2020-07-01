@@ -26,11 +26,11 @@ awaitReady().then(() => {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-            <PersistGate persistor={persistor}>
+        <PersistGate persistor={persistor}>
           <App />
         </PersistGate>
-        </Provider>
-      </AppContainer>,
+      </Provider>
+    </AppContainer>,
     rootElement
   );
 
@@ -41,8 +41,8 @@ awaitReady().then(() => {
         <AppContainer>
           <Provider store={store}>
             <NextApp />
-            </Provider>
-          </AppContainer>,
+          </Provider>
+        </AppContainer>,
         rootElement
       );
     });

@@ -4,15 +4,15 @@ import { OAHTH2_LOGIN_ENDPOINT, OAHTH2_REFRESH_SESSION_ENDPOINT, OAUTH2_LOGOUT_E
 const getHeaders = (session) => ({
   Accept: "application/json",
   "Content-Type": "application/json",
-  "X-Api-Session-Key": session || "",
+  "X-Api-Session-Id": session || "",
 });
 
 
-export const checkAuth = async () => {
+export const checkAuth = async (sessionId) => {
   const response = await fetch(OAHTH2_REFRESH_SESSION_ENDPOINT, {
     method: "POST",
-    headers: getHeaders(),
-    body,
+    headers: getHeaders(sessionId),
+    body: "",
   });
   return getValidatedResponse(response);
 };
@@ -27,7 +27,7 @@ export const getSession = async code => {
   return getValidatedResponse(response);
 };
 
-export const destorySession = async code => {
+export const destroySession = async code => {
   const response = await fetch(OAUTH2_LOGOUT_ENDPOINT, {
     method: "POST", // TODO: should be DELETE?
     headers: getHeaders(),

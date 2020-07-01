@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGOUT } from "../actions/login";
+import { LOGIN_SUCCESS, REAUTH_SUCCESS, LOGOUT } from "../actions/login";
 
 const initialState = Object.freeze({
   session: null,
@@ -9,6 +9,7 @@ const initialState = Object.freeze({
 export default (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
+    case REAUTH_SUCCESS:
       const { session, user_id, user_name } = action.payload;
       return {
         ...initialState,

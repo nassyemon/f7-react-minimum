@@ -4,7 +4,7 @@ import { hasSession, getUserName } from "../../selectors/login";
 import { moveToDocuments, moveToSetting } from "../../actions/navigation";
 import { closeSidepanel } from "../../actions/sidepanel";
 import Sidebar from "./Sidebar";
-import { logout } from "../../actions/login";
+import { logout, reauth } from "../../actions/login";
 
 const mapStateToProps = state => {
   return {
@@ -17,9 +17,9 @@ const mapDispatchToProps = dispatch => {
   return {
     onClickSidepanel: () => dispatch(closeSidepanel()),
     onClickDocuments: () => dispatch(moveToDocuments()),
-    // onClickLogin: () => dispatch(replaceToLogin()),
     onClickLogout: () => dispatch(logout()),
     onClickSetting: () => dispatch(moveToSetting()),
+    onClickRefresh: () => dispatch(reauth()),
   };
 };
 
