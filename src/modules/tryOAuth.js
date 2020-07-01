@@ -30,6 +30,7 @@ function cordovaLogin() {
       const { code = null } = qs.parse(query) || {};
       console.log("code=" + code);
       if (code) {
+        w.close();
         resolve(code);
       }
       // TODO: error handler.
