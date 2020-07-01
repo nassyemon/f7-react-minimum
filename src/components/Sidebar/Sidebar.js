@@ -60,7 +60,7 @@ function Sidebar(props) {
               <ListItemIcon>
                 <DashboardIcon />
               </ListItemIcon>
-              <ListItemText primary="レシート一覧" />
+              <ListItemText primary="ドキュメント一覧" />
             </ListItem>
             <ListItem button onClick={onClickRefresh}>
               <ListItemIcon>

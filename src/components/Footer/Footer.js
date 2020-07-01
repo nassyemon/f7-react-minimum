@@ -27,7 +27,7 @@ function Footer({ onClickCameraButton, onClickDocumentButton, onClickHomeButton 
           label="カメラ"
           icon={<CameraIcon fontSize="large" onClick={onClickCameraButton} />}
         />
-        <BottomNavigationAction label="レシート"
+        <BottomNavigationAction label="ドキュメント"
           icon={<ListAltIcon onClick={onClickDocumentButton} />} />
       </BottomNavigation>
     </Root>

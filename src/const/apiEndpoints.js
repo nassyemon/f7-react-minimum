@@ -13,3 +13,6 @@ export const OAHTH2_REFRESH_SESSION_ENDPOINT =
 
 export const OAUTH2_LOGOUT_ENDPOINT =
   `${API_ENDPOINT_HOST}/github/logout`;
+
+export const DOCUMENT_LIST_ENDPOINT =
+  `${API_ENDPOINT_HOST}/documents`;

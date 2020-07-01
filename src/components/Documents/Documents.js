@@ -1,6 +1,6 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
+import React, { useEffect } from "react";
 import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
@@ -15,37 +15,45 @@ const Root = styled.div`
 `;
 
 const ContentCard = styled(Card)`
-  position: relative;
+  display: flex;
   width: 100%;
   margin-bottom: ${props => props.theme.spacing(1)}px;
 `
 
-function Documents(props) {
+const ImageBox = styled(CardMedia)`
+  width: 35vw;
+`;
+
+function Documents({
+  onMount,
+  data,
+  loaded,
+}) {
+  useEffect(() => {
+    if (!loaded) {
+      onMount().then(() => {
+        console.log("data loaded!");
+      });
+    }
+  }, []);
   return (
     <Root>
       {
-        Array(10).fill(0).map((_, i) => (
-          <ContentCard key={"card_" + i} onClick={() => alert(i)}>
-            <CardContent>
-              <Typography variant="h5">Redux Example</Typography>
-              <Typography align="center" variant="subtitle1">
-                Counter: {props.settings}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button color="primary" variant="contained" onClick={props.increment}>
-                Increment
-            </Button>
-              <Button
-                color="secondary"
-                variant="contained"
-                onClick={props.decrement}
-              >
-                Decrement
-            </Button>
-            </CardActions>
-          </ContentCard>
-        ))
+        data?.length > 0 ? (
+          data.map(({ id, title, image_url }) => (
+            <ContentCard key={id} onClick={() => alert(id)}>
+              <CardContent>
+                <Typography variant="h5">{title}</Typography>
+              </CardContent>
+              <ImageBox
+                image={image_url}
+                title="Live from space album cover"
+              />
+              <CardActions>
+              </CardActions>
+            </ContentCard>
+          ))
+        ) : null
       }
     </Root>
   );

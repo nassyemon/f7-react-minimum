@@ -36,7 +36,7 @@ export const logout = () => {
     const state = getState();
     const sessionId = getSessionId(state);
     try {
-      destroySession(sessionId);
+      await destroySession(sessionId);
       dispatch(logoutSuccess());
     } catch (error) {
       console.error(error);
