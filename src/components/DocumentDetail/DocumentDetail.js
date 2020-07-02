@@ -20,19 +20,12 @@ const ContentCard = styled(Card)`
   margin-bottom: ${(props) => props.theme.spacing(1)}px;
 `;
 
-function Home({ userName }) {
+function DocumentDetail({ }) {
   return (
     <Root>
       <ContentCard>
         <CardContent>
-          {userName && (
-            <Fragment>
-              <Typography variant="h5">ようこそ</Typography>
-              <Typography align="center" variant="subtitle1">
-                {`${userName}  さん`}
-              </Typography>
-            </Fragment>
-          )}
+          ドキュメント詳細
         </CardContent>
         <CardActions />
       </ContentCard>
@@ -40,4 +33,4 @@ function Home({ userName }) {
   );
 }
 
-export default withStyles(() => ({}))(Home);
+export default withStyles(() => ({}))(DocumentDetail);

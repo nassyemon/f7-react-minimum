@@ -31,7 +31,7 @@ const ButtonContainer = styled(Container)`
   height: 20vh;
 `;
 
-function SubmitPicture({ picture, onClickSubmitButton }) {
+function SubmitPicture({ picture, sending, onClickSubmitButton }) {
   if (typeof picture?.uri !== "string") {
     return <Redirect to="/" />;
   }

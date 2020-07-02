@@ -146,6 +146,11 @@ if (devMode) {
     add: (app /*, middleware, options */) => {
       const historyOptions = {
         rewrites: [{ from: /\/[^.]*$/, to: "/index.html" }],
+        rewrites: [{
+          from: /\/([^\/]+\.js)$/, to: (context) => {
+            return context.match[0];
+          }
+        }],
       };
       app.use(convert(history(historyOptions)));
     },

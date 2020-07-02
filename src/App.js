@@ -12,14 +12,16 @@ import styled, {
 } from "styled-components";
 import { connect } from "react-redux";
 import { history } from "./store";
-
 import DefaultRoute from "./routes/DefaultRoute";
 import EmptyRoute from "./routes/EmptyRoute";
+import { goBack } from "./actions/navigation";
+
 
 import Home from "./components/Home";
 import Camera from "./components/Camera";
 import Setting from "./components/Setting";
 import Documents from "./components/Documents";
+import DocumentDetail from "./components/DocumentDetail";
 import SubmitPicture from "./components/SubmitPicture";
 
 /*
@@ -53,7 +55,7 @@ const NotFound = () => {
   return <div>NotFound???</div>;
 };
 
-function App({ settings }) {
+function App({ settings, goBack }) {
   return (
     <StylesProvider injectFirst>
       <MuiThemeProvider theme={theme}>
@@ -70,8 +72,14 @@ function App({ settings }) {
                   component={SubmitPicture}
                 />
                 <DefaultRoute
-                  path="/documents"
+                  exact path="/documents"
                   component={Documents}
+                />
+                <DefaultRoute
+                  path="/document/:id"
+                  component={Documents}
+                  rightComponent={DocumentDetail}
+                  onRightSwiped={({ dir }) => dir === "Right" && goBack()}
                 />
                 <DefaultRoute path="/" component={Home} />
                 <EmptyRoute component={NotFound} />
@@ -84,10 +92,16 @@ function App({ settings }) {
   );
 }
 
-const mapStateToProps = state => {
+const mapDispatchToProps = (dispatch) => {
+  return {
+    goBack: () => dispatch(goBack()),
+  };
+};
+
+const mapStateToProps = (state) => {
   return {
     settings: state.settings,
   };
 };
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

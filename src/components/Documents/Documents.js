@@ -36,7 +36,14 @@ const ImageBox = styled(CardMedia)`
   width: 35vw;
 `;
 
-function Documents({ onMount, reloadDocuments, data, loaded, loading }) {
+function Documents({
+  onMount,
+  reloadDocuments,
+  data,
+  loaded,
+  // loading,
+  onClickItem,
+}) {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     console.log("mounting");
@@ -56,10 +63,10 @@ function Documents({ onMount, reloadDocuments, data, loaded, loading }) {
           <CircularProgress />
         </LoadingContainer>
       ) : (
-          <PullToRefresh onRefresh={() => reloadDocuments()}>
+          <PullToRefresh onRefresh={reloadDocuments}>
             {data?.length > 0 ?
               data.map(({ id, title, image_url }) => (
-                <ContentCard key={id} onClick={() => alert(id)}>
+                <ContentCard key={id} onClick={onClickItem(id)}>
                   <CardContent>
                     <Typography variant="h5">{title}</Typography>
                   </CardContent>
