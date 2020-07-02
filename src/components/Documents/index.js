@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onMount: () => dispatch(fetchDocuments()),
+  reloadDocuments: () => dispatch(fetchDocuments()),
 });
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(Documents);

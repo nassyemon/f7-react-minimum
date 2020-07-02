@@ -27,15 +27,18 @@ function Footer({
       <BottomNavigation showLabels>
         <BottomNavigationAction
           label="ホーム"
-          icon={<HomeIcon onClick={onClickHomeButton} />}
+          onClick={onClickHomeButton}
+          icon={<HomeIcon />}
         />
         <BottomNavigationAction
           label="カメラ"
-          icon={<CameraIcon fontSize="large" onClick={onClickCameraButton} />}
+          onClick={onClickCameraButton}
+          icon={<CameraIcon fontSize="large" />}
         />
         <BottomNavigationAction
           label="ドキュメント"
-          icon={<ListAltIcon onClick={onClickDocumentButton} />}
+          onClick={onClickDocumentButton}
+          icon={<ListAltIcon />}
         />
       </BottomNavigation>
     </Root>
