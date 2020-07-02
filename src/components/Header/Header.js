@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 
-const styles = theme => ({});
+const styles = (theme) => ({});
 const HeaderTitle = styled(Typography)`
   flex-grow: 1;
 `;

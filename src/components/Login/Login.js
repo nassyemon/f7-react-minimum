@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from "react-router";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -7,21 +6,24 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 
-const styles = theme => ({});
+const styles = () => ({});
 
 const Root = styled(Container)`
   position: fixed;
   min-height: 100vh;
   background-color: #ffffff;
   top: 100vh;
-  ${({ theme }) => /* TODO: refactor */`
+  ${({ theme }) => /* TODO: refactor */ `
   padding: ${theme.spacing(2)}px;
   margin-top: ${theme.spacing(7)}px;
   transition: ${theme.transitions.create(["transform"], {
   easing: theme.transitions.easing.easeOut,
   duration: theme.transitions.duration.standard,
 })}; `}
-  transform: ${(props) => `translate(${props.isSidePanelOpen ? props.sideBarWidth : "0"}, ${props.isLoggedIn ? "0" : "-100vh"})`};
+  transform: ${(props) =>
+    `translate(${props.isSidePanelOpen ? props.sideBarWidth : "0"}, ${
+    props.isLoggedIn ? "0" : "-100vh"
+    })`};
 `;
 
 const TitleButtonContainer = styled(Container)`
@@ -47,7 +49,11 @@ const LoginButtonContainer = styled(Container)`
 
 function Login({ onClickLogin, isSidePanelOpen, isLoggedIn, sideBarWidth }) {
   return (
-    <Root isLoggedIn={isLoggedIn} isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth}>
+    <Root
+      isLoggedIn={isLoggedIn}
+      isSidePanelOpen={isSidePanelOpen}
+      sideBarWidth={sideBarWidth}
+    >
       <Box>
         <TitleButtonContainer>
           <Typography variant="h4" component="h4">

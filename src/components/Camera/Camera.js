@@ -15,7 +15,7 @@ export default ({ handleTakePhoto }) => (
         height: 720,
       }}
       idealFacingMode="FACING_MODES.ENVIRONMENT"
-      onTakePhoto={dataUri => {
+      onTakePhoto={(dataUri) => {
         handleTakePhoto(dataUri);
       }}
     />

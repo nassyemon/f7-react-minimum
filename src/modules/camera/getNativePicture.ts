@@ -1,3 +1,4 @@
+/// <reference types="cordova-plugin-camera" />
 import { addPicture } from "../../actions/picture";
 import { moveToSubmitPicture } from "../../actions/navigation";
 
@@ -15,7 +16,11 @@ export default function getNativePicture(
 
 function getCameraOptions(sourceType, destinationType) {
   return {
-    quality: 90,
+    // Image Quality is temporary.
+    targetWidth: 720,
+    targetHeight: 1280,
+    quality: 75,
+    // Image Quality is temporary.
     sourceType,
     destinationType,
     encodingType: Camera.EncodingType.JPEG,
@@ -28,7 +33,7 @@ function getCameraOptions(sourceType, destinationType) {
 function onSuccess(dispatch: any, destinationType: any) {
   return (uri: string) => {
     if (destinationType === Camera.DestinationType.DATA_URL) {
-      dispatch(addPicture("data:image/jpeg;base64, " + uri, Date.now()));
+      dispatch(addPicture(`data:image/jpeg;base64, ${uri}`, Date.now()));
     } else {
       dispatch(addPicture(uri, Date.now()));
     }
@@ -39,6 +44,5 @@ function onSuccess(dispatch: any, destinationType: any) {
 function onFail(dispatch: any) {
   return (message: string) => {
     alert(message);
-    return;
   };
 }

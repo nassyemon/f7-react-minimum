@@ -1,8 +1,8 @@
-module.exports = ({ file, options, env }) => ({
+module.exports = ({ file }) => ({
   parser: false,
   plugins: {
-    'postcss-import': { root: file.dirname },
-    'postcss-url': {},
-    'postcss-preset-env': {},
-  }
+    "postcss-import": { root: file.dirname },
+    "postcss-url": {},
+    "postcss-preset-env": {},
+  },
 });

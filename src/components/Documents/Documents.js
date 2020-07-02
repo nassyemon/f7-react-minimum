@@ -17,46 +17,36 @@ const Root = styled.div`
 const ContentCard = styled(Card)`
   display: flex;
   width: 100%;
-  margin-bottom: ${props => props.theme.spacing(1)}px;
-`
+  margin-bottom: ${(props) => props.theme.spacing(1)}px;
+`;
 
 const ImageBox = styled(CardMedia)`
   width: 35vw;
 `;
 
-function Documents({
-  onMount,
-  data,
-  loaded,
-}) {
+function Documents({ onMount, data, loaded }) {
   useEffect(() => {
     if (!loaded) {
       onMount().then(() => {
         console.log("data loaded!");
       });
     }
-  }, []);
+  }, [loaded, onMount]);
   return (
     <Root>
-      {
-        data?.length > 0 ? (
-          data.map(({ id, title, image_url }) => (
-            <ContentCard key={id} onClick={() => alert(id)}>
-              <CardContent>
-                <Typography variant="h5">{title}</Typography>
-              </CardContent>
-              <ImageBox
-                image={image_url}
-                title="Live from space album cover"
-              />
-              <CardActions>
-              </CardActions>
-            </ContentCard>
-          ))
-        ) : null
+      {data?.length > 0 ?
+        data.map(({ id, title, image_url }) => (
+          <ContentCard key={id} onClick={() => alert(id)}>
+            <CardContent>
+              <Typography variant="h5">{title}</Typography>
+            </CardContent>
+            <ImageBox image={image_url} title="Live from space album cover" />
+            <CardActions />
+          </ContentCard>
+        )) : null
       }
     </Root>
   );
-};
+}
 
 export default withStyles(() => ({}))(Documents);

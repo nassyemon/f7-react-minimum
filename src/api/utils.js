@@ -1,4 +1,3 @@
-
 export function getHeaders(session) {
   return {
     Accept: "application/json",

@@ -3,15 +3,10 @@ import { connect } from "react-redux";
 import { getUserName } from "../../selectors/login";
 import Home from "./Home";
 
-const mapStateToProps = state => {
-  return {
-    userName: getUserName(state),
-  };
-};
+const mapStateToProps = (state) => ({
+  userName: getUserName(state),
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-  };
-};
+const mapDispatchToProps = (dispatch) => ({});
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(Home);

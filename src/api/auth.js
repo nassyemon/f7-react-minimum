@@ -1,5 +1,9 @@
 import fetch from "isomorphic-fetch";
-import { OAHTH2_LOGIN_ENDPOINT, OAHTH2_REFRESH_SESSION_ENDPOINT, OAUTH2_LOGOUT_ENDPOINT } from "../const/apiEndpoints";
+import {
+  OAHTH2_LOGIN_ENDPOINT,
+  OAHTH2_REFRESH_SESSION_ENDPOINT,
+  OAUTH2_LOGOUT_ENDPOINT,
+} from "../const/apiEndpoints";
 import { getHeaders, getValidatedResponse } from "./utils";
 
 export const checkAuth = async (sessionId) => {

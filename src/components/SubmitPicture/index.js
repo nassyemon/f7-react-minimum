@@ -6,28 +6,25 @@ import { replaceToWebCamera } from "../../actions/navigation";
 import { createDocument } from "../../actions/document";
 import SubmitPicture from "./SubmitPicture";
 
-const mapStateToProps = state => {
-  return {
-    picture: getLastPicture(state),
-  };
-};
+const mapStateToProps = (state) => ({
+  picture: getLastPicture(state),
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onClickRetakeButton: () => {
-      if (usingCordova()) {
-        return getNativePicture(
-          Camera.PictureSourceType.CAMERA,
-          Camera.DestinationType.FILE_URI,
-          dispatch
-        );
-      }
-      return dispatch(replaceToWebCamera());
-    },
-    onClickSubmitButton: async () => {
-      await dispatch(createDocument());
-    },
-    /*
+const mapDispatchToProps = (dispatch) => ({
+  onClickRetakeButton: () => {
+    if (usingCordova()) {
+      return getNativePicture(
+        Camera.PictureSourceType.CAMERA,
+        Camera.DestinationType.FILE_URI,
+        dispatch
+      );
+    }
+    return dispatch(replaceToWebCamera());
+  },
+  onClickSubmitButton: async () => {
+    await dispatch(createDocument());
+  },
+  /*
     onClickAlbumButton: () =>
       getNativePicture(
         Camera.PictureSourceType.PHOTOLIBRARY,
@@ -35,7 +32,6 @@ const mapDispatchToProps = dispatch => {
         dispatch
       ),
     */
-  };
-};
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubmitPicture);

@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 
 import { toggleThemeMode, swapThemeColors } from "../reducers/settings";
 
-const Settings = props => (
+const Settings = (props) => (
   <div>
     <Typography variant="h5">Settings</Typography>
     <Card>
@@ -51,20 +51,17 @@ const Settings = props => (
   </div>
 );
 
-const mapStateToProps = state => {
-  return {
-    settings: state.settings,
-  };
-};
+const mapStateToProps = (state) => ({
+  settings: state.settings,
+});
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
     {
-      toggleThemeMode: checked => toggleThemeMode(checked),
-      swapThemeColors: checked => swapThemeColors(checked),
+      toggleThemeMode: (checked) => toggleThemeMode(checked),
+      swapThemeColors: (checked) => swapThemeColors(checked),
     },
     dispatch
   );
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);

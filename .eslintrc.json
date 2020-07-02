@@ -1,8 +1,6 @@
 {
     "extends": [
         "react-app",
-        "airbnb-typescript",
-        "prettier/@typescript-eslint",
         "@cordova/eslint-config/node",
         "plugin:prettier/recommended"
     ],
@@ -10,19 +8,13 @@
         "react/prop-types": "off",
         "import/prefer-default-export": "off",
         "import/no-cycle": "off",
-        "no-multi-assign": "off"
+        "no-multi-assign": "off",
+        "no-console": "off",
+        "react/jsx-filename-extension": "off",
+        "indent": "off",
+        "react/jsx-indent": "off"
     },
-    "settings": {
-        "import/parsers": {
-            "@typescript-eslint/parser": [
-                ".ts",
-                ".tsx"
-            ]
-        },
-        "import/resolver": {
-            "typescript": {}
-        }
-    },
+    "settings": {},
     "plugins": [
         "import",
         "jest-dom"

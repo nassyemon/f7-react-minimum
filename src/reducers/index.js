@@ -9,7 +9,7 @@ import documents from "./documents";
 import picture from "./picture";
 import settings from "./settings";
 
-const createRootReducer = history =>
+const createRootReducer = (history) =>
   combineReducers({
     router: connectRouter(history),
     login,
@@ -19,7 +19,7 @@ const createRootReducer = history =>
     documents,
   });
 
-export default history =>
+export default (history) =>
   persistReducer(
     {
       key: "root",

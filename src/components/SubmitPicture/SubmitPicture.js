@@ -6,7 +6,7 @@ import Box from "@material-ui/core/Box";
 import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 
-const styles = theme => ({});
+const styles = () => ({});
 
 const Root = styled(Container)``;
 

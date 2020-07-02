@@ -7,7 +7,7 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 
-const styles = theme => ({});
+const styles = (theme) => ({});
 
 const Root = styled.div`
   position: fixed;
@@ -17,18 +17,26 @@ const Root = styled.div`
   bottom: 0;
 `;
 
-function Footer({ onClickCameraButton, onClickDocumentButton, onClickHomeButton }) {
+function Footer({
+  onClickCameraButton,
+  onClickDocumentButton,
+  onClickHomeButton,
+}) {
   return (
     <Root>
       <BottomNavigation showLabels>
-        <BottomNavigationAction label="ホーム"
-          icon={<HomeIcon onClick={onClickHomeButton} />} />
+        <BottomNavigationAction
+          label="ホーム"
+          icon={<HomeIcon onClick={onClickHomeButton} />}
+        />
         <BottomNavigationAction
           label="カメラ"
           icon={<CameraIcon fontSize="large" onClick={onClickCameraButton} />}
         />
-        <BottomNavigationAction label="ドキュメント"
-          icon={<ListAltIcon onClick={onClickDocumentButton} />} />
+        <BottomNavigationAction
+          label="ドキュメント"
+          icon={<ListAltIcon onClick={onClickDocumentButton} />}
+        />
       </BottomNavigation>
     </Root>
   );

@@ -6,21 +6,17 @@ import { closeSidepanel } from "../../actions/sidepanel";
 import Sidebar from "./Sidebar";
 import { logout, reauth } from "../../actions/login";
 
-const mapStateToProps = state => {
-  return {
-    isLoggedIn: hasSession(state),
-    userName: getUserName(state),
-  };
-};
+const mapStateToProps = (state) => ({
+  isLoggedIn: hasSession(state),
+  userName: getUserName(state),
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onClickSidepanel: () => dispatch(closeSidepanel()),
-    onClickDocuments: () => dispatch(moveToDocuments()),
-    onClickLogout: () => dispatch(logout()),
-    onClickSetting: () => dispatch(moveToSetting()),
-    onClickRefresh: () => dispatch(reauth()),
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  onClickSidepanel: () => dispatch(closeSidepanel()),
+  onClickDocuments: () => dispatch(moveToDocuments()),
+  onClickLogout: () => dispatch(logout()),
+  onClickSetting: () => dispatch(moveToSetting()),
+  onClickRefresh: () => dispatch(reauth()),
+});
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(Sidebar);

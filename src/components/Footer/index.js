@@ -2,31 +2,32 @@ import { connect } from "react-redux";
 import getNativePicture from "../../modules/camera/getNativePicture";
 // import { getPictures } from "../../selectors/picture";
 import { usingCordova } from "../../modules/cordovaUtils";
-import { moveToWebCamera, moveToHome, moveToDocuments } from "../../actions/navigation";
+import {
+  moveToWebCamera,
+  moveToHome,
+  moveToDocuments,
+} from "../../actions/navigation";
 import Footer from "./Footer";
 
-const mapStateToProps = state => {
-  return {
-    isApp: usingCordova(),
-    hasWebCamera: !!navigator.mediaDevices,
-  };
-};
+const mapStateToProps = (state) => ({
+  isApp: usingCordova(),
+  hasWebCamera: !!navigator.mediaDevices,
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onClickHomeButton: () => dispatch(moveToHome()),
-    onClickCameraButton: () => {
-      if (usingCordova()) {
-        return getNativePicture(
-          Camera.PictureSourceType.CAMERA,
-          Camera.DestinationType.DATA_URL,
-          dispatch
-        );
-      }
-      return dispatch(moveToWebCamera());
-    },
-    onClickDocumentButton: () => dispatch(moveToDocuments()),
-    /*
+const mapDispatchToProps = (dispatch) => ({
+  onClickHomeButton: () => dispatch(moveToHome()),
+  onClickCameraButton: () => {
+    if (usingCordova()) {
+      return getNativePicture(
+        Camera.PictureSourceType.CAMERA,
+        Camera.DestinationType.DATA_URL,
+        dispatch
+      );
+    }
+    return dispatch(moveToWebCamera());
+  },
+  onClickDocumentButton: () => dispatch(moveToDocuments()),
+  /*
     onClickAlbumButton: () =>
       getNativePicture(
         Camera.PictureSourceType.PHOTOLIBRARY,
@@ -34,7 +35,6 @@ const mapDispatchToProps = dispatch => {
         dispatch
       ),
     */
-  };
-};
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);

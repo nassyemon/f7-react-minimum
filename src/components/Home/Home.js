@@ -17,8 +17,8 @@ const Root = styled.div`
 const ContentCard = styled(Card)`
   position: relative;
   width: 100%;
-  margin-bottom: ${props => props.theme.spacing(1)}px;
-`
+  margin-bottom: ${(props) => props.theme.spacing(1)}px;
+`;
 
 function Home({ userName }) {
   return (
@@ -29,25 +29,24 @@ function Home({ userName }) {
             <Fragment>
               <Typography variant="h5">ようこそ</Typography>
               <Typography align="center" variant="subtitle1">
-                {userName} さん
-              </Typography>
+                {userName}
+{' '}
+さん
+</Typography>
             </Fragment>
           )}
         </CardContent>
-        <CardActions>
-        </CardActions>
+        <CardActions />
       </ContentCard>
     </Root>
   );
-};
+}
 
-const mapStateToProps = state => {
-  return {
-    stepCounter: state.stepCounter,
-  };
-};
+const mapStateToProps = (state) => ({
+  stepCounter: state.stepCounter,
+});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   increment: () => dispatch({ type: "NULL" }),
   decrement: () => dispatch({ type: "NULL" }),
 });
