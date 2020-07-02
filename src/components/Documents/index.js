@@ -1,7 +1,7 @@
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import { moveToDocumentDetail } from "../../actions/navigation";
-import { fetchDocuments } from "../../actions/document";
+import { fetchDocuments } from "../../actions/documents";
 import { getData, isLoaded, isLoading } from "../../selectors/documents";
 import Documents from "./Documents";
 

@@ -6,3 +6,5 @@ export const getLastPicture = ofPicture((s) =>
 );
 
 export const isSending = ofPicture((s) => s.sending);
+
+export const getTitle = ofPicture((s) => s.title);

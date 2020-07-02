@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { throttle } from "throttle-debounce";
 import { Redirect } from "react-router";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
+import TextField from '@material-ui/core/TextField';
 import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 
@@ -31,7 +33,23 @@ const ButtonContainer = styled(Container)`
   height: 20vh;
 `;
 
-function SubmitPicture({ picture, sending, onClickSubmitButton }) {
+const InputBox = styled(Box)`
+  display: block;
+  width: 100%;
+`;
+
+const TitleField = styled(TextField)`
+  width: 100%;
+`;
+
+
+
+function SubmitPicture({ picture, title, sending, onTitleChange, onClickSubmitButton }) {
+  // TODO: refactor
+  const onTitleChangeThrottled = useCallback(throttle(1000, false, (title) => {
+    onTitleChange(title);
+  }), []);
+
   if (typeof picture?.uri !== "string") {
     return <Redirect to="/" />;
   }
@@ -40,12 +58,18 @@ function SubmitPicture({ picture, sending, onClickSubmitButton }) {
       <ImageBox>
         <Image src={picture.uri} />
       </ImageBox>
+      <InputBox>
+        <form noValidate autoComplete="off">
+          <TitleField id="standard-basic" label="タイトル" defaultValue={title} onChange={(event) => onTitleChangeThrottled(event.target.value)} />
+        </form>
+      </InputBox>
       <ButtonContainer maxWidth="sm">
         <Button
           onClick={onClickSubmitButton}
           variant="contained"
           size="large"
           color="primary"
+          disabled={sending}
         >
           投稿
         </Button>

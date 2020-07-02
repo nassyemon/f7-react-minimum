@@ -1,9 +1,8 @@
-import React, { Fragment } from "react";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Typography from "@material-ui/core/Typography";
-import { connect } from "react-redux";
+import React, { useEffect, useState } from "react";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
+import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core";
 
@@ -14,23 +13,80 @@ const Root = styled.div`
   flex-direction: column;
 `;
 
-const ContentCard = styled(Card)`
-  position: relative;
-  width: 100%;
-  margin-bottom: ${(props) => props.theme.spacing(1)}px;
+// TODO: margin-top is temporary
+const LoadingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: calc((100vh - 200px)/2);
 `;
 
-function DocumentDetail({ }) {
+const TypoBox = styled(Box)`
+  width: 100%;
+`;
+
+const ImageBox = styled(Box)`
+  display: block;
+  max-width: 100%;
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+`;
+
+const ButtonContainer = styled(Container)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+`;
+
+function DocumentDetail({
+  id,
+  data,
+  loaded,
+  onMount,
+}) {
+  const [prevId, setPrevId] = useState(null);
+  useEffect(() => {
+    console.log(id, prevId, loaded);
+    if (id && prevId !== id) {
+      console.log("loading data.");
+      onMount().then(() => {
+        setPrevId(id);
+        console.log("data loaded!");
+      });
+    }
+  }, [id]);
+  if (!loaded || (id && prevId !== id)) {
+    return (
+      <LoadingContainer>
+        <CircularProgress />
+      </LoadingContainer>
+    );
+  }
+  const { image_url, title } = data;
   return (
     <Root>
-      <ContentCard>
-        <CardContent>
-          ドキュメント詳細
-        </CardContent>
-        <CardActions />
-      </ContentCard>
+      <TypoBox>
+        <Typography align="left" variant="h5">
+          {title}
+        </Typography>
+      </TypoBox>
+      <ImageBox>
+        <Image src={image_url} />
+      </ImageBox>
+      <ButtonContainer maxWidth="sm">
+      </ButtonContainer>
     </Root>
   );
 }
+
 
 export default withStyles(() => ({}))(DocumentDetail);

@@ -1,12 +1,9 @@
 import {
-  FETCH_DOCUMENTS_START,
-  FETCH_DOCUMENTS_SUCCESS,
-  FETCH_DOCUMENTS_FAIL,
-  CLEAR_DOCUMENTS,
-} from "../actions/documents";
-import {
-  SEND_PICTURE_SUCCESS
-} from "../actions/picture";
+  FETCH_DETAIL_START,
+  FETCH_DETAIL_SUCCESS,
+  FETCH_DETAIL_FAIL,
+  CLEAR_DETAIL,
+} from "../actions/detail";
 import { loadStart, loadSuccess, loadFail } from "./utils";
 
 const initialState = Object.freeze({
@@ -18,17 +15,16 @@ const initialState = Object.freeze({
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_DOCUMENTS_START:
+    case FETCH_DETAIL_START:
       return loadStart(state);
-    case FETCH_DOCUMENTS_SUCCESS:
+    case FETCH_DETAIL_SUCCESS:
       return loadSuccess({
         ...initialState,
         data: action.payload,
       });
-    case FETCH_DOCUMENTS_FAIL:
+    case FETCH_DETAIL_FAIL:
       return loadFail(state);
-    case SEND_PICTURE_SUCCESS:
-    case CLEAR_DOCUMENTS:
+    case CLEAR_DETAIL:
       return { ...initialState };
     default:
       return state;

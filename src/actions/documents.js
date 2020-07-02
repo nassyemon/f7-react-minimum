@@ -8,7 +8,7 @@ export const FETCH_DOCUMENTS_FAIL = "FETCH_DOCUMENTS_FAIL";
 
 export const CLEAR_DOCUMENTS = "CLEAR_DOCUMENTS";
 
-export const fetchDocuments = apiRequestPrototype(
+export const fetchDocuments = () => apiRequestPrototype(
   createAction(FETCH_DOCUMENTS_START),
   createAction(FETCH_DOCUMENTS_SUCCESS),
   createAction(FETCH_DOCUMENTS_FAIL),

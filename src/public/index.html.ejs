@@ -12,9 +12,9 @@
   <!-- The following EJS lines include the necessary CSS and JS
   from Monaca (cordova.js/ loader.js) in production mode -->
   <% for (var dep in htmlWebpackPlugin.options.externalJS) { %>
-  <script type="text/javascript" src="/<%= htmlWebpackPlugin.options.externalJS[dep] %>"></script><% } %>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.options.externalJS[dep] %>"></script><% } %>
   <% for (var dep in htmlWebpackPlugin.options.externalCSS) { %>
-  <link rel="stylesheet" type="text/css" href="/<%= htmlWebpackPlugin.options.externalCSS[dep] %>"><% } %>
+  <link rel="stylesheet" type="text/css" href="<%= htmlWebpackPlugin.options.externalCSS[dep] %>"><% } %>
 </head>
 
 <body>

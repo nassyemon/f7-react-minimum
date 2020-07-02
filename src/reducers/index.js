@@ -6,6 +6,7 @@ import storage from "redux-persist/lib/storage"; // defaults to localStorage for
 import login from "./login";
 import sidepanel from "./sidepanel";
 import documents from "./documents";
+import detail from "./detail";
 import picture from "./picture";
 import settings from "./settings";
 
@@ -17,6 +18,7 @@ const createRootReducer = (history) =>
     settings,
     sidepanel,
     documents,
+    detail,
   });
 
 export default (history) =>

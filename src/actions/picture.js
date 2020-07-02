@@ -1,6 +1,6 @@
 import { createAction } from "redux-actions";
 import { postDocument } from "../api/document";
-import { getLastPicture } from "../selectors/picture";
+import { getLastPicture, getTitle } from "../selectors/picture";
 import { apiRequestPrototype } from "./utils";
 
 export const ADD_PICTURE = "ADD_PICTURE";
@@ -8,6 +8,7 @@ export const CLEAR_PICTURE = "CLEAR_PICTURE";
 export const SEND_PICTURE_START = "SEND_PICTURE_START";
 export const SEND_PICTURE_SUCCESS = "SEND_PICTURE_SUCCESS";
 export const SEND_PICTURE_FAIL = "SEND_PICTURE_FAIL";
+export const SET_TITLE = "SET_TITLE";
 
 export const addPicture = (imageURI, name) => ({
   type: "ADD_PICTURE",
@@ -21,14 +22,14 @@ export const clearPicture = () => ({
   type: "CLEAR_PICTURE",
 });
 
-export const sendPicture = apiRequestPrototype(
+export const sendPicture = () => apiRequestPrototype(
   createAction(SEND_PICTURE_START),
   createAction(SEND_PICTURE_SUCCESS),
   createAction(SEND_PICTURE_FAIL),
   async (sessionId, _, getState) => {
     const state = getState();
     const image = getLastPicture(state).uri;
-    const title = "This is test from app";
+    const title = getTitle(state) || "No Title!!";
     const results = await postDocument(sessionId, {
       image,
       title,
@@ -37,3 +38,5 @@ export const sendPicture = apiRequestPrototype(
     return;
   }
 );
+
+export const setTitle = createAction(SET_TITLE);

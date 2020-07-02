@@ -1,4 +1,4 @@
-import { TOGGLE_SIDEPANEL, CLOSE_SIDEPANEL } from "../actions/sidepanel";
+import { TOGGLE_SIDEPANEL, OPEN_SIDEPANEL, CLOSE_SIDEPANEL } from "../actions/sidepanel";
 
 const initialState = {
   open: false,
@@ -11,6 +11,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         open: !state.open,
+      };
+    case OPEN_SIDEPANEL:
+      return {
+        ...state,
+        open: true,
       };
     case CLOSE_SIDEPANEL:
       return {

@@ -13,7 +13,7 @@ const Root = styled.div`
   position: fixed;
   z-index: 2000;
   width: 100vw;
-  max-height: 15vw;
+  height: ${props => props.footerHeight};
   bottom: 0;
 `;
 
@@ -21,9 +21,10 @@ function Footer({
   onClickCameraButton,
   onClickDocumentButton,
   onClickHomeButton,
+  footerHeight
 }) {
   return (
-    <Root>
+    <Root height={footerHeight}>
       <BottomNavigation showLabels>
         <BottomNavigationAction
           label="ホーム"

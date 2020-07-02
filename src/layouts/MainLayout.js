@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Fragment } from "react";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import { Swipeable } from "react-swipeable";
@@ -13,8 +13,10 @@ import GlobalIndicator from "../components/GlobalIndicator";
 
 import { isOpen } from "../selectors/sidepanel";
 import { isSending as isPictureSending } from "../selectors/picture";
+import { closeSidepanel } from "../actions/sidepanel";
 
 const sideBarWidth = "70vw";
+const footerHeight = "10vh";
 
 const styles = () => ({});
 
@@ -59,6 +61,57 @@ const Main = styled(Panel)`
 const Right = styled(Panel)`
 `;
 
+const FooterOffset = styled.div`
+  height: 40px;
+`;
+
+
+function MainLayout({
+  isSidePanelOpen,
+  component: MainComponent,
+  rightComponent: RightComponent,
+  onSwiped,
+  show,
+  closeSidepanel,
+  matchProps,
+}) {
+  const showRight = RightComponent && show === "right";
+  return (
+    <Fragment>
+      <Root>
+        <Header />
+        <Screen isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth} onClick={closeSidepanel}>
+          <Swipeable onSwiped={onSwiped}>
+            <Main showRight={showRight}>
+              <Fragment>
+                <MainComponent {...matchProps} />
+                <FooterOffset />
+              </Fragment>
+            </Main>
+          </Swipeable>
+          <Swipeable onSwiped={onSwiped}>
+            <Right showRight={showRight}>
+              {RightComponent && (
+                <Fragment>
+                  <RightComponent {...matchProps} />
+                  <FooterOffset />
+                </Fragment>
+              )}
+            </Right>
+          </Swipeable>
+        </Screen>
+        <Login isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth} />
+      </Root>
+      <Sidebar open={isSidePanelOpen} sideBarWidth={sideBarWidth} />
+      <Footer footerHeight={footerHeight} />
+      <GlobalIndicator />
+    </Fragment>
+  );
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  closeSidepanel: () => dispatch(closeSidepanel()),
+});
 
 const mapStateToProps = (state) => {
   const pictureSending = isPictureSending(state);
@@ -69,41 +122,7 @@ const mapStateToProps = (state) => {
   };
 }
 
-function MainLayout({
-  isSidePanelOpen,
-  component: MainComponent,
-  rightComponent: RightComponent,
-  onSwiped,
-  onRightSwiped,
-  matchProps,
-}) {
-  return (
-    <Fragment>
-      <Root>
-        <Header />
-        <Screen isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth}>
-          <Swipeable onSwiped={onSwiped}>
-            <Main showRight={!!RightComponent}>
-              <MainComponent {...matchProps} />
-            </Main>
-          </Swipeable>
-          <Swipeable onSwiped={onRightSwiped}>
-            <Right showRight={!!RightComponent}>
-              {RightComponent && (
-                <RightComponent {...matchProps} />)}
-            </Right>
-          </Swipeable>
-        </Screen>
-        <Login isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth} />
-      </Root>
-      <Sidebar open={isSidePanelOpen} sideBarWidth={sideBarWidth} />
-      <Footer />
-      <GlobalIndicator />
-    </Fragment>
-  );
-}
-
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   withStyles(styles)
 )(MainLayout);

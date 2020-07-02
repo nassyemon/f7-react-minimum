@@ -12,6 +12,14 @@ export const getDocumentList = async (sessionId) => {
   return getValidatedResponse(response);
 };
 
+export const getDocument = async (sessionId, id) => {
+  const response = await fetch(`${DOCUMENT_ENDPOINT}/${id}`, {
+    headers: getHeaders(sessionId),
+  });
+  return getValidatedResponse(response);
+};
+
+
 export const postDocument = async (sessionId, { image, title }) => {
   const response = await fetch(DOCUMENT_ENDPOINT, {
     method: "POST",

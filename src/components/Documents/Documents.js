@@ -30,10 +30,15 @@ const ContentCard = styled(Card)`
   display: flex;
   width: 100%;
   margin-bottom: ${(props) => props.theme.spacing(1)}px;
+  min-height: 15vh;
+`;
+
+const TextContainer = styled(CardContent)`
+  width: 60%;
 `;
 
 const ImageBox = styled(CardMedia)`
-  width: 35vw;
+  flex-grow: 1;
 `;
 
 function Documents({
@@ -67,9 +72,9 @@ function Documents({
             {data?.length > 0 ?
               data.map(({ id, title, image_url }) => (
                 <ContentCard key={id} onClick={onClickItem(id)}>
-                  <CardContent>
+                  <TextContainer>
                     <Typography variant="h5">{title}</Typography>
-                  </CardContent>
+                  </TextContainer>
                   <ImageBox image={image_url} title="Live from space album cover" />
                   <CardActions />
                 </ContentCard>

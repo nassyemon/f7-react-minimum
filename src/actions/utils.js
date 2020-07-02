@@ -5,7 +5,7 @@ export const apiRequestPrototype = (
   createSuccessAction,
   createFailAction,
   apiCallback
-) => () => async (dispatch, getState) => {
+) => async (dispatch, getState) => {
   // TODO: reauth
   let sessionId = null;
   try {

@@ -13,11 +13,12 @@ const Root = styled(Container)`
   min-height: 100vh;
   background-color: #ffffff;
   top: 100vh;
+  z-index: 1500;
   ${({ theme }) => /* TODO: refactor */ `
   padding: ${theme.spacing(2)}px;
   margin-top: ${theme.spacing(7)}px;
   transition: ${theme.transitions.create(["transform"], {
-  easing: theme.transitions.easing.easeOut,
+  easing: theme.transitions.easing.sharp,
   duration: theme.transitions.duration.standard,
 })}; `}
   transform: ${(props) =>

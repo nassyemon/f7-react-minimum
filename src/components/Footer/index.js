@@ -7,6 +7,7 @@ import {
   moveToHome,
   moveToDocuments,
 } from "../../actions/navigation";
+import { closeSidepanel } from "../../actions/sidepanel";
 import Footer from "./Footer";
 
 const mapStateToProps = (state) => ({
@@ -15,7 +16,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onClickHomeButton: () => dispatch(moveToHome()),
+  onClickHomeButton: () => {
+    dispatch(closeSidepanel());
+    return dispatch(moveToHome());
+  },
   onClickCameraButton: () => {
     if (usingCordova()) {
       return getNativePicture(
@@ -26,7 +30,10 @@ const mapDispatchToProps = (dispatch) => ({
     }
     return dispatch(moveToWebCamera());
   },
-  onClickDocumentButton: () => dispatch(moveToDocuments()),
+  onClickDocumentButton: () => {
+    dispatch(closeSidepanel());
+    return dispatch(moveToDocuments());
+  }
   /*
     onClickAlbumButton: () =>
       getNativePicture(

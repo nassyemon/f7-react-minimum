@@ -15,6 +15,7 @@ import { history } from "./store";
 import DefaultRoute from "./routes/DefaultRoute";
 import EmptyRoute from "./routes/EmptyRoute";
 import { goBack } from "./actions/navigation";
+import { openSidePanel } from "./actions/sidepanel";
 
 
 import Home from "./components/Home";
@@ -23,25 +24,6 @@ import Setting from "./components/Setting";
 import Documents from "./components/Documents";
 import DocumentDetail from "./components/DocumentDetail";
 import SubmitPicture from "./components/SubmitPicture";
-
-/*
-import { openLogin } from "./actions/LoginActions";
-  view: {
-    routesBeforeEnter(to, from, resolve, reject) {
-      const router = this;
-      const login = hasSession(store.getState());
-      if (!login && to.url !== "/login/") {
-        reject();
-        store.dispatch(openLogin());
-        return;
-      }
-      if (login && to.url === "/login/") {
-        return reject();
-      }
-      resolve();
-    },
-  },
-*/
 
 const theme = createMuiTheme();
 
@@ -55,7 +37,9 @@ const NotFound = () => {
   return <div>NotFound???</div>;
 };
 
-function App({ settings, goBack }) {
+const onSwipeRight = (func) => ({ dir }) => dir === "Right" && func();
+
+function App({ settings, goBack, openSidePanel }) {
   return (
     <StylesProvider injectFirst>
       <MuiThemeProvider theme={theme}>
@@ -64,22 +48,35 @@ function App({ settings, goBack }) {
           <Root>
             <ConnectedRouter history={history}>
               <Switch>
-                <DefaultRoute path="/home" component={Home} />
-                <DefaultRoute path="/setting" component={Setting} />
-                <EmptyRoute path="/camera" component={Camera} />
+                <DefaultRoute path="/home"
+                  component={Home}
+                  onSwiped={onSwipeRight(openSidePanel)}
+                />
+                <DefaultRoute path="/setting"
+                  component={Setting}
+                  onSwiped={onSwipeRight(openSidePanel)}
+                />
+                <EmptyRoute path="/camera"
+                  component={Camera}
+                  onSwiped={onSwipeRight(goBack)}
+                />
                 <DefaultRoute
                   path="/submit-picture"
                   component={SubmitPicture}
+                  onSwiped={onSwipeRight(openSidePanel)}
                 />
                 <DefaultRoute
                   exact path="/documents"
                   component={Documents}
+                  rightComponent={DocumentDetail}
+                  onSwiped={onSwipeRight(openSidePanel)}
                 />
                 <DefaultRoute
                   path="/document/:id"
                   component={Documents}
                   rightComponent={DocumentDetail}
-                  onRightSwiped={({ dir }) => dir === "Right" && goBack()}
+                  show="right"
+                  onSwiped={onSwipeRight(goBack)}
                 />
                 <DefaultRoute path="/" component={Home} />
                 <EmptyRoute component={NotFound} />
@@ -95,6 +92,7 @@ function App({ settings, goBack }) {
 const mapDispatchToProps = (dispatch) => {
   return {
     goBack: () => dispatch(goBack()),
+    openSidePanel: () => dispatch(openSidePanel()),
   };
 };
 
