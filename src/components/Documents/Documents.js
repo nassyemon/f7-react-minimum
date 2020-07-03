@@ -88,7 +88,7 @@ function Documents({
   }, [hasSession, loaded]);
   return (
     <Root>
-      {loading ? (
+      {loading && data?.length < 1 ? (
         <LoadingContainer>
           <CircularProgress />
         </LoadingContainer>

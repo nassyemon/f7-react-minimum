@@ -14,6 +14,7 @@ import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 import Login from "../components/Login";
 import GlobalIndicator from "../components/GlobalIndicator";
+import Toast from "../components/Toast";
 
 import { isOpen } from "../selectors/sidepanel";
 import { isSending as isPictureSending } from "../selectors/picture";
@@ -171,6 +172,7 @@ function MainLayout({
           </Fab>
         </Zoom>
       </ButtonContainer>
+      <Toast />
     </Fragment>
   );
 }

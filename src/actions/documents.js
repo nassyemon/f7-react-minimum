@@ -1,6 +1,7 @@
 import { createAction } from "redux-actions";
 import { getDocumentList, deleteDocument } from "../api/document";
 import { getSeleted } from "../selectors/documents";
+import { setToast } from "../actions/toast";
 import { apiRequestPrototype } from "./utils";
 
 export const FETCH_DOCUMENTS_START = "FETCH_DOCUMENTS_START";
@@ -34,11 +35,12 @@ export const deleteDocuments = () => apiRequestPrototype(
   createAction(DELETE_DOCUMENTS_START),
   createAction(DELETE_DOCUMENTS_SUCCESS),
   createAction(DELETE_DOCUMENTS_FAIL),
-  async (sessionId, _, getState) => {
+  async (sessionId, dispatch, getState) => {
     const state = getState();
     const seleted = getSeleted(state);
-    const results = Promise.all(seleted.map(id => deleteDocument(sessionId, id)));
+    const results = await Promise.all(seleted.map(id => deleteDocument(sessionId, id)));
     console.log(results);
+    dispatch(setToast("削除完了"));
     return results;
   }
 );

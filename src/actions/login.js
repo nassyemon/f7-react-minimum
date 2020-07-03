@@ -1,5 +1,6 @@
 import { checkAuth, getSession, destroySession } from "../api/auth";
 import { hasSession, getSessionId } from "../selectors/login";
+import { setToast } from "../actions/toast";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const REAUTH_SUCCESS = "REAUTH_SUCCESS";
@@ -46,13 +47,14 @@ export const reauth = () => async (dispatch, getState) => {
   const sessionId = getSessionId(state);
   try {
     const { session, user_id, user_name } = await checkAuth(sessionId);
-    return dispatch(
+    dispatch(
       reauthSuccess({
         session,
         user_name,
         user_id,
       })
     );
+    return dispatch(setToast("再認証成功"));
   } catch (error) {
     console.error(error);
     alert("セッションが無効になりました。再ログインが必要です");

@@ -5,8 +5,9 @@ import { createLogger } from "redux-logger";
 import { persistStore } from "redux-persist";
 import { routerMiddleware } from "connected-react-router";
 import { usingCordova } from "./modules/cordovaUtils";
-import { hasSession } from "./selectors/login";
-import { reauth } from "./actions/login";
+import toastMiddleware from "./middlewares/toastMiddleware";
+// import { hasSession } from "./selectors/login";
+// import { reauth } from "./actions/login";
 
 import createReducer from "./reducers";
 
@@ -22,6 +23,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middlewares = [
   routerMiddleware(history),
   thunk,
+  toastMiddleware({ delay: 1000 }),
   process.env.NODE_ENV === "development" && logger,
 ].filter(Boolean);
 

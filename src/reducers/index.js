@@ -8,12 +8,14 @@ import sidepanel from "./sidepanel";
 import documents from "./documents";
 import detail from "./detail";
 import picture from "./picture";
+import toast from "./toast";
 import settings from "./settings";
 
 const createRootReducer = (history) =>
   combineReducers({
     router: connectRouter(history),
     login,
+    toast,
     picture,
     settings,
     sidepanel,

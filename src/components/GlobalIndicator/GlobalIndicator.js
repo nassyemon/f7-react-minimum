@@ -14,7 +14,7 @@ const Root = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 2000;
-  background-color: rgba(64,64,64,0.5);
+  background-color: rgba(248,248,248,0.3);
 `;
 
 const SpinnerBox = styled.div`

@@ -2,6 +2,7 @@ import { createAction } from "redux-actions";
 import { postDocument } from "../api/document";
 import { getLastPicture, getTitle } from "../selectors/picture";
 import { apiRequestPrototype } from "./utils";
+import { setToast } from "../actions/toast";
 
 export const ADD_PICTURE = "ADD_PICTURE";
 export const CLEAR_PICTURE = "CLEAR_PICTURE";
@@ -26,7 +27,7 @@ export const sendPicture = () => apiRequestPrototype(
   createAction(SEND_PICTURE_START),
   createAction(SEND_PICTURE_SUCCESS),
   createAction(SEND_PICTURE_FAIL),
-  async (sessionId, _, getState) => {
+  async (sessionId, dispatch, getState) => {
     const state = getState();
     const image = getLastPicture(state).uri;
     const title = getTitle(state) || "No Title!!";
@@ -35,6 +36,7 @@ export const sendPicture = () => apiRequestPrototype(
       title,
     });
     console.log(results);
+    dispatch(setToast("投稿完了"));
     return;
   }
 );
