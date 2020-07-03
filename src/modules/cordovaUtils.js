@@ -8,6 +8,7 @@ export const awaitReady = () => {
         "deviceready",
         () => {
           console.log("device ready!");
+          console.log(StatusBar);
           return resolve();
         },
         false
@@ -23,3 +24,14 @@ export const setWindowOpenToInAppBrower = () => {
     global.window.open = cordova.InAppBrowser.open;
   }
 };
+
+export const hideStatusBar = () => {
+  if (usingCordova()) {
+    if (!StatusBar || !StatusBar.hide) {
+      console.error("StatusBar.hide is not defined");
+      return
+    }
+    console.log("hiding status bar.");
+    StatusBar.hide();
+  }
+}

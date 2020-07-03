@@ -145,12 +145,19 @@ if (devMode) {
     host,
     add: (app /*, middleware, options */) => {
       const historyOptions = {
-        rewrites: [{ from: /\/[^.]*$/, to: "/index.html" }],
-        rewrites: [{
-          from: /\/([^\/]+\.js)$/, to: (context) => {
-            return context.match[0];
-          }
-        }],
+        rewrites: [
+          {
+            from: /[^\/]+(\/(assets|css)\/(.+\.[A-Za-z0-9]+)$)/, to: (context) => {
+              return context.match[1];
+            }
+          },
+          {
+            from: /\/([^\/]+\.[A-Za-z0-9]+)$/, to: (context) => {
+              return context.match[0];
+            }
+          },
+          { from: /\/[^.]*$/, to: "/index.html" },
+        ],
       };
       app.use(convert(history(historyOptions)));
     },
@@ -165,6 +172,11 @@ if (devMode) {
         builtAt: true,
       },
     },
+    content: [
+      path.resolve(__dirname, "www"),
+      path.resolve(__dirname, "www", "assets"),
+      path.resolve(__dirname, "www", "css"),
+    ],
     hotClient: {
       port: socketPort,
       https: wss,

@@ -15,14 +15,14 @@ const Root = styled(Container)`
   background-color: #ffffff;
   top: 100vh;
   z-index: 1500;
-  ${({ theme, noHeader }) => /* TODO: refactor */ `
+  ${({ theme, noheader }) => /* TODO: refactor */ `
   padding: ${theme.spacing(2)}px;
-  margin-top: ${noHeader ? theme.spacing(7) : 0}px;
+  margin-top: ${noheader ? theme.spacing(7) : 0}px;
   transition: ${theme.transitions.create(["transform"], {
   easing: theme.transitions.easing.sharp,
   duration: theme.transitions.duration.standard,
 })}; `}
-  transform: ${(props) => `translateY(${props.isLoggedIn ? "0" : "-100vh"})`};
+  transform: ${(props) => `translateY(${props.show ? "0" : "-100vh"})`};
 `;
 
 const TitleButtonContainer = styled(Container)`
@@ -32,7 +32,7 @@ const TitleButtonContainer = styled(Container)`
   height: 20vh;
 `;
 
-const ContentContainer = styled(Container)`
+const ContentContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,8 +49,8 @@ const LoginButtonContainer = styled(Container)`
 function Login({ onClickLogin, isLoggedIn }) {
   return (
     <Root
-      isLoggedIn={isLoggedIn}
-      noHeader={false}
+      show={isLoggedIn ? 1 : 0}
+      noheader={0}
     >
       <Box>
         <TitleButtonContainer>
@@ -58,7 +58,9 @@ function Login({ onClickLogin, isLoggedIn }) {
             ログイン
           </Typography>
         </TitleButtonContainer>
-        <ContentContainer />
+        <ContentContainer>
+          <div /> {/* padding. */}
+        </ContentContainer>
         <LoginButtonContainer maxWidth="sm">
           <Button
             onClick={onClickLogin}

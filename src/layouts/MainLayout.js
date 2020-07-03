@@ -13,6 +13,7 @@ import GlobalIndicator from "../components/GlobalIndicator";
 
 import { isOpen } from "../selectors/sidepanel";
 import { isSending as isPictureSending } from "../selectors/picture";
+import { hasSession } from "../selectors/login";
 import { closeSidepanel } from "../actions/sidepanel";
 
 const sideBarWidth = "70vw";
@@ -28,6 +29,7 @@ const Root = styled.div`
 const Screen = styled.main`
   width: 200vw;
   overflow-x: hidden;
+  overflow-y: hidden;
   position: relative;
   ${({ theme }) => `
   margin-top: ${theme.spacing(5)}px;
@@ -95,6 +97,7 @@ function MainLayout({
   rightComponent: RightComponent,
   onSwiped,
   show,
+  hasSession,
   closeSidepanel,
   matchProps,
 }) {
@@ -107,7 +110,7 @@ function MainLayout({
           <Swipeable onSwiped={onSwiped}>
             <Main showRight={showRight}>
               <Fragment>
-                <MainComponent {...matchProps} />
+                <MainComponent {...matchProps} hasSession={hasSession} />
                 <FooterOffset />
               </Fragment>
             </Main>
@@ -116,7 +119,7 @@ function MainLayout({
             <Right showRight={showRight}>
               {RightComponent && (
                 <Fragment>
-                  <RightComponent {...matchProps} />
+                  <RightComponent {...matchProps} hasSession={hasSession} />
                   <FooterOffset />
                 </Fragment>
               )}
@@ -144,6 +147,7 @@ const mapStateToProps = (state) => {
   const sending = [pictureSending].some(Boolean);
   return {
     sending,
+    hasSession: hasSession(state),
     isSidePanelOpen: isOpen(state),
   };
 }

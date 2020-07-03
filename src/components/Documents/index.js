@@ -11,10 +11,18 @@ const mapStateToProps = (state) => ({
   loading: isLoading(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onMount: () => dispatch(fetchDocuments()),
-  reloadDocuments: () => dispatch(fetchDocuments()),
-  onClickItem: (id) => () => dispatch(moveToDocumentDetail(id)),
-});
+const mapDispatchToProps = (dispatch, { hasSession }) => {
+  return {
+    onMount: async () => {
+      if (hasSession) {
+        await dispatch(fetchDocuments());
+        return true;
+      }
+      return false;
+    },
+    reloadDocuments: () => dispatch(fetchDocuments()),
+    onClickItem: (id) => () => dispatch(moveToDocumentDetail(id)),
+  }
+};
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(Documents);

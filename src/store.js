@@ -33,7 +33,11 @@ export const store = createStore(
 
 export const persistor = persistStore(store, null, async () => {
   const state = store.getState();
+  /*
+  // may not nessesary.
   if (hasSession(state)) {
+    console.log("reauthing.");
     store.dispatch(reauth());
   }
+  */
 });

@@ -9,7 +9,7 @@ import { PersistGate } from "redux-persist/integration/react";
 
 // store
 import { store, persistor } from "./store";
-import { awaitReady, setWindowOpenToInAppBrower } from "./modules/cordovaUtils";
+import { awaitReady, hideStatusBar, setWindowOpenToInAppBrower } from "./modules/cordovaUtils";
 
 // Import main App component
 import App from "./App";
@@ -23,6 +23,7 @@ import "./css/app.css";
 const rootElement = document.getElementById("app");
 awaitReady().then(() => {
   setWindowOpenToInAppBrower();
+  hideStatusBar();
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>

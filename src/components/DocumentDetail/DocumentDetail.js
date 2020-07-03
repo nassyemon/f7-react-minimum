@@ -44,26 +44,29 @@ const ButtonContainer = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 20vh;
 `;
 
 function DocumentDetail({
   id,
   data,
   loaded,
+  hasSession,
   onMount,
 }) {
   const [prevId, setPrevId] = useState(null);
   useEffect(() => {
-    console.log(id, prevId, loaded);
+    console.log("mounting document detail.");
+    // console.log(id, prevId, loaded);
     if (id && prevId !== id) {
-      console.log("loading data.");
-      onMount().then(() => {
-        setPrevId(id);
-        console.log("data loaded!");
+      console.log("loading detail data for " + id);
+      onMount().then((done) => {
+        if (done) {
+          setPrevId(id);
+          console.log("data loaded!");
+        }
       });
     }
-  }, [id]);
+  }, [id, hasSession]);
   if (!loaded || (id && prevId !== id)) {
     return (
       <LoadingContainer>
@@ -82,11 +85,11 @@ function DocumentDetail({
       <ImageBox>
         <Image src={image_url} />
       </ImageBox>
+      {/*
       <ButtonContainer maxWidth="sm">
       </ButtonContainer>
+      */}
     </Root>
   );
 }
-
-
 export default withStyles(() => ({}))(DocumentDetail);

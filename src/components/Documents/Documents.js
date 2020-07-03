@@ -46,21 +46,24 @@ function Documents({
   reloadDocuments,
   data,
   loaded,
+  hasSession,
   // loading,
   onClickItem,
 }) {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
-    console.log("mounting");
+    console.log("mounting documents");
     if (!loaded) {
-      onMount().then(() => {
-        setIsMounted(true);
-        console.log("data loaded!");
+      onMount().then((done) => {
+        if (done) {
+          setIsMounted(true);
+          console.log("documents data loaded!");
+        }
       });
     } else {
       setIsMounted(true);
     }
-  }, []);
+  }, [hasSession]);
   return (
     <Root>
       {!isMounted ? (
