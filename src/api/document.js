@@ -31,3 +31,13 @@ export const postDocument = async (sessionId, { image, title }) => {
   });
   return getValidatedResponse(response);
 };
+
+
+export const deleteDocument = async (sessionId, id) => {
+  const response = await fetch(`${DOCUMENT_ENDPOINT}/${id}`, {
+    method: "DELETE",
+    headers: getHeaders(sessionId),
+  });
+  return getValidatedResponse(response);
+};
+

@@ -2,14 +2,14 @@ import { compose } from "recompose";
 import { connect } from "react-redux";
 import { moveToDocumentDetail } from "../../actions/navigation";
 import { fetchDocuments, toggleDocumentSelect } from "../../actions/documents";
-import { getData, isLoaded, isLoading } from "../../selectors/documents";
+import { getMergedData, isLoaded, isLoading } from "../../selectors/documents";
 import Documents from "./Documents";
 
 
 const mapStateToProps = (state, { match }) => {
   return {
     mode: getMode(match),
-    data: getData(state),
+    data: getMergedData(state),
     loaded: isLoaded(state),
     loading: isLoading(state),
   };

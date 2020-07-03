@@ -34,3 +34,22 @@ export const sendFail = (nextState, error = {}) => ({
   sended: false,
   error,
 });
+
+export const deleteStart = (nextState) => ({
+  ...nextState,
+  deleting: true,
+  deleted: false,
+  error: null,
+});
+export const deleteSuccess = (nextState) => ({
+  ...nextState,
+  deleting: false,
+  deleted: true,
+  error: null,
+});
+export const deleteFail = (nextState, error = {}) => ({
+  ...nextState,
+  deleting: false,
+  deleted: false,
+  error,
+});

@@ -70,28 +70,25 @@ function Documents({
   onMount,
   reloadDocuments,
   data,
+  loading,
   loaded,
   hasSession,
   // loading,
   onClickItem,
 }) {
-  const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
-    console.log("mounting " + mode);
-    if (!loaded) {
+    if (!loaded && !loading) {
+      console.log("start loading");
       onMount().then((done) => {
         if (done) {
-          setIsMounted(true);
           console.log("documents data loaded!");
         }
       });
-    } else {
-      setIsMounted(true);
     }
-  }, [hasSession]);
+  }, [hasSession, loaded]);
   return (
     <Root>
-      {!isMounted ? (
+      {loading ? (
         <LoadingContainer>
           <CircularProgress />
         </LoadingContainer>
@@ -110,7 +107,7 @@ function Documents({
                   <TextContainer>
                     <Typography variant="h5">{title}</Typography>
                   </TextContainer>
-                  <ImageBox image={image_url} title="Live from space album cover" />
+                  <ImageBox image={image_url} title="Image" />
                 </ContentCard>
               )) : null
             }

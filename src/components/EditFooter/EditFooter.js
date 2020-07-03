@@ -19,7 +19,7 @@ const Root = styled.div`
 function Footer({
   onClickCancelButton,
   onClickDeleteButton,
-  selectedData,
+  selectedCount,
   footerHeight
 }) {
   return (
@@ -30,7 +30,7 @@ function Footer({
           onClick={onClickCancelButton}
           icon={<CancelIcon />}
         />
-        {selectedData?.length > 0 && (
+        {selectedCount > 0 && (
           <BottomNavigationAction
             onClick={onClickDeleteButton}
             label="選択したアイテムを削除"

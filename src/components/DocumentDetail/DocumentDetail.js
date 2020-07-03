@@ -49,6 +49,7 @@ const ButtonContainer = styled(Container)`
 function DocumentDetail({
   id,
   data,
+  loading,
   loaded,
   hasSession,
   onMount,
@@ -67,12 +68,15 @@ function DocumentDetail({
       });
     }
   }, [id, hasSession]);
-  if (!loaded || (id && prevId !== id)) {
+  if (loading || (id && prevId !== id)) {
     return (
       <LoadingContainer>
         <CircularProgress />
       </LoadingContainer>
     );
+  }
+  if (!loaded) {
+    return null;
   }
   const { image_url, title } = data;
   return (

@@ -34,17 +34,27 @@ const TextContainer = styled.div`
   padding-left: 20px;
 `
 
-function GlobalIndicator({ sending }) {
-  return sending ? (
+function GlobalIndicator({ show, sending, deleting }) {
+  return show ? (
     <Root>
       <SpinnerBox>
         <CircularProgress size={30} />
         <TextContainer>
-          <Typography>データを送信しています</Typography>
+          <Typography>{getMessage(sending, deleting)}</Typography>
         </TextContainer>
       </SpinnerBox>
     </Root>
   ) : null;
+}
+
+function getMessage(showing, deleting) {
+  if (showing) {
+    return "データを送信しています";
+  }
+  if (deleting) {
+    return "データを削除しています";
+  }
+  return "通信中です";
 }
 
 export default withStyles(() => ({}))(GlobalIndicator);
