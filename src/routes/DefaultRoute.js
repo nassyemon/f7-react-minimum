@@ -4,7 +4,16 @@ import { Route } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 
 
-export default function DefautlRoute({ component, rightComponent, onSwiped, show, ...rest }) {
+export default function DefautlRoute({
+  component,
+  rightComponent,
+  controlComponent,
+  footerComponent,
+  onSwiped,
+  show,
+  showControl,
+  ...rest
+}) {
   return (
     <Route
       {...rest}
@@ -12,8 +21,11 @@ export default function DefautlRoute({ component, rightComponent, onSwiped, show
         <MainLayout
           component={component}
           rightComponent={rightComponent}
+          controlComponent={controlComponent}
+          footerComponent={footerComponent}
           onSwiped={onSwiped}
           show={show}
+          showControl={showControl}
           matchProps={matchProps}
         />
       )}

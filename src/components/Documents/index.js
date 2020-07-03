@@ -1,17 +1,21 @@
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import { moveToDocumentDetail } from "../../actions/navigation";
-import { fetchDocuments } from "../../actions/documents";
+import { fetchDocuments, toggleDocumentSelect } from "../../actions/documents";
 import { getData, isLoaded, isLoading } from "../../selectors/documents";
 import Documents from "./Documents";
 
-const mapStateToProps = (state) => ({
-  data: getData(state),
-  loaded: isLoaded(state),
-  loading: isLoading(state),
-});
 
-const mapDispatchToProps = (dispatch, { hasSession }) => {
+const mapStateToProps = (state, { match }) => {
+  return {
+    mode: getMode(match),
+    data: getData(state),
+    loaded: isLoaded(state),
+    loading: isLoading(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch, { hasSession, match }) => {
   return {
     onMount: async () => {
       if (hasSession) {
@@ -21,8 +25,20 @@ const mapDispatchToProps = (dispatch, { hasSession }) => {
       return false;
     },
     reloadDocuments: () => dispatch(fetchDocuments()),
-    onClickItem: (id) => () => dispatch(moveToDocumentDetail(id)),
+    onClickItem: (id) => () => {
+      const mode = getMode(match);
+      if (mode === "edit") {
+        return dispatch(toggleDocumentSelect(id));
+      }
+      return dispatch(moveToDocumentDetail(id))
+    },
   }
 };
+
+function getMode(match) {
+  const lastPath = match.path.split("/").pop();
+  const mode = lastPath === "edit" ? "edit" : "";
+  return mode;
+}
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(Documents);

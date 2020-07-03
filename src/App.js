@@ -24,6 +24,9 @@ import Setting from "./components/Setting";
 import Documents from "./components/Documents";
 import DocumentDetail from "./components/DocumentDetail";
 import SubmitPicture from "./components/SubmitPicture";
+import EditControl from "./components/EditControl";
+
+import EditFooter from "./components/EditFooter";
 
 const theme = createMuiTheme();
 
@@ -69,7 +72,16 @@ function App({ settings, goBack, openSidePanel }) {
                   exact path="/documents"
                   component={Documents}
                   rightComponent={DocumentDetail}
+                  controlComponent={EditControl}
+                  showControl={true}
                   onSwiped={onSwipeRight(openSidePanel)}
+                />
+                <DefaultRoute
+                  exact path="/documents/edit"
+                  component={Documents}
+                  rightComponent={DocumentDetail}
+                  onSwiped={onSwipeRight(openSidePanel)}
+                  footerComponent={EditFooter}
                 />
                 <DefaultRoute
                   path="/document/:id"

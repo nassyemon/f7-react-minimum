@@ -7,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Checkbox from '@material-ui/core/Checkbox';
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -30,18 +31,42 @@ const ContentCard = styled(Card)`
   display: flex;
   width: 100%;
   margin-bottom: ${(props) => props.theme.spacing(1)}px;
+  background-color: ${({ theme, mode }) => mode === "edit" ? "#f8f8f8" : "transparent"};
   min-height: 15vh;
+  transition: ${({ theme }) => theme.transitions.create(["background", "width"], {
+  easing: theme.transitions.easing.sharp,
+  duration: theme.transitions.duration.standard,
+})};
+`;
+
+const ActionContainer = styled(CardActions)`
+  padding: 0px;
+  width: ${({ theme, mode }) => mode === "edit" ? theme.spacing(6) : 0}px;
+  transition: ${({ theme }) => theme.transitions.create(["background", "width"], {
+  easing: theme.transitions.easing.sharp,
+  duration: theme.transitions.duration.standard,
+})};
+`;
+
+const EditCheckbox = styled(Checkbox)`
+  opacity: ${props => props.mode === "edit" ? 1 : 0};
+  transition: ${({ theme }) => theme.transitions.create(["opacity"], {
+  easing: theme.transitions.easing.sharp,
+  duration: theme.transitions.duration.standard,
+})};
 `;
 
 const TextContainer = styled(CardContent)`
+  flex-grow: 1;
   width: 60%;
 `;
 
 const ImageBox = styled(CardMedia)`
-  flex-grow: 1;
+  width: 40%;
 `;
 
 function Documents({
+  mode,
   onMount,
   reloadDocuments,
   data,
@@ -52,7 +77,7 @@ function Documents({
 }) {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
-    console.log("mounting documents");
+    console.log("mounting " + mode);
     if (!loaded) {
       onMount().then((done) => {
         if (done) {
@@ -73,13 +98,19 @@ function Documents({
       ) : (
           <PullToRefresh onRefresh={reloadDocuments}>
             {data?.length > 0 ?
-              data.map(({ id, title, image_url }) => (
-                <ContentCard key={id} onClick={onClickItem(id)}>
+              data.map(({ id, title, image_url, selected }) => (
+                <ContentCard key={id} onClick={onClickItem(id)} mode={mode}>
+                  <ActionContainer mode={mode}>
+                    <EditCheckbox
+                      color="default"
+                      mode={mode}
+                      checked={!!selected}
+                    />
+                  </ActionContainer>
                   <TextContainer>
                     <Typography variant="h5">{title}</Typography>
                   </TextContainer>
                   <ImageBox image={image_url} title="Live from space album cover" />
-                  <CardActions />
                 </ContentCard>
               )) : null
             }

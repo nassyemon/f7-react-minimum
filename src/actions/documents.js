@@ -6,7 +6,13 @@ export const FETCH_DOCUMENTS_START = "FETCH_DOCUMENTS_START";
 export const FETCH_DOCUMENTS_SUCCESS = "FETCH_DOCUMENTS_SUCCESS";
 export const FETCH_DOCUMENTS_FAIL = "FETCH_DOCUMENTS_FAIL";
 
+export const TOGGLE_DOCUMENT_SELECT = "TOGGLE_DOCUMENT_SELECT";
+export const CLEAR_DOCUMENT_SELECT = "CLEAR_DOCUMENT_SELECT";
+
 export const CLEAR_DOCUMENTS = "CLEAR_DOCUMENTS";
+
+export const toggleDocumentSelect = createAction(TOGGLE_DOCUMENT_SELECT);
+export const clearDocumentSelect = createAction(CLEAR_DOCUMENT_SELECT);
 
 export const fetchDocuments = () => apiRequestPrototype(
   createAction(FETCH_DOCUMENTS_START),

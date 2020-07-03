@@ -11,5 +11,6 @@ export const replaceToHome = () => replace("/");
 export const moveToHome = () => push("/");
 export const moveToDocuments = () => push("/documents");
 export const replaceToDocuments = () => replace("/documents");
+export const moveToDocumentsEdit = () => push("/documents/edit");
 export const moveToDocumentDetail = (id) => push(`/document/${id}`);
 export const moveToSetting = () => push("/setting");

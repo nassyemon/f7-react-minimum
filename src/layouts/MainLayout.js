@@ -1,9 +1,13 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useRef } from "react";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import { Swipeable } from "react-swipeable";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
+import Zoom from '@material-ui/core/Zoom';
+import Fab from '@material-ui/core/Fab';
+import { useScrolling } from "react-use";
+
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -89,18 +93,36 @@ const ScreenBlock = styled.div`
 })}; `}
 `;
 
+const ButtonContainer = styled.div`
+  position: fixed;
+  ${({ theme }) => `
+    bottom: ${theme.spacing(15)}px; 
+    right: ${theme.spacing(4)}px;
+  `}
+  background-color: transparent;
+  z-index: 800;
+`
 
 
 function MainLayout({
   isSidePanelOpen,
   component: MainComponent,
   rightComponent: RightComponent,
+  footerComponent: FooterComponent,
+  controlComponent: ControlComponent,
   onSwiped,
   show,
   hasSession,
   closeSidepanel,
   matchProps,
+  showControl,
 }) {
+  const mainRef = useRef(null);
+  const rightRef = useRef(null);
+  const mainScrolling = useScrolling(mainRef);
+  const rightScrolling = useScrolling(rightRef);
+  const scrolling = mainScrolling || rightScrolling;
+
   const showRight = RightComponent && show === "right";
   return (
     <Fragment>
@@ -108,18 +130,18 @@ function MainLayout({
         <Header showMenu={!showRight} showBack={showRight} />
         <Screen isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth} >
           <Swipeable onSwiped={onSwiped}>
-            <Main showRight={showRight}>
+            <Main showRight={showRight} ref={mainRef} >
               <Fragment>
-                <MainComponent {...matchProps} hasSession={hasSession} />
+                <MainComponent {...matchProps} hasSession={hasSession} scrollTrigger={mainScrolling} />
                 <FooterOffset />
               </Fragment>
             </Main>
           </Swipeable>
           <Swipeable onSwiped={onSwiped}>
-            <Right showRight={showRight}>
+            <Right showRight={showRight} ref={rightRef} >
               {RightComponent && (
                 <Fragment>
-                  <RightComponent {...matchProps} hasSession={hasSession} />
+                  <RightComponent {...matchProps} hasSession={hasSession} scrollTrigger={rightScrolling} />
                   <FooterOffset />
                 </Fragment>
               )}
@@ -132,8 +154,23 @@ function MainLayout({
         </Screen>
       </Root>
       <Sidebar open={isSidePanelOpen} sideBarWidth={sideBarWidth} />
-      <Footer footerHeight={footerHeight} />
+      {
+        FooterComponent ? (
+          <FooterComponent footerHeight={footerHeight} {...matchProps} />
+        ) : (
+            <Footer footerHeight={footerHeight} {...matchProps} />
+          )
+      }
       <GlobalIndicator />
+      <ButtonContainer>
+        <Zoom in={showControl && !scrolling && !!ControlComponent}  >
+          <Fab color="secondary" size="medium" aria-label="edit">
+            {ControlComponent ? (
+              <ControlComponent  {...matchProps} />
+            ) : null}
+          </Fab>
+        </Zoom>
+      </ButtonContainer>
     </Fragment>
   );
 }
