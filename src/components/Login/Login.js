@@ -9,22 +9,20 @@ import styled from "styled-components";
 const styles = () => ({});
 
 const Root = styled(Container)`
-  position: fixed;
+  position: absolute;
   min-height: 100vh;
+  width: 100vw;
   background-color: #ffffff;
   top: 100vh;
   z-index: 1500;
-  ${({ theme }) => /* TODO: refactor */ `
+  ${({ theme, noHeader }) => /* TODO: refactor */ `
   padding: ${theme.spacing(2)}px;
-  margin-top: ${theme.spacing(7)}px;
+  margin-top: ${noHeader ? theme.spacing(7) : 0}px;
   transition: ${theme.transitions.create(["transform"], {
   easing: theme.transitions.easing.sharp,
   duration: theme.transitions.duration.standard,
 })}; `}
-  transform: ${(props) =>
-    `translate(${props.isSidePanelOpen ? props.sideBarWidth : "0"}, ${
-    props.isLoggedIn ? "0" : "-100vh"
-    })`};
+  transform: ${(props) => `translateY(${props.isLoggedIn ? "0" : "-100vh"})`};
 `;
 
 const TitleButtonContainer = styled(Container)`
@@ -48,12 +46,11 @@ const LoginButtonContainer = styled(Container)`
   height: 20vh;
 `;
 
-function Login({ onClickLogin, isSidePanelOpen, isLoggedIn, sideBarWidth }) {
+function Login({ onClickLogin, isLoggedIn }) {
   return (
     <Root
       isLoggedIn={isLoggedIn}
-      isSidePanelOpen={isSidePanelOpen}
-      sideBarWidth={sideBarWidth}
+      noHeader={false}
     >
       <Box>
         <TitleButtonContainer>

@@ -46,7 +46,7 @@ const TitleField = styled(TextField)`
 
 function SubmitPicture({ picture, title, sending, onTitleChange, onClickSubmitButton }) {
   // TODO: refactor
-  const onTitleChangeThrottled = useCallback(throttle(1000, false, (title) => {
+  const onTitleChangeThrottled = useCallback(throttle(200, false, (title) => {
     onTitleChange(title);
   }), []);
 

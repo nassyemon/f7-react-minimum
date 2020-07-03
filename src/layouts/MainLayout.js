@@ -28,8 +28,9 @@ const Root = styled.div`
 const Screen = styled.main`
   width: 200vw;
   overflow-x: hidden;
+  position: relative;
   ${({ theme }) => `
-  margin-top: ${theme.spacing(7)}px;
+  margin-top: ${theme.spacing(5)}px;
   transition: ${theme.transitions.create(["transform"], {
   easing: theme.transitions.easing.sharp,
   duration: theme.transitions.duration.standard,
@@ -44,7 +45,7 @@ const Panel = styled.div`
   width: 100vw;
   overflow-x: hidden;
   ${({ theme }) => `
-    height: calc(100vh - ${theme.spacing(7)}px);
+    height: calc(100vh - ${theme.spacing(5)}px);
     overflow-y: scroll;
     padding: ${theme.spacing(2)}px;
     transition: ${theme.transitions.create(["transform"], {
@@ -65,6 +66,28 @@ const FooterOffset = styled.div`
   height: 40px;
 `;
 
+const ScreenBlock = styled.div`
+  position: absolute;
+  z-index: 1600;
+  top: 0;
+  left: 0;
+  width: 0px;
+  height: 100vh;
+  background-color: tranparent;
+  ${props => props.isSidePanelOpen ? `
+    width: 100vw;
+    background-color: rgba(128,128,128,0.2);
+  `: ``}
+  background-color:
+  height: 100h;
+  ${({ theme }) => `
+    transition: ${theme.transitions.create(["background-color", "width"], {
+  easing: theme.transitions.easing.sharp,
+  duration: theme.transitions.duration.standard,
+})}; `}
+`;
+
+
 
 function MainLayout({
   isSidePanelOpen,
@@ -79,8 +102,8 @@ function MainLayout({
   return (
     <Fragment>
       <Root>
-        <Header />
-        <Screen isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth} onClick={closeSidepanel}>
+        <Header showMenu={!showRight} showBack={showRight} />
+        <Screen isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth} >
           <Swipeable onSwiped={onSwiped}>
             <Main showRight={showRight}>
               <Fragment>
@@ -99,8 +122,11 @@ function MainLayout({
               )}
             </Right>
           </Swipeable>
+          <Login />
+          <Swipeable onSwipedLeft={closeSidepanel} >
+            <ScreenBlock isSidePanelOpen={isSidePanelOpen} onClick={closeSidepanel} />
+          </Swipeable>
         </Screen>
-        <Login isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth} />
       </Root>
       <Sidebar open={isSidePanelOpen} sideBarWidth={sideBarWidth} />
       <Footer footerHeight={footerHeight} />

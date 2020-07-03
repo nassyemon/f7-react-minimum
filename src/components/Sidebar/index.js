@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onClickSidepanel: () => dispatch(closeSidepanel()),
+  closeSidepanel: () => dispatch(closeSidepanel()),
   onClickDocuments: () => dispatch(moveToDocuments()),
   onClickLogout: () => dispatch(logout()),
   onClickSetting: () => dispatch(moveToSetting()),
