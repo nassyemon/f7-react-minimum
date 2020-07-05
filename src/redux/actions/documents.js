@@ -1,5 +1,5 @@
 import { createAction } from "redux-actions";
-import { getDocumentList, deleteDocument } from "../api/document";
+import { getDocumentList, deleteDocument } from "../../api/document";
 import { getSeleted } from "../selectors/documents";
 import { setToast } from "../actions/toast";
 import { apiRequestPrototype } from "./utils";

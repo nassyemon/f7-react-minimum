@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, REAUTH_SUCCESS, LOGOUT } from "../actions/login";
+import { LOGIN_SUCCESS, REAUTH_SUCCESS, LOGOUT } from "../../redux/actions/login";
 
 const initialState = Object.freeze({
   session: null,

@@ -1,4 +1,4 @@
-import { checkAuth, getSession, destroySession } from "../api/auth";
+import { checkAuth, getSession, destroySession } from "../../api/auth";
 import { hasSession, getSessionId } from "../selectors/login";
 import { setToast } from "../actions/toast";
 

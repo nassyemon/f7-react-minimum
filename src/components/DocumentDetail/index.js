@@ -1,7 +1,7 @@
 import { compose } from "recompose";
 import { connect } from "react-redux";
-import { getData, isLoaded, isLoading } from "../../selectors/detail";
-import { fetchDocumentDetail, clearDocumentDetail } from "../../actions/detail";
+import { getData, isLoaded, isLoading } from "../../redux/selectors/detail";
+import { fetchDocumentDetail, clearDocumentDetail } from "../../redux/actions/detail";
 import DocumentDetail from "./DocumentDetail";
 
 const mapStateToProps = (state, ownProps) => ({

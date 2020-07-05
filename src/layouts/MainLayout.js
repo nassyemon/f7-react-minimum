@@ -16,10 +16,10 @@ import Login from "../components/Login";
 import GlobalIndicator from "../components/GlobalIndicator";
 import Toast from "../components/Toast";
 
-import { isOpen } from "../selectors/sidepanel";
-import { isSending as isPictureSending } from "../selectors/picture";
-import { hasSession } from "../selectors/login";
-import { closeSidepanel } from "../actions/sidepanel";
+import { isOpen } from "../redux/selectors/sidepanel";
+import { isSending as isPictureSending } from "../redux/selectors/picture";
+import { hasSession } from "../redux/selectors/login";
+import { closeSidepanel } from "../redux/actions/sidepanel";
 
 const sideBarWidth = "70vw";
 const footerHeight = "10vh";

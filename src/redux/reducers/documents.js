@@ -9,11 +9,11 @@ import {
   TOGGLE_DOCUMENT_SELECT,
   CLEAR_DOCUMENT_SELECT,
   CLEAR_DOCUMENTS,
-} from "../actions/documents";
+} from "../../redux/actions/documents";
 import {
   SEND_PICTURE_SUCCESS,
   SEND_PICTURE_FAIL,
-} from "../actions/picture";
+} from "../../redux/actions/picture";
 import { loadStart, loadSuccess, loadFail } from "./utils";
 import { deleteStart, deleteSuccess, deleteFail } from "./utils";
 

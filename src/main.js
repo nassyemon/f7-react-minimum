@@ -8,7 +8,7 @@ import { AppContainer } from "react-hot-loader";
 import { PersistGate } from "redux-persist/integration/react";
 
 // store
-import { store, persistor } from "./store";
+import { store, persistor } from "./redux/store";
 import { awaitReady, hideStatusBar, setWindowOpenToInAppBrower } from "./modules/cordovaUtils";
 
 // Import main App component

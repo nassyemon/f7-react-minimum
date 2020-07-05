@@ -1,10 +1,10 @@
 import { compose } from "recompose";
 import { connect } from "react-redux";
-import { hasSession, getUserName } from "../../selectors/login";
-import { moveToDocuments, moveToSetting } from "../../actions/navigation";
-import { closeSidepanel } from "../../actions/sidepanel";
+import { hasSession, getUserName } from "../../redux/selectors/login";
+import { moveToDocuments, moveToSetting } from "../../redux/actions/navigation";
+import { closeSidepanel } from "../../redux/actions/sidepanel";
 import Sidebar from "./Sidebar";
-import { logout, reauth } from "../../actions/login";
+import { logout, reauth } from "../../redux/actions/login";
 
 const mapStateToProps = (state) => ({
   isLoggedIn: hasSession(state),

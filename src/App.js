@@ -11,11 +11,11 @@ import styled, {
   ThemeProvider as StyledThemeProvider,
 } from "styled-components";
 import { connect } from "react-redux";
-import { history } from "./store";
+import { history } from "./redux/store";
 import DefaultRoute from "./routes/DefaultRoute";
 import EmptyRoute from "./routes/EmptyRoute";
-import { goBack } from "./actions/navigation";
-import { openSidePanel } from "./actions/sidepanel";
+import { goBack } from "./redux/actions/navigation";
+import { openSidePanel } from "./redux/actions/sidepanel";
 
 
 import Home from "./components/Home";

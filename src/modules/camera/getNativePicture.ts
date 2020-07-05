@@ -1,6 +1,6 @@
 /// <reference types="cordova-plugin-camera" />
-import { addPicture } from "../../actions/picture";
-import { moveToSubmitPicture } from "../../actions/navigation";
+import { addPicture } from "../../redux/actions/picture";
+import { moveToSubmitPicture } from "../../redux/actions/navigation";
 
 export default function getNativePicture(
   sourceType: any,

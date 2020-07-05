@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Fab from "@material-ui/core/Fab";
 import EditIcon from '@material-ui/icons/Edit';
 import { withStyles } from "@material-ui/core/styles";
-import { moveToDocumentsEdit } from "../../actions/navigation";
+import { moveToDocumentsEdit } from "../../redux/actions/navigation";
 
 
 function EditControl({ onClick }) {

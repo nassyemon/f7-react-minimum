@@ -1,4 +1,4 @@
-import { SET_TOAST, CLEAR_TOAST } from "../actions/toast";
+import { SET_TOAST, CLEAR_TOAST } from "../../redux/actions/toast";
 
 const initialState = Object.freeze({
   visible: false,

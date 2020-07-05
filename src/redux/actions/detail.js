@@ -1,5 +1,5 @@
 import { createAction } from "redux-actions";
-import { getDocument } from "../api/document";
+import { getDocument } from "../../api/document";
 import { apiRequestPrototype } from "./utils";
 
 export const FETCH_DETAIL_START = "FETCH_DETAIL_START";

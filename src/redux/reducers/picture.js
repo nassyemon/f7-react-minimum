@@ -5,7 +5,7 @@ import {
   ADD_PICTURE,
   CLEAR_PICTURE,
   SET_TITLE,
-} from "../actions/picture";
+} from "../../redux/actions/picture";
 import { sendStart, sendSuccess, sendFail } from "./utils";
 
 const initialState = {

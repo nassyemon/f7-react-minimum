@@ -1,7 +1,7 @@
 import { compose } from "recompose";
 import { connect } from "react-redux";
-import { login } from "../../actions/login";
-import { hasSession } from "../../selectors/login";
+import { login } from "../../redux/actions/login";
+import { hasSession } from "../../redux/selectors/login";
 import Login from "./Login";
 import tryOauth from "../../modules/tryOAuth";
 

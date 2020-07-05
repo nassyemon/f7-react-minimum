@@ -1,7 +1,7 @@
 import { compose } from "recompose";
 import { connect } from "react-redux";
-import { toggleSidepanel } from "../../actions/sidepanel";
-import { goBack } from "../../actions/navigation";
+import { toggleSidepanel } from "../../redux/actions/sidepanel";
+import { goBack } from "../../redux/actions/navigation";
 import Header from "./Header";
 
 const mapDispatchToProps = (dispatch) => ({

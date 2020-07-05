@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { addPicture } from "../../actions/picture";
-import { replaceToSubmitPicture } from "../../actions/navigation";
+import { addPicture } from "../../redux/actions/picture";
+import { replaceToSubmitPicture } from "../../redux/actions/navigation";
 import Camera from "./Camera";
 
 const mapDispatchToProps = (dispatch) => ({

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Swipeable } from "react-swipeable";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
-import { isSending as isPictureSending } from "../selectors/picture";
+import { isSending as isPictureSending } from "../redux/selectors/picture";
 
 import Login from "../components/Login";
 

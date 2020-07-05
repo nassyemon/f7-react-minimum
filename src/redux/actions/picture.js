@@ -1,5 +1,5 @@
 import { createAction } from "redux-actions";
-import { postDocument } from "../api/document";
+import { postDocument } from "../../api/document";
 import { getLastPicture, getTitle } from "../selectors/picture";
 import { apiRequestPrototype } from "./utils";
 import { setToast } from "../actions/toast";

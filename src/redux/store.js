@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 import { createLogger } from "redux-logger";
 import { persistStore } from "redux-persist";
 import { routerMiddleware } from "connected-react-router";
-import { usingCordova } from "./modules/cordovaUtils";
+import { usingCordova } from "../modules/cordovaUtils";
 import toastMiddleware from "./middlewares/toastMiddleware";
 // import { hasSession } from "./selectors/login";
 // import { reauth } from "./actions/login";

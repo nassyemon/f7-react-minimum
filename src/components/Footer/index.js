@@ -1,13 +1,13 @@
 import { connect } from "react-redux";
 import getNativePicture from "../../modules/camera/getNativePicture";
-// import { getPictures } from "../../selectors/picture";
+// import { getPictures } from "../../redux/selectors/picture";
 import { usingCordova } from "../../modules/cordovaUtils";
 import {
   moveToWebCamera,
   moveToHome,
   moveToDocuments,
-} from "../../actions/navigation";
-import { closeSidepanel } from "../../actions/sidepanel";
+} from "../../redux/actions/navigation";
+import { closeSidepanel } from "../../redux/actions/sidepanel";
 import Footer from "./Footer";
 
 const mapStateToProps = (state) => ({

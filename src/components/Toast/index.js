@@ -6,7 +6,7 @@ import Grow from "@material-ui/core/Grow";
 import styled from "styled-components";
 import { clearToast } from "../actions/../toast";
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
-import { getMessage, getType, isVisible } from "../../selectors/toast";
+import { getMessage, getType, isVisible } from "../../redux/selectors/toast";
 
 const ToastPaper = styled(Paper)`
   position: fixed;

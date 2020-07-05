@@ -1,6 +1,6 @@
 import { compose } from "recompose";
 import { connect } from "react-redux";
-import { getUserName } from "../../selectors/login";
+import { getUserName } from "../../redux/selectors/login";
 import Home from "./Home";
 
 const mapStateToProps = (state) => ({

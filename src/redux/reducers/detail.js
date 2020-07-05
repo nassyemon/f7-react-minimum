@@ -3,7 +3,7 @@ import {
   FETCH_DETAIL_SUCCESS,
   FETCH_DETAIL_FAIL,
   CLEAR_DETAIL,
-} from "../actions/detail";
+} from "../../redux/actions/detail";
 import { loadStart, loadSuccess, loadFail } from "./utils";
 
 const initialState = Object.freeze({

@@ -13,7 +13,7 @@ import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import { toggleThemeMode, swapThemeColors } from "../reducers/settings";
+import { toggleThemeMode, swapThemeColors } from "../redux/reducers/settings";
 
 const Settings = (props) => (
   <div>
