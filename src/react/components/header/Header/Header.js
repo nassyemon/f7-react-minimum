@@ -17,12 +17,10 @@ const StaticProperties = {
 };
 
 const Headerbar = styled(AppBar)`
-  z-index: 1200;
-  height: ${({ height }) => height};
   background: #fcfcfc;
   color: #888888;
   display: flex;
-  padding-top: ${({ paddingTop }) => paddingTop};
+  position: relative;
 `;
 
 const AppToolbar = styled(Toolbar)`
@@ -37,7 +35,7 @@ const HeaderTitle = styled(Typography)`
 function Header(props) {
   const { onClicHamberger } = props;
   return (
-    <Headerbar position="fixed" elevation={1}  {...StaticProperties}>
+    <Headerbar position="fixed" elevation={1}>
       <AppToolbar disableGutters>
         <Fragment>
           <IconButton

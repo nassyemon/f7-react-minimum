@@ -14,11 +14,6 @@ const StaticProperties = {
 };
 
 const Root = styled.div`
-  position: fixed;
-  z-index: 2000;
-  width: 100vw;
-  height: ${({ height }) => height}px;
-  bottom: 0;
 `;
 
 const Buttons = styled(BottomNavigation)`
@@ -30,8 +25,8 @@ function Footer({
   onClickHomeButton,
 }) {
   return (
-    <Root {...StaticProperties}>
-      <Buttons showLabels {...StaticProperties}>
+    <Root>
+      <Buttons showLabels>
         <BottomNavigationAction
           label="ホーム"
           onClick={onClickHomeButton}

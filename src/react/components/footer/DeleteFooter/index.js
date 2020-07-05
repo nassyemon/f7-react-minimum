@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
 // import { getPictures } from "../../../redux/selectors/picture";
 import { usingCordova } from "../../../../modules/cordovaUtils";
-import { goBack, moveToDocumentsDelete } from "../../../../redux/actions/navigation";
+import { goBack, replaceToDocuments } from "../../../../redux/actions/navigation";
 import { closeSidepanel } from "../../../../redux/actions/sidepanel";
 import { deleteDocuments } from "../../../../redux/actions/documents";
 import { getSeleted } from "../../../../redux/selectors/documents";
-import EditFooter from "./EditFooter";
+import DeleteFooter from "./DeleteFooter";
 
 const mapStateToProps = (state) => {
   const selected = getSeleted(state);
@@ -20,7 +20,11 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(closeSidepanel());
     return dispatch(goBack());
   },
-  onClickDeleteButton: () => dispatch(moveToDocumentsDelete()),
+  onClickDeleteButton: async () => {
+    dispatch(closeSidepanel());
+    await dispatch(deleteDocuments());
+    return dispatch(replaceToDocuments());
+  },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditFooter);
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteFooter);

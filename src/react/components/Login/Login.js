@@ -9,20 +9,10 @@ import styled from "styled-components";
 const styles = () => ({});
 
 const Root = styled(Container)`
-  position: absolute;
-  min-height: 100vh;
-  width: 100vw;
+  position: relative;
+  min-height: 100%;
   background-color: #ffffff;
-  top: 100vh;
-  z-index: 1500;
-  ${({ theme, noheader }) => /* TODO: refactor */ `
-  padding: ${theme.spacing(2)}px;
-  margin-top: ${noheader ? theme.spacing(7) : 0}px;
-  transition: ${theme.transitions.create(["transform"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.standard,
-  })}; `}
-  transform: ${(props) => `translateY(${props.show ? "0" : "-100vh"})`};
+  padding: ${({ theme }) => theme.spacing(2)}px;
 `;
 
 const TitleButtonContainer = styled(Container)`

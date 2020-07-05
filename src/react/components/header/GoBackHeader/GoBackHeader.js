@@ -10,19 +10,16 @@ import styled from "styled-components";
 const styles = (theme) => ({});
 
 //  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
-
 const StaticProperties = {
   height: "56px",
   paddingTop: "16px",
 };
 
 const Headerbar = styled(AppBar)`
-  z-index: 1200;
-  height: ${({ height }) => height};
   background: #fcfcfc;
   color: #888888;
   display: flex;
-  padding-top: ${({ paddingTop }) => paddingTop};
+  position: relative;
 `;
 
 const AppToolbar = styled(Toolbar)`

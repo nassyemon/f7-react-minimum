@@ -13,14 +13,9 @@ const StaticProperties = {
   height: "100px",
 };
 const Root = styled.div`
-  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  z-index: 2000;
-  width: 100vw;
-  height: ${({ height }) => height};
-  bottom: 0;
   background-color: transparent;
 `;
 
@@ -44,7 +39,7 @@ const Messages = styled.div`
 const Buttons = styled(BottomNavigation)`
 `
 
-function Footer({
+function EditFooter({
   onClickCancelButton,
   onClickDeleteButton,
   selectedCount,
@@ -74,4 +69,4 @@ function Footer({
   );
 }
 
-export default withStyles(styles)(Object.assign(Footer, StaticProperties));
+export default withStyles(styles)(Object.assign(EditFooter, StaticProperties));
