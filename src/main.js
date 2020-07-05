@@ -9,7 +9,11 @@ import { PersistGate } from "redux-persist/integration/react";
 
 // store
 import { store, persistor } from "./redux/store";
-import { awaitReady, hideStatusBar, setWindowOpenToInAppBrower } from "./modules/cordovaUtils";
+import {
+  awaitReady,
+  hideStatusBar,
+  setWindowOpenToInAppBrower,
+} from "./modules/cordovaUtils";
 
 // Import main App component
 import App from "./react/App";

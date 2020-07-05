@@ -14,18 +14,15 @@ import { connect } from "react-redux";
 import { history } from "../redux/store";
 import DefaultRoute from "./routes/DefaultRoute";
 import EmptyRoute from "./routes/EmptyRoute";
+import DocumentsRoute from "./routes/DocumentsRoute";
 import { goBack } from "../redux/actions/navigation";
 import { openSidePanel } from "../redux/actions/sidepanel";
+
 
 import Home from "./components/Home";
 import Camera from "./components/Camera";
 import Setting from "./components/Setting";
-import Documents from "./components/Documents";
-import DocumentDetail from "./components/DocumentDetail";
 import SubmitPicture from "./components/SubmitPicture";
-import EditControl from "./components/EditControl";
-
-import EditFooter from "./components/EditFooter";
 
 const theme = createMuiTheme();
 
@@ -50,51 +47,26 @@ function App({ settings, goBack, openSidePanel }) {
           <Root>
             <ConnectedRouter history={history}>
               <Switch>
-                <DefaultRoute
-                  path="/home"
-                  component={Home}
+                <DefaultRoute path="/setting"
+                  mainComponent={Setting}
                   onSwiped={onSwipeRight(openSidePanel)}
                 />
-                <DefaultRoute
-                  path="/setting"
-                  component={Setting}
-                  onSwiped={onSwipeRight(openSidePanel)}
-                />
-                <EmptyRoute
-                  path="/camera"
+                <EmptyRoute path="/camera"
                   component={Camera}
                   onSwiped={onSwipeRight(goBack)}
                 />
                 <DefaultRoute
                   path="/submit-picture"
-                  component={SubmitPicture}
+                  mainComponent={SubmitPicture}
                   onSwiped={onSwipeRight(openSidePanel)}
                 />
-                <DefaultRoute
-                  exact
+                <DocumentsRoute
                   path="/documents"
-                  component={Documents}
-                  rightComponent={DocumentDetail}
-                  controlComponent={EditControl}
-                  showControl={true}
+                />
+                <DefaultRoute path={["/", "/home"]}
+                  mainComponent={Home}
                   onSwiped={onSwipeRight(openSidePanel)}
                 />
-                <DefaultRoute
-                  exact
-                  path="/documents/edit"
-                  component={Documents}
-                  rightComponent={DocumentDetail}
-                  onSwiped={onSwipeRight(openSidePanel)}
-                  footerComponent={EditFooter}
-                />
-                <DefaultRoute
-                  path="/document/:id"
-                  component={Documents}
-                  rightComponent={DocumentDetail}
-                  show="right"
-                  onSwiped={onSwipeRight(goBack)}
-                />
-                <DefaultRoute path="/" component={Home} />
                 <EmptyRoute component={NotFound} />
               </Switch>
             </ConnectedRouter>

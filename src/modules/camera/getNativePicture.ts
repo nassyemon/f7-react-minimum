@@ -14,7 +14,7 @@ export default function getNativePicture(
   );
 }
 
-function getCameraOptions(sourceType, destinationType) {
+function getCameraOptions(sourceType: any, destinationType: any) {
   return {
     // Image Quality is temporary.
     targetWidth: 720,

@@ -12,7 +12,8 @@
         "no-console": "off",
         "react/jsx-filename-extension": "off",
         "indent": "off",
-        "react/jsx-indent": "off"
+        "react/jsx-indent": "off",
+        "prettier/prettier": "off"
     },
     "globals": {
         "window": true,

@@ -1,10 +1,9 @@
-import React, { Fragment } from "react";
-import styled from "styled-components";
+import React from "react";
 import { Route } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 
 export default function DefautlRoute({
-  component,
+  mainComponent,
   rightComponent,
   controlComponent,
   footerComponent,
@@ -18,7 +17,7 @@ export default function DefautlRoute({
       {...rest}
       render={(matchProps) => (
         <MainLayout
-          component={component}
+          mainComponent={mainComponent}
           rightComponent={rightComponent}
           controlComponent={controlComponent}
           footerComponent={footerComponent}

@@ -38,9 +38,9 @@ const Screen = styled.main`
   ${({ theme }) => `
   margin-top: ${theme.spacing(5)}px;
   transition: ${theme.transitions.create(["transform"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.standard,
-  })}; `}
+  easing: theme.transitions.easing.sharp,
+  duration: theme.transitions.duration.standard,
+})}; `}
   transform: ${({ isSidePanelOpen, sideBarWidth }) =>
     isSidePanelOpen ? `translateX(${sideBarWidth})` : ""};
   display: flex;
@@ -56,9 +56,9 @@ const Panel = styled.div`
     overflow-y: scroll;
     padding: ${theme.spacing(2)}px;
     transition: ${theme.transitions.create(["transform"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.standard,
-    })};
+  easing: theme.transitions.easing.sharp,
+  duration: theme.transitions.duration.standard,
+})};
   `}
   ${(props) => (props.showRight ? "transform: translateX(-100vw)" : "")}
 `;
@@ -90,9 +90,9 @@ const ScreenBlock = styled.div`
   height: 100h;
   ${({ theme }) => `
     transition: ${theme.transitions.create(["background-color", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.standard,
-    })}; `}
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.standard,
+      })}; `}
 `;
 
 const ButtonContainer = styled.div`
@@ -107,7 +107,7 @@ const ButtonContainer = styled.div`
 
 function MainLayout({
   isSidePanelOpen,
-  component: MainComponent,
+  mainComponent: MainComponent,
   rightComponent: RightComponent,
   footerComponent: FooterComponent,
   controlComponent: ControlComponent,
@@ -169,13 +169,13 @@ function MainLayout({
       {FooterComponent ? (
         <FooterComponent footerHeight={footerHeight} {...matchProps} />
       ) : (
-        <Footer footerHeight={footerHeight} {...matchProps} />
-      )}
+          <Footer footerHeight={footerHeight} {...matchProps} />
+        )}
       <GlobalIndicator />
       <ButtonContainer>
         <Zoom in={showControl && !scrolling && !!ControlComponent}>
           <Fab color="secondary" size="medium" aria-label="edit">
-            {ControlComponent ? <ControlComponent {...matchProps} /> : null}
+            {ControlComponent ? <ControlComponent {...matchProps} /> : <div></div>}
           </Fab>
         </Zoom>
       </ButtonContainer>
