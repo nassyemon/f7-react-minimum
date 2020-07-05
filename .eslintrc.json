@@ -1,7 +1,7 @@
 {
     "extends": [
-        "react-app",
         "@cordova/eslint-config/node",
+        "react-app",
         "plugin:prettier/recommended"
     ],
     "rules": {
@@ -13,6 +13,12 @@
         "react/jsx-filename-extension": "off",
         "indent": "off",
         "react/jsx-indent": "off"
+    },
+    "globals": {
+        "window": true,
+        "Camera": true,
+        "StatusBar": true,
+        "cordova": true
     },
     "settings": {},
     "plugins": [

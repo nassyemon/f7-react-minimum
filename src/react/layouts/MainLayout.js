@@ -4,10 +4,9 @@ import { connect } from "react-redux";
 import { Swipeable } from "react-swipeable";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
-import Zoom from '@material-ui/core/Zoom';
-import Fab from '@material-ui/core/Fab';
+import Zoom from "@material-ui/core/Zoom";
+import Fab from "@material-ui/core/Fab";
 import { useScrolling } from "react-use";
-
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -39,10 +38,11 @@ const Screen = styled.main`
   ${({ theme }) => `
   margin-top: ${theme.spacing(5)}px;
   transition: ${theme.transitions.create(["transform"], {
-  easing: theme.transitions.easing.sharp,
-  duration: theme.transitions.duration.standard,
-})}; `}
-  transform: ${({ isSidePanelOpen, sideBarWidth }) => isSidePanelOpen ? `translateX(${sideBarWidth})` : ""};
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.standard,
+  })}; `}
+  transform: ${({ isSidePanelOpen, sideBarWidth }) =>
+    isSidePanelOpen ? `translateX(${sideBarWidth})` : ""};
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -56,18 +56,16 @@ const Panel = styled.div`
     overflow-y: scroll;
     padding: ${theme.spacing(2)}px;
     transition: ${theme.transitions.create(["transform"], {
-  easing: theme.transitions.easing.sharp,
-  duration: theme.transitions.duration.standard,
-})};
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.standard,
+    })};
   `}
-  ${props => props.showRight ? "transform: translateX(-100vw)" : ""}
+  ${(props) => (props.showRight ? "transform: translateX(-100vw)" : "")}
 `;
 
-const Main = styled(Panel)`
-`
+const Main = styled(Panel)``;
 
-const Right = styled(Panel)`
-`;
+const Right = styled(Panel)``;
 
 const FooterOffset = styled.div`
   height: 40px;
@@ -81,17 +79,20 @@ const ScreenBlock = styled.div`
   width: 0px;
   height: 100vh;
   background-color: tranparent;
-  ${props => props.isSidePanelOpen ? `
+  ${(props) =>
+    props.isSidePanelOpen
+      ? `
     width: 100vw;
     background-color: rgba(128,128,128,0.2);
-  `: ``}
+  `
+      : ""}
   background-color:
   height: 100h;
   ${({ theme }) => `
     transition: ${theme.transitions.create(["background-color", "width"], {
-  easing: theme.transitions.easing.sharp,
-  duration: theme.transitions.duration.standard,
-})}; `}
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.standard,
+    })}; `}
 `;
 
 const ButtonContainer = styled.div`
@@ -102,8 +103,7 @@ const ButtonContainer = styled.div`
   `}
   background-color: transparent;
   z-index: 800;
-`
-
+`;
 
 function MainLayout({
   isSidePanelOpen,
@@ -129,46 +129,53 @@ function MainLayout({
     <Fragment>
       <Root>
         <Header showMenu={!showRight} showBack={showRight} />
-        <Screen isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth} >
+        <Screen isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth}>
           <Swipeable onSwiped={onSwiped}>
-            <Main showRight={showRight} ref={mainRef} >
+            <Main showRight={showRight} ref={mainRef}>
               <Fragment>
-                <MainComponent {...matchProps} hasSession={hasSession} scrollTrigger={mainScrolling} />
+                <MainComponent
+                  {...matchProps}
+                  hasSession={hasSession}
+                  scrollTrigger={mainScrolling}
+                />
                 <FooterOffset />
               </Fragment>
             </Main>
           </Swipeable>
           <Swipeable onSwiped={onSwiped}>
-            <Right showRight={showRight} ref={rightRef} >
+            <Right showRight={showRight} ref={rightRef}>
               {RightComponent && (
                 <Fragment>
-                  <RightComponent {...matchProps} hasSession={hasSession} scrollTrigger={rightScrolling} />
+                  <RightComponent
+                    {...matchProps}
+                    hasSession={hasSession}
+                    scrollTrigger={rightScrolling}
+                  />
                   <FooterOffset />
                 </Fragment>
               )}
             </Right>
           </Swipeable>
           <Login />
-          <Swipeable onSwipedLeft={closeSidepanel} >
-            <ScreenBlock isSidePanelOpen={isSidePanelOpen} onClick={closeSidepanel} />
+          <Swipeable onSwipedLeft={closeSidepanel}>
+            <ScreenBlock
+              isSidePanelOpen={isSidePanelOpen}
+              onClick={closeSidepanel}
+            />
           </Swipeable>
         </Screen>
       </Root>
       <Sidebar open={isSidePanelOpen} sideBarWidth={sideBarWidth} />
-      {
-        FooterComponent ? (
-          <FooterComponent footerHeight={footerHeight} {...matchProps} />
-        ) : (
-            <Footer footerHeight={footerHeight} {...matchProps} />
-          )
-      }
+      {FooterComponent ? (
+        <FooterComponent footerHeight={footerHeight} {...matchProps} />
+      ) : (
+        <Footer footerHeight={footerHeight} {...matchProps} />
+      )}
       <GlobalIndicator />
       <ButtonContainer>
-        <Zoom in={showControl && !scrolling && !!ControlComponent}  >
+        <Zoom in={showControl && !scrolling && !!ControlComponent}>
           <Fab color="secondary" size="medium" aria-label="edit">
-            {ControlComponent ? (
-              <ControlComponent  {...matchProps} />
-            ) : null}
+            {ControlComponent ? <ControlComponent {...matchProps} /> : null}
           </Fab>
         </Zoom>
       </ButtonContainer>
@@ -189,7 +196,7 @@ const mapStateToProps = (state) => {
     hasSession: hasSession(state),
     isSidePanelOpen: isOpen(state),
   };
-}
+};
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),

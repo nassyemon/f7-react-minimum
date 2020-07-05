@@ -17,7 +17,6 @@ import EmptyRoute from "./routes/EmptyRoute";
 import { goBack } from "../redux/actions/navigation";
 import { openSidePanel } from "../redux/actions/sidepanel";
 
-
 import Home from "./components/Home";
 import Camera from "./components/Camera";
 import Setting from "./components/Setting";
@@ -51,15 +50,18 @@ function App({ settings, goBack, openSidePanel }) {
           <Root>
             <ConnectedRouter history={history}>
               <Switch>
-                <DefaultRoute path="/home"
+                <DefaultRoute
+                  path="/home"
                   component={Home}
                   onSwiped={onSwipeRight(openSidePanel)}
                 />
-                <DefaultRoute path="/setting"
+                <DefaultRoute
+                  path="/setting"
                   component={Setting}
                   onSwiped={onSwipeRight(openSidePanel)}
                 />
-                <EmptyRoute path="/camera"
+                <EmptyRoute
+                  path="/camera"
                   component={Camera}
                   onSwiped={onSwipeRight(goBack)}
                 />
@@ -69,7 +71,8 @@ function App({ settings, goBack, openSidePanel }) {
                   onSwiped={onSwipeRight(openSidePanel)}
                 />
                 <DefaultRoute
-                  exact path="/documents"
+                  exact
+                  path="/documents"
                   component={Documents}
                   rightComponent={DocumentDetail}
                   controlComponent={EditControl}
@@ -77,7 +80,8 @@ function App({ settings, goBack, openSidePanel }) {
                   onSwiped={onSwipeRight(openSidePanel)}
                 />
                 <DefaultRoute
-                  exact path="/documents/edit"
+                  exact
+                  path="/documents/edit"
                   component={Documents}
                   rightComponent={DocumentDetail}
                   onSwiped={onSwipeRight(openSidePanel)}

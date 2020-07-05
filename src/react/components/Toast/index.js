@@ -5,7 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import Grow from "@material-ui/core/Grow";
 import styled from "styled-components";
 import { clearToast } from "../actions/../toast";
-import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
+import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
 import { getMessage, getType, isVisible } from "../../../redux/selectors/toast";
 
 const ToastPaper = styled(Paper)`
@@ -39,7 +39,7 @@ const Title = styled.span`
 
 function Toast({ onClick, message, visible }) {
   return (
-    <Grow in={visible} timeout={visible ? 300 : 600} >
+    <Grow in={visible} timeout={visible ? 300 : 600}>
       <ToastPaper elevation={2} onClick={onClick}>
         <SuccessIcon />
         <Title>{message}</Title>
@@ -58,6 +58,4 @@ const mapDispatchToProps = (dispatch) => ({
   onClick: () => dispatch(clearToast()),
 });
 
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-)(Toast);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(Toast);

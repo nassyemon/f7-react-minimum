@@ -20,27 +20,31 @@ export const CLEAR_DOCUMENTS = "CLEAR_DOCUMENTS";
 export const toggleDocumentSelect = createAction(TOGGLE_DOCUMENT_SELECT);
 export const clearDocumentSelect = createAction(CLEAR_DOCUMENT_SELECT);
 
-export const fetchDocuments = () => apiRequestPrototype(
-  createAction(FETCH_DOCUMENTS_START),
-  createAction(FETCH_DOCUMENTS_SUCCESS),
-  createAction(FETCH_DOCUMENTS_FAIL),
-  async (sessionId) => {
-    const results = await getDocumentList(sessionId);
-    console.log(results);
-    return results.data;
-  }
-);
+export const fetchDocuments = () =>
+  apiRequestPrototype(
+    createAction(FETCH_DOCUMENTS_START),
+    createAction(FETCH_DOCUMENTS_SUCCESS),
+    createAction(FETCH_DOCUMENTS_FAIL),
+    async (sessionId) => {
+      const results = await getDocumentList(sessionId);
+      console.log(results);
+      return results.data;
+    }
+  );
 
-export const deleteDocuments = () => apiRequestPrototype(
-  createAction(DELETE_DOCUMENTS_START),
-  createAction(DELETE_DOCUMENTS_SUCCESS),
-  createAction(DELETE_DOCUMENTS_FAIL),
-  async (sessionId, dispatch, getState) => {
-    const state = getState();
-    const seleted = getSeleted(state);
-    const results = await Promise.all(seleted.map(id => deleteDocument(sessionId, id)));
-    console.log(results);
-    dispatch(setToast("削除完了"));
-    return results;
-  }
-);
+export const deleteDocuments = () =>
+  apiRequestPrototype(
+    createAction(DELETE_DOCUMENTS_START),
+    createAction(DELETE_DOCUMENTS_SUCCESS),
+    createAction(DELETE_DOCUMENTS_FAIL),
+    async (sessionId, dispatch, getState) => {
+      const state = getState();
+      const seleted = getSeleted(state);
+      const results = await Promise.all(
+        seleted.map((id) => deleteDocument(sessionId, id))
+      );
+      console.log(results);
+      dispatch(setToast("削除完了"));
+      return results;
+    }
+  );

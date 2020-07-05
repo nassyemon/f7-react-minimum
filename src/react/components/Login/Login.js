@@ -19,9 +19,9 @@ const Root = styled(Container)`
   padding: ${theme.spacing(2)}px;
   margin-top: ${noheader ? theme.spacing(7) : 0}px;
   transition: ${theme.transitions.create(["transform"], {
-  easing: theme.transitions.easing.sharp,
-  duration: theme.transitions.duration.standard,
-})}; `}
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.standard,
+  })}; `}
   transform: ${(props) => `translateY(${props.show ? "0" : "-100vh"})`};
 `;
 
@@ -48,10 +48,7 @@ const LoginButtonContainer = styled(Container)`
 
 function Login({ onClickLogin, isLoggedIn }) {
   return (
-    <Root
-      show={isLoggedIn ? 1 : 0}
-      noheader={0}
-    >
+    <Root show={isLoggedIn ? 1 : 0} noheader={0}>
       <Box>
         <TitleButtonContainer>
           <Typography variant="h4" component="h4">

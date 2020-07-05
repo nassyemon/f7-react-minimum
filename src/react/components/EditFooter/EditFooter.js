@@ -1,7 +1,7 @@
 import React from "react";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from "@material-ui/icons/Delete";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
@@ -12,7 +12,7 @@ const Root = styled.div`
   position: fixed;
   z-index: 2000;
   width: 100vw;
-  height: ${props => props.footerHeight};
+  height: ${(props) => props.footerHeight};
   bottom: 0;
 `;
 
@@ -20,7 +20,7 @@ function Footer({
   onClickCancelButton,
   onClickDeleteButton,
   selectedCount,
-  footerHeight
+  footerHeight,
 }) {
   return (
     <Root height={footerHeight}>

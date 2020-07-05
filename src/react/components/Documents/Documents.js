@@ -6,8 +6,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Checkbox from '@material-ui/core/Checkbox';
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Checkbox from "@material-ui/core/Checkbox";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -24,36 +24,40 @@ const LoadingContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: calc((100vh - 200px)/2);
+  margin-top: calc((100vh - 200px) / 2);
 `;
 
 const ContentCard = styled(Card)`
   display: flex;
   width: 100%;
   margin-bottom: ${(props) => props.theme.spacing(1)}px;
-  background-color: ${({ theme, mode }) => mode === "edit" ? "#f8f8f8" : "transparent"};
+  background-color: ${({ theme, mode }) =>
+    mode === "edit" ? "#f8f8f8" : "transparent"};
   min-height: 15vh;
-  transition: ${({ theme }) => theme.transitions.create(["background", "width"], {
-  easing: theme.transitions.easing.sharp,
-  duration: theme.transitions.duration.standard,
-})};
+  transition: ${({ theme }) =>
+    theme.transitions.create(["background", "width"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.standard,
+    })};
 `;
 
 const ActionContainer = styled(CardActions)`
   padding: 0px;
-  width: ${({ theme, mode }) => mode === "edit" ? theme.spacing(6) : 0}px;
-  transition: ${({ theme }) => theme.transitions.create(["background", "width"], {
-  easing: theme.transitions.easing.sharp,
-  duration: theme.transitions.duration.standard,
-})};
+  width: ${({ theme, mode }) => (mode === "edit" ? theme.spacing(6) : 0)}px;
+  transition: ${({ theme }) =>
+    theme.transitions.create(["background", "width"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.standard,
+    })};
 `;
 
 const EditCheckbox = styled(Checkbox)`
-  opacity: ${props => props.mode === "edit" ? 1 : 0};
-  transition: ${({ theme }) => theme.transitions.create(["opacity"], {
-  easing: theme.transitions.easing.sharp,
-  duration: theme.transitions.duration.standard,
-})};
+  opacity: ${(props) => (props.mode === "edit" ? 1 : 0)};
+  transition: ${({ theme }) =>
+    theme.transitions.create(["opacity"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.standard,
+    })};
 `;
 
 const TextContainer = styled(CardContent)`
@@ -85,7 +89,7 @@ function Documents({
         }
       });
     }
-  }, [hasSession, loaded]);
+  }, [hasSession, loaded, loading, onMount]);
   return (
     <Root>
       {loading && data?.length < 1 ? (
@@ -93,9 +97,9 @@ function Documents({
           <CircularProgress />
         </LoadingContainer>
       ) : (
-          <PullToRefresh onRefresh={reloadDocuments}>
-            {data?.length > 0 ?
-              data.map(({ id, title, image_url, selected }) => (
+        <PullToRefresh onRefresh={reloadDocuments}>
+          {data?.length > 0
+            ? data.map(({ id, title, image_url, selected }) => (
                 <ContentCard key={id} onClick={onClickItem(id)} mode={mode}>
                   <ActionContainer mode={mode}>
                     <EditCheckbox
@@ -109,10 +113,10 @@ function Documents({
                   </TextContainer>
                   <ImageBox image={image_url} title="Image" />
                 </ContentCard>
-              )) : null
-            }
-          </PullToRefresh>
-        )}
+              ))
+            : null}
+        </PullToRefresh>
+      )}
     </Root>
   );
 }

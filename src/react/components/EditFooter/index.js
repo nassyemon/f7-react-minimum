@@ -1,9 +1,7 @@
 import { connect } from "react-redux";
 // import { getPictures } from "../../../redux/selectors/picture";
 import { usingCordova } from "../../../modules/cordovaUtils";
-import {
-  goBack,
-} from "../../../redux/actions/navigation";
+import { goBack } from "../../../redux/actions/navigation";
 import { closeSidepanel } from "../../../redux/actions/sidepanel";
 import { deleteDocuments } from "../../../redux/actions/documents";
 import { getSeleted } from "../../../redux/selectors/documents";
@@ -15,7 +13,7 @@ const mapStateToProps = (state) => {
     isApp: usingCordova(),
     selectedCount: selected.length,
   };
-}
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onClickCancelButton: () => {
@@ -24,7 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onClickDeleteButton: () => {
     dispatch(closeSidepanel());
-    const answer = confirm("選択したアイテムを本当に削除しますか？");
+    const answer = window.confirm("選択したアイテムを本当に削除しますか？");
     if (answer) {
       dispatch(deleteDocuments());
     }

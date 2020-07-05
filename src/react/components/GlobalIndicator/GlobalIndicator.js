@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Typography from "@material-ui/core/Typography";
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from "@material-ui/core/CircularProgress";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core";
 
@@ -14,7 +14,7 @@ const Root = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 2000;
-  background-color: rgba(248,248,248,0.3);
+  background-color: rgba(248, 248, 248, 0.3);
 `;
 
 const SpinnerBox = styled.div`
@@ -32,7 +32,7 @@ const TextContainer = styled.div`
   display: flex;
   align-items: center;
   padding-left: 20px;
-`
+`;
 
 function GlobalIndicator({ show, sending, deleting }) {
   return show ? (

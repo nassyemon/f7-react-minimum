@@ -20,25 +20,20 @@ const Screen = styled.main`
   overflow-x: hidden;
   ${({ theme }) => `
   transition: ${theme.transitions.create(["transform"], {
-  easing: theme.transitions.easing.sharp,
-  duration: theme.transitions.duration.standard,
-})}; `}
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.standard,
+  })}; `}
   display: flex;
   flex-direction: row;
   align-items: flex-start;
 `;
 
-function EmptyLayout({
-  onSwiped,
-  children,
-}) {
+function EmptyLayout({ onSwiped, children }) {
   return (
     <Fragment>
       <Root>
         <Screen>
-          <Swipeable onSwiped={onSwiped}>
-            {children}
-          </Swipeable>
+          <Swipeable onSwiped={onSwiped}>{children}</Swipeable>
         </Screen>
         <Login isSidePanelOpen={false} sideBarWidth={"0px"} />
       </Root>
@@ -46,8 +41,7 @@ function EmptyLayout({
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-});
+const mapDispatchToProps = (dispatch) => ({});
 
 // TODO: refactor
 const mapStateToProps = (state) => {
@@ -56,7 +50,7 @@ const mapStateToProps = (state) => {
   return {
     sending,
   };
-}
+};
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),

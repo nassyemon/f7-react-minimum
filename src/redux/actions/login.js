@@ -1,6 +1,7 @@
 import { checkAuth, getSession, destroySession } from "../../api/auth";
 import { hasSession, getSessionId } from "../selectors/login";
 import { setToast } from "../actions/toast";
+import tryOAuth from "../../modules/tryOAuth";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const REAUTH_SUCCESS = "REAUTH_SUCCESS";
@@ -66,7 +67,7 @@ export const requireAuth = () => async (dispatch, getState) => {
   const state = getState();
   /* TODO REFACTOR */
   if (!hasSession(state)) {
-    const code = await logtryOAuthin();
+    const code = await tryOAuth();
     dispatch(login(code));
   }
   return getSessionId(state);

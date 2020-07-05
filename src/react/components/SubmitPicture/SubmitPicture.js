@@ -4,7 +4,7 @@ import { Redirect } from "react-router";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 
@@ -42,13 +42,20 @@ const TitleField = styled(TextField)`
   width: 100%;
 `;
 
-
-
-function SubmitPicture({ picture, title, sending, onTitleChange, onClickSubmitButton }) {
+function SubmitPicture({
+  picture,
+  title,
+  sending,
+  onTitleChange,
+  onClickSubmitButton,
+}) {
   // TODO: refactor
-  const onTitleChangeThrottled = useCallback(throttle(200, false, (title) => {
-    onTitleChange(title);
-  }), []);
+  const onTitleChangeThrottled = useCallback(
+    throttle(200, false, (title) => {
+      onTitleChange(title);
+    }),
+    []
+  );
 
   if (typeof picture?.uri !== "string") {
     return <Redirect to="/" />;
@@ -60,7 +67,12 @@ function SubmitPicture({ picture, title, sending, onTitleChange, onClickSubmitBu
       </ImageBox>
       <InputBox>
         <form noValidate autoComplete="off">
-          <TitleField id="standard-basic" label="タイトル" defaultValue={title} onChange={(event) => onTitleChangeThrottled(event.target.value)} />
+          <TitleField
+            id="standard-basic"
+            label="タイトル"
+            defaultValue={title}
+            onChange={(event) => onTitleChangeThrottled(event.target.value)}
+          />
         </form>
       </InputBox>
       <ButtonContainer maxWidth="sm">

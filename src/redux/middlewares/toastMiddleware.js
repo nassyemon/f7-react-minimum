@@ -1,8 +1,6 @@
 import { clearToast, SET_TOAST, CLEAR_TOAST } from "../actions/toast";
 
-export default function toastMiddleware({
-  delay,
-}) {
+export default function toastMiddleware({ delay }) {
   let timerHandle = null;
   return ({ dispatch }) => (next) => (action) => {
     next(action);
@@ -19,9 +17,7 @@ export default function toastMiddleware({
       if (timerHandle) {
         clearTimeout(timerHandle);
         timerHandle = null;
-        return;
       }
     }
   };
-};
-
+}

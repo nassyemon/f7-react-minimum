@@ -20,21 +20,34 @@ const StyledDrawer = styled(Drawer)`
     position: fixed;
     top: ${({ theme }) => theme.spacing(5)}px;
     white-space: nowrap;
-    width: ${({ open, width }) => open ? width : "0px"};
-    transition: ${({ theme }) => theme.transitions.create("width", {
-  easing: theme.transitions.easing.sharp,
-  duration: theme.transitions.duration.standard,
-})};
-    ${({ open, theme }) => !open ? `
+    width: ${({ open, width }) => (open ? width : "0px")};
+    transition: ${({ theme }) =>
+      theme.transitions.create("width", {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.standard,
+      })};
+    ${({ open, theme }) =>
+      !open
+        ? `
     overflow-x: hidden;
-  ` : ""}
+  `
+        : ""}
   }
 `;
 
 function Sidebar(props) {
-  const { open, isLoggedIn, closeSidepanel, sideBarWidth, onClickRefresh, onClickLogout, onClickDocuments, onClickSetting } = props;
+  const {
+    open,
+    isLoggedIn,
+    closeSidepanel,
+    sideBarWidth,
+    onClickRefresh,
+    onClickLogout,
+    onClickDocuments,
+    onClickSetting,
+  } = props;
   return (
-    <Swipeable onSwipedLeft={closeSidepanel} >
+    <Swipeable onSwipedLeft={closeSidepanel}>
       <StyledDrawer
         variant="permanent"
         width={sideBarWidth}
@@ -42,28 +55,29 @@ function Sidebar(props) {
         onClick={closeSidepanel}
       >
         <List>
-          {isLoggedIn ? (
-            <Fragment>
-              <ListItem button onClick={onClickDocuments}>
-                <ListItemIcon>
-                  <DashboardIcon />
-                </ListItemIcon>
-                <ListItemText primary="ドキュメント一覧" />
-              </ListItem>
-              <ListItem button onClick={onClickRefresh}>
-                <ListItemIcon>
-                  <CachedIcon />
-                </ListItemIcon>
-                <ListItemText primary="再読み込み" />
-              </ListItem>
-              <ListItem button onClick={onClickLogout}>
-                <ListItemIcon>
-                  <ExitToAppIcon />
-                </ListItemIcon>
-                <ListItemText primary="ログアウト" />
-              </ListItem>
-            </Fragment>
-          ) : null
+          {
+            isLoggedIn ? (
+              <Fragment>
+                <ListItem button onClick={onClickDocuments}>
+                  <ListItemIcon>
+                    <DashboardIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="ドキュメント一覧" />
+                </ListItem>
+                <ListItem button onClick={onClickRefresh}>
+                  <ListItemIcon>
+                    <CachedIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="再読み込み" />
+                </ListItem>
+                <ListItem button onClick={onClickLogout}>
+                  <ListItemIcon>
+                    <ExitToAppIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="ログアウト" />
+                </ListItem>
+              </Fragment>
+            ) : null
             /*
               (
               <ListItem button onClick={onClickLogin} >

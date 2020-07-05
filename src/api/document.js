@@ -19,7 +19,6 @@ export const getDocument = async (sessionId, id) => {
   return getValidatedResponse(response);
 };
 
-
 export const postDocument = async (sessionId, { image, title }) => {
   const response = await fetch(DOCUMENT_ENDPOINT, {
     method: "POST",
@@ -32,7 +31,6 @@ export const postDocument = async (sessionId, { image, title }) => {
   return getValidatedResponse(response);
 };
 
-
 export const deleteDocument = async (sessionId, id) => {
   const response = await fetch(`${DOCUMENT_ENDPOINT}/${id}`, {
     method: "DELETE",
@@ -40,4 +38,3 @@ export const deleteDocument = async (sessionId, id) => {
   });
   return getValidatedResponse(response);
 };
-

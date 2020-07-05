@@ -1,4 +1,8 @@
-import { TOGGLE_SIDEPANEL, OPEN_SIDEPANEL, CLOSE_SIDEPANEL } from "../../redux/actions/sidepanel";
+import {
+  TOGGLE_SIDEPANEL,
+  OPEN_SIDEPANEL,
+  CLOSE_SIDEPANEL,
+} from "../../redux/actions/sidepanel";
 
 const initialState = {
   open: false,

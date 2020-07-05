@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Typography from '@material-ui/core/Typography';
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import styled from "styled-components";
@@ -19,7 +19,7 @@ const LoadingContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: calc((100vh - 200px)/2);
+  margin-top: calc((100vh - 200px) / 2);
 `;
 
 const TypoBox = styled(Box)`
@@ -46,14 +46,7 @@ const ButtonContainer = styled(Container)`
   justify-content: center;
 `;
 
-function DocumentDetail({
-  id,
-  data,
-  loading,
-  loaded,
-  hasSession,
-  onMount,
-}) {
+function DocumentDetail({ id, data, loading, loaded, hasSession, onMount }) {
   const [prevId, setPrevId] = useState(null);
   useEffect(() => {
     console.log("mounting document detail.");
@@ -67,7 +60,7 @@ function DocumentDetail({
         }
       });
     }
-  }, [id, hasSession]);
+  }, [id, hasSession, prevId, onMount]);
   if (loading || (id && prevId !== id)) {
     return (
       <LoadingContainer>

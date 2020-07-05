@@ -1,3 +1,4 @@
+/* eslint-disable-next-line no-prototype-builtins */
 export const usingCordova = () => window.hasOwnProperty("cordova");
 
 export const awaitReady = () => {
@@ -29,9 +30,9 @@ export const hideStatusBar = () => {
   if (usingCordova()) {
     if (!StatusBar || !StatusBar.hide) {
       console.error("StatusBar.hide is not defined");
-      return
+      return;
     }
     console.log("hiding status bar.");
     StatusBar.hide();
   }
-}
+};

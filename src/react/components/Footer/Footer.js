@@ -13,7 +13,7 @@ const Root = styled.div`
   position: fixed;
   z-index: 2000;
   width: 100vw;
-  height: ${props => props.footerHeight};
+  height: ${(props) => props.footerHeight};
   bottom: 0;
 `;
 
@@ -21,7 +21,7 @@ function Footer({
   onClickCameraButton,
   onClickDocumentButton,
   onClickHomeButton,
-  footerHeight
+  footerHeight,
 }) {
   return (
     <Root height={footerHeight}>

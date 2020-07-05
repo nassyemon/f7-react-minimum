@@ -14,8 +14,10 @@ const mapStateToProps = (state) => {
     sending,
     deleting,
   };
-}
+};
 
 const mapDispatchToProps = (dispatch) => ({});
 
-export default compose(connect(mapStateToProps, mapDispatchToProps))(GlobalIndicator);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(
+  GlobalIndicator
+);

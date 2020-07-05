@@ -21,7 +21,7 @@ const Headerbar = styled(AppBar)`
 const AppToolbar = styled(Toolbar)`
   height: ${({ theme }) => theme.spacing(5)}px;
   min-height: 0px;
-`
+`;
 
 const HeaderTitle = styled(Typography)`
   flex-grow: 1;
@@ -31,18 +31,19 @@ const HeaderTitle = styled(Typography)`
 function Header(props) {
   const { classes, onClicHamberger, onClickBack, showMenu, showBack } = props;
   return (
-    <Headerbar position="fixed" elevation={1} >
+    <Headerbar position="fixed" elevation={1}>
       <AppToolbar disableGutters>
         {showBack && (
           <Fragment>
-            <IconButton
-              color="inherit"
-              aria-label="back"
-              onClick={onClickBack}
-            >
+            <IconButton color="inherit" aria-label="back" onClick={onClickBack}>
               <BackIcon />
             </IconButton>
-            <HeaderTitle variant="subtitle1" color="inherit" noWrap onClick={onClickBack}>
+            <HeaderTitle
+              variant="subtitle1"
+              color="inherit"
+              noWrap
+              onClick={onClickBack}
+            >
               戻る
             </HeaderTitle>
           </Fragment>

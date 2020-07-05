@@ -23,22 +23,22 @@ export const clearPicture = () => ({
   type: "CLEAR_PICTURE",
 });
 
-export const sendPicture = () => apiRequestPrototype(
-  createAction(SEND_PICTURE_START),
-  createAction(SEND_PICTURE_SUCCESS),
-  createAction(SEND_PICTURE_FAIL),
-  async (sessionId, dispatch, getState) => {
-    const state = getState();
-    const image = getLastPicture(state).uri;
-    const title = getTitle(state) || "No Title!!";
-    const results = await postDocument(sessionId, {
-      image,
-      title,
-    });
-    console.log(results);
-    dispatch(setToast("投稿完了"));
-    return;
-  }
-);
+export const sendPicture = () =>
+  apiRequestPrototype(
+    createAction(SEND_PICTURE_START),
+    createAction(SEND_PICTURE_SUCCESS),
+    createAction(SEND_PICTURE_FAIL),
+    async (sessionId, dispatch, getState) => {
+      const state = getState();
+      const image = getLastPicture(state).uri;
+      const title = getTitle(state) || "No Title!!";
+      const results = await postDocument(sessionId, {
+        image,
+        title,
+      });
+      console.log(results);
+      dispatch(setToast("投稿完了"));
+    }
+  );
 
 export const setTitle = createAction(SET_TITLE);

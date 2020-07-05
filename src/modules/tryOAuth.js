@@ -15,11 +15,11 @@ export default () => {
 };
 
 function cordovaLogin() {
-  return new Promise((resolve/*, reject*/) => {
+  return new Promise((resolve /*, reject */) => {
     const w = cordova.InAppBrowser.open(
       OAUTH2_REQUEST_URL,
       "_blank",
-      "location=yes,footer=yes",
+      "location=yes,footer=yes"
     );
     // TODO: error handler
     w.addEventListener("loadstop", async (event) => {
@@ -39,11 +39,11 @@ function cordovaLogin() {
 }
 
 function browserLogin() {
-  return new Promise((resolve/*, reject*/) => {
+  return new Promise((resolve /*, reject */) => {
     const w = window.open(
       OAUTH2_REQUEST_URL,
       "_blank",
-      "location=yes,footer=yes,width=480,height=640",
+      "location=yes,footer=yes,width=480,height=640"
     );
     let handler = setInterval(() => {
       w.postMessage({ type: REQUEST_MESSAGE_CODE }, OAUTH2_CALLBACK_URL);
@@ -57,9 +57,11 @@ function browserLogin() {
           clearInterval(handler);
           resolve(code);
           handler = setInterval(() => {
-            w.postMessage({ type: REQUEST_MESSAGE_COMPLETE }, OAUTH2_CALLBACK_URL);
+            w.postMessage(
+              { type: REQUEST_MESSAGE_COMPLETE },
+              OAUTH2_CALLBACK_URL
+            );
           }, 100);
-          return;
         }
         // TODO: error handler.
       } else if (type === RESPONSE_MESSAGE_COMPLETE) {

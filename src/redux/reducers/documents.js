@@ -2,7 +2,6 @@ import {
   FETCH_DOCUMENTS_START,
   FETCH_DOCUMENTS_SUCCESS,
   FETCH_DOCUMENTS_FAIL,
-
   DELETE_DOCUMENTS_START,
   DELETE_DOCUMENTS_SUCCESS,
   DELETE_DOCUMENTS_FAIL,
@@ -14,9 +13,14 @@ import {
   SEND_PICTURE_SUCCESS,
   SEND_PICTURE_FAIL,
 } from "../../redux/actions/picture";
-import { loadStart, loadSuccess, loadFail } from "./utils";
-import { deleteStart, deleteSuccess, deleteFail } from "./utils";
-
+import {
+  loadStart,
+  loadSuccess,
+  loadFail,
+  deleteStart,
+  deleteSuccess,
+  deleteFail,
+} from "./utils";
 
 const initialState = Object.freeze({
   data: null,
@@ -78,5 +82,7 @@ export default (state = initialState, action) => {
 
 function toggleList(list, id) {
   const idx = list.indexOf(id);
-  return idx < 0 ? [...list, id] : [...list.slice(0, idx), ...list.slice(idx + 1)];
+  return idx < 0
+    ? [...list, id]
+    : [...list.slice(0, idx), ...list.slice(idx + 1)];
 }

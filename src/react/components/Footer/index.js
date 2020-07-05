@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch) => ({
   onClickDocumentButton: () => {
     dispatch(closeSidepanel());
     return dispatch(moveToDocuments());
-  }
+  },
   /*
     onClickAlbumButton: () =>
       getNativePicture(

@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Route } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 
-
 export default function DefautlRoute({
   component,
   rightComponent,
@@ -17,7 +16,7 @@ export default function DefautlRoute({
   return (
     <Route
       {...rest}
-      render={matchProps => (
+      render={(matchProps) => (
         <MainLayout
           component={component}
           rightComponent={rightComponent}
