@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { withStyles } from "@material-ui/core";
 
 const Root = styled.div`
+  padding: ${({ theme }) => theme.spacing(2)}px;
   display: flex;
   align-items: center;
   justify-content: center;

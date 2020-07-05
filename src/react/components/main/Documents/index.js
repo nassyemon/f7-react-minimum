@@ -1,15 +1,15 @@
 import { compose } from "recompose";
 import { connect } from "react-redux";
-import { moveToDocumentDetail } from "../../../redux/actions/navigation";
+import { moveToDocumentDetail } from "../../../../redux/actions/navigation";
 import {
   fetchDocuments,
   toggleDocumentSelect,
-} from "../../../redux/actions/documents";
+} from "../../../../redux/actions/documents";
 import {
   getMergedData,
   isLoaded,
   isLoading,
-} from "../../../redux/selectors/documents";
+} from "../../../../redux/selectors/documents";
 import Documents from "./Documents";
 
 const mapStateToProps = (state, { match }) => {

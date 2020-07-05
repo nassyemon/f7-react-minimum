@@ -1,65 +1,58 @@
 import React from "react";
 import { Route, Switch } from "react-router";
 import MainLayout from "../layouts/MainLayout";
-import Documents from "../components/Documents";
-import DocumentDetail from "../components/DocumentDetail";
-import EditControl from "../components/EditControl";
-import { goBack } from "../../redux/actions/navigation";
-import { openSidePanel } from "../../redux/actions/sidepanel";
-
-import EditFooter from "../components/EditFooter";
+import Documents from "../components/main/Documents";
+import DocumentDetail from "../components/right/DocumentDetail";
+import EditControl from "../components/control/EditControl";
+import GoBackHeader from "../components/headers/GoBackHeader";
+import EditFooter from "../components/footers/EditFooter";
 
 const onSwipeRight = (func) => ({ dir }) => dir === "Right" && func();
 
 export default function DocumentsRoute({
-  component,
-  rightComponent,
-  controlComponent,
-  footerComponent,
-  onSwiped,
-  show,
-  showControl,
+  goBack,
+  openSidePanel,
   ...rest
 }) {
   return (
     <Route
       {...rest}
-      render={({ match }) =>
-        console.log(match) || (
-          <Switch>
-            <Route exact path={`${match.path}/`}
-              render={(matchProps) => (
-                <MainLayout
-                  mainComponent={Documents}
-                  rightComponent={DocumentDetail}
-                  controlComponent={EditControl}
-                  showControl={true}
-                  onSwiped={onSwipeRight(openSidePanel)}
-                  matchProps={matchProps}
-                />)}
-            />
-            <Route exact path={`${match.path}/edit`}
-              render={(matchProps) => (
-                <MainLayout
-                  mainComponent={Documents}
-                  rightComponent={DocumentDetail}
-                  onSwiped={onSwipeRight(openSidePanel)}
-                  footerComponent={EditFooter}
-                  matchProps={matchProps}
-                />)}
-            />
-            <Route exact path={`${match.path}/detail/:id`}
-              render={(matchProps) => (
-                <MainLayout
-                  mainComponent={Documents}
-                  rightComponent={DocumentDetail}
-                  show="right"
-                  onSwiped={onSwipeRight(goBack)}
-                  matchProps={matchProps}
-                />)}
-            />
-          </Switch>
-        )}
+      render={({ match }) => (
+        <Switch>
+          <Route exact path={`${match.path}/`}
+            render={(matchProps) => (
+              <MainLayout
+                mainComponent={Documents}
+                rightComponent={DocumentDetail}
+                controlComponent={EditControl}
+                onSwiped={onSwipeRight(openSidePanel)}
+                matchProps={matchProps}
+                control
+              />)}
+          />
+          <Route exact path={`${match.path}/edit`}
+            render={(matchProps) => (
+              <MainLayout
+                mainComponent={Documents}
+                rightComponent={DocumentDetail}
+                onSwiped={onSwipeRight(openSidePanel)}
+                footerComponent={EditFooter}
+                matchProps={matchProps}
+              />)}
+          />
+          <Route exact path={`${match.path}/detail/:id`}
+            render={(matchProps) => (
+              <MainLayout
+                headerComponent={GoBackHeader}
+                mainComponent={Documents}
+                rightComponent={DocumentDetail}
+                onSwiped={onSwipeRight(goBack)}
+                matchProps={matchProps}
+                right
+              />)}
+          />
+        </Switch>
+      )}
     />
   );
 }

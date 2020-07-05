@@ -8,8 +8,9 @@ import Zoom from "@material-ui/core/Zoom";
 import Fab from "@material-ui/core/Fab";
 import { useScrolling } from "react-use";
 
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Blank from "../components/Blank";
+import Header from "../components/headers/Header";
+import Footer from "../components/footers/Footer";
 import Sidebar from "../components/Sidebar";
 import Login from "../components/Login";
 import GlobalIndicator from "../components/GlobalIndicator";
@@ -20,8 +21,6 @@ import { isSending as isPictureSending } from "../../redux/selectors/picture";
 import { hasSession } from "../../redux/selectors/login";
 import { closeSidepanel } from "../../redux/actions/sidepanel";
 
-const sideBarWidth = "70vw";
-const footerHeight = "10vh";
 
 const styles = () => ({});
 
@@ -35,8 +34,8 @@ const Screen = styled.main`
   overflow-x: hidden;
   overflow-y: hidden;
   position: relative;
+  margin-top: ${props => props.headerHeight};
   ${({ theme }) => `
-  margin-top: ${theme.spacing(5)}px;
   transition: ${theme.transitions.create(["transform"], {
   easing: theme.transitions.easing.sharp,
   duration: theme.transitions.duration.standard,
@@ -51,24 +50,16 @@ const Screen = styled.main`
 const Panel = styled.div`
   width: 100vw;
   overflow-x: hidden;
+  height: calc(100vh - ${props => props.headerHeight});
+  padding-bottom: ${props => props.footerHeight};
   ${({ theme }) => `
-    height: calc(100vh - ${theme.spacing(5)}px);
     overflow-y: scroll;
-    padding: ${theme.spacing(2)}px;
     transition: ${theme.transitions.create(["transform"], {
   easing: theme.transitions.easing.sharp,
   duration: theme.transitions.duration.standard,
 })};
   `}
   ${(props) => (props.showRight ? "transform: translateX(-100vw)" : "")}
-`;
-
-const Main = styled(Panel)``;
-
-const Right = styled(Panel)``;
-
-const FooterOffset = styled.div`
-  height: 40px;
 `;
 
 const ScreenBlock = styled.div`
@@ -108,15 +99,17 @@ const ButtonContainer = styled.div`
 function MainLayout({
   isSidePanelOpen,
   mainComponent: MainComponent,
-  rightComponent: RightComponent,
-  footerComponent: FooterComponent,
+  rightComponent: RightComponent = Blank,
+  footerComponent: FooterComponent = Footer,
   controlComponent: ControlComponent,
+  headerComponent: HeaderComponent = Header,
+  sidepanelComponent: SidepanelComponent = Sidebar,
   onSwiped,
-  show,
   hasSession,
   closeSidepanel,
   matchProps,
-  showControl,
+  right,
+  control,
 }) {
   const mainRef = useRef(null);
   const rightRef = useRef(null);
@@ -124,37 +117,32 @@ function MainLayout({
   const rightScrolling = useScrolling(rightRef);
   const scrolling = mainScrolling || rightScrolling;
 
-  const showRight = RightComponent && show === "right";
+  const footerHeight = FooterComponent.height;
+  const headerHeight = HeaderComponent.height;
+  const sideBarWidth = SidepanelComponent.width;
+
   return (
     <Fragment>
       <Root>
-        <Header showMenu={!showRight} showBack={showRight} />
-        <Screen isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth}>
+        <HeaderComponent {...matchProps} />
+        <Screen isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth} headerHeight={headerHeight}>
           <Swipeable onSwiped={onSwiped}>
-            <Main showRight={showRight} ref={mainRef}>
-              <Fragment>
-                <MainComponent
-                  {...matchProps}
-                  hasSession={hasSession}
-                  scrollTrigger={mainScrolling}
-                />
-                <FooterOffset />
-              </Fragment>
-            </Main>
+            <Panel showRight={right} ref={mainRef} footerHeight={footerHeight} headerHeight={headerHeight}>
+              <MainComponent
+                {...matchProps}
+                hasSession={hasSession}
+                scrollTrigger={mainScrolling}
+              />
+            </Panel>
           </Swipeable>
           <Swipeable onSwiped={onSwiped}>
-            <Right showRight={showRight} ref={rightRef}>
-              {RightComponent && (
-                <Fragment>
-                  <RightComponent
-                    {...matchProps}
-                    hasSession={hasSession}
-                    scrollTrigger={rightScrolling}
-                  />
-                  <FooterOffset />
-                </Fragment>
-              )}
-            </Right>
+            <Panel showRight={right} ref={rightRef} footerHeight={footerHeight} headerHeight={headerHeight}>
+              <RightComponent
+                {...matchProps}
+                hasSession={hasSession}
+                scrollTrigger={rightScrolling}
+              />
+            </Panel>
           </Swipeable>
           <Login />
           <Swipeable onSwipedLeft={closeSidepanel}>
@@ -165,22 +153,18 @@ function MainLayout({
           </Swipeable>
         </Screen>
       </Root>
-      <Sidebar open={isSidePanelOpen} sideBarWidth={sideBarWidth} />
-      {FooterComponent ? (
-        <FooterComponent footerHeight={footerHeight} {...matchProps} />
-      ) : (
-          <Footer footerHeight={footerHeight} {...matchProps} />
-        )}
+      <Sidebar open={isSidePanelOpen} />
+      <FooterComponent {...matchProps} />
       <GlobalIndicator />
       <ButtonContainer>
-        <Zoom in={showControl && !scrolling && !!ControlComponent}>
+        <Zoom in={control && !scrolling && !!ControlComponent}>
           <Fab color="secondary" size="medium" aria-label="edit">
             {ControlComponent ? <ControlComponent {...matchProps} /> : <div></div>}
           </Fab>
         </Zoom>
       </ButtonContainer>
       <Toast />
-    </Fragment>
+    </Fragment >
   );
 }
 

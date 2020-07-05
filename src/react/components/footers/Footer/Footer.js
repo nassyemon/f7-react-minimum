@@ -9,23 +9,29 @@ import styled from "styled-components";
 
 const styles = (theme) => ({});
 
+const StaticProperties = {
+  height: "56px",
+};
+
 const Root = styled.div`
   position: fixed;
   z-index: 2000;
   width: 100vw;
-  height: ${(props) => props.footerHeight};
+  height: ${({ height }) => height}px;
   bottom: 0;
 `;
 
+const Buttons = styled(BottomNavigation)`
+  height: ${({ height }) => height};
+`
 function Footer({
   onClickCameraButton,
   onClickDocumentButton,
   onClickHomeButton,
-  footerHeight,
 }) {
   return (
-    <Root height={footerHeight}>
-      <BottomNavigation showLabels>
+    <Root {...StaticProperties}>
+      <Buttons showLabels {...StaticProperties}>
         <BottomNavigationAction
           label="ホーム"
           onClick={onClickHomeButton}
@@ -41,9 +47,9 @@ function Footer({
           onClick={onClickDocumentButton}
           icon={<ListAltIcon />}
         />
-      </BottomNavigation>
+      </Buttons>
     </Root>
   );
 }
 
-export default withStyles(styles)(Footer);
+export default withStyles(styles)(Object.assign(Footer, StaticProperties));

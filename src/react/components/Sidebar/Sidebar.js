@@ -14,24 +14,28 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
 
+const StaticProperties = {
+  width: "240px",
+};
+
 const StyledDrawer = styled(Drawer)`
   & > div {
     z-index: 1100;
     position: fixed;
-    top: ${({ theme }) => theme.spacing(5)}px;
+    top: ${(props) => props.headerHeight};
     white-space: nowrap;
     width: ${({ open, width }) => (open ? width : "0px")};
     transition: ${({ theme }) =>
-      theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.standard,
-      })};
+    theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.standard,
+    })};
     ${({ open, theme }) =>
-      !open
-        ? `
+    !open
+      ? `
     overflow-x: hidden;
   `
-        : ""}
+      : ""}
   }
 `;
 
@@ -53,6 +57,7 @@ function Sidebar(props) {
         width={sideBarWidth}
         open={open}
         onClick={closeSidepanel}
+        {...StaticProperties}
       >
         <List>
           {
@@ -101,4 +106,4 @@ function Sidebar(props) {
   );
 }
 
-export default withStyles(() => ({}))(Sidebar);
+export default withStyles(() => ({}))(Object.assign(Sidebar, StaticProperties));

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { ConnectedRouter } from "connected-react-router";
 import { Switch } from "react-router";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -19,10 +19,10 @@ import { goBack } from "../redux/actions/navigation";
 import { openSidePanel } from "../redux/actions/sidepanel";
 
 
-import Home from "./components/Home";
-import Camera from "./components/Camera";
-import Setting from "./components/Setting";
-import SubmitPicture from "./components/SubmitPicture";
+import Home from "./components/main/Home";
+import Camera from "./components/main/Camera";
+import Setting from "./components/main/Setting";
+import SubmitPicture from "./components/main/SubmitPicture";
 
 const theme = createMuiTheme();
 
@@ -38,7 +38,7 @@ const NotFound = () => {
 
 const onSwipeRight = (func) => ({ dir }) => dir === "Right" && func();
 
-function App({ settings, goBack, openSidePanel }) {
+function App({ goBack, openSidePanel }) {
   return (
     <StylesProvider injectFirst>
       <MuiThemeProvider theme={theme}>
@@ -62,6 +62,8 @@ function App({ settings, goBack, openSidePanel }) {
                 />
                 <DocumentsRoute
                   path="/documents"
+                  goBack={goBack}
+                  openSidePanel={openSidePanel}
                 />
                 <DefaultRoute path={["/", "/home"]}
                   mainComponent={Home}

@@ -3,12 +3,12 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
-import { connect } from "react-redux";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core";
 
 const Root = styled.div`
   display: flex;
+  padding: ${({ theme }) => theme.spacing(2)}px;
   align-items: center;
   justify-content: center;
   flex-direction: column;

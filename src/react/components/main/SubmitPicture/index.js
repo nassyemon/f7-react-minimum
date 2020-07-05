@@ -1,16 +1,16 @@
 import { connect } from "react-redux";
-import getNativePicture from "../../../modules/camera/getNativePicture";
+import getNativePicture from "../../../../modules/camera/getNativePicture";
 import {
   getLastPicture,
   getTitle,
   isSending,
-} from "../../../redux/selectors/picture";
-import { usingCordova } from "../../../modules/cordovaUtils";
+} from "../../../../redux/selectors/picture";
+import { usingCordova } from "../../../../modules/cordovaUtils";
 import {
   replaceToWebCamera,
   replaceToDocuments,
-} from "../../../redux/actions/navigation";
-import { sendPicture, setTitle } from "../../../redux/actions/picture";
+} from "../../../../redux/actions/navigation";
+import { sendPicture, setTitle } from "../../../../redux/actions/picture";
 import SubmitPicture from "./SubmitPicture";
 
 const mapStateToProps = (state) => ({

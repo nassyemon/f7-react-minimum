@@ -16,7 +16,7 @@ import { connect } from "react-redux";
 import {
   toggleThemeMode,
   swapThemeColors,
-} from "../../redux/reducers/settings";
+} from "../../../redux/reducers/settings";
 
 const Settings = (props) => (
   <div>

@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 // import { getPictures } from "../../../redux/selectors/picture";
-import { usingCordova } from "../../../modules/cordovaUtils";
-import { goBack } from "../../../redux/actions/navigation";
-import { closeSidepanel } from "../../../redux/actions/sidepanel";
-import { deleteDocuments } from "../../../redux/actions/documents";
-import { getSeleted } from "../../../redux/selectors/documents";
+import { usingCordova } from "../../../../modules/cordovaUtils";
+import { goBack } from "../../../../redux/actions/navigation";
+import { closeSidepanel } from "../../../../redux/actions/sidepanel";
+import { deleteDocuments } from "../../../../redux/actions/documents";
+import { getSeleted } from "../../../../redux/selectors/documents";
 import EditFooter from "./EditFooter";
 
 const mapStateToProps = (state) => {
