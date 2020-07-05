@@ -43,6 +43,7 @@ function Sidebar(props) {
   const {
     open,
     isLoggedIn,
+    headerHeight,
     closeSidepanel,
     sideBarWidth,
     onClickRefresh,
@@ -53,6 +54,7 @@ function Sidebar(props) {
   return (
     <Swipeable onSwipedLeft={closeSidepanel}>
       <StyledDrawer
+        headerHeight={headerHeight}
         variant="permanent"
         width={sideBarWidth}
         open={open}

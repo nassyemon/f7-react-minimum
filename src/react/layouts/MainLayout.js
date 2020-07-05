@@ -153,7 +153,7 @@ function MainLayout({
           </Swipeable>
         </Screen>
       </Root>
-      <Sidebar open={isSidePanelOpen} />
+      <Sidebar open={isSidePanelOpen} headerHeight={headerHeight} />
       <FooterComponent {...matchProps} />
       <GlobalIndicator />
       <ButtonContainer>
