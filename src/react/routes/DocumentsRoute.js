@@ -4,8 +4,8 @@ import MainLayout from "../layouts/MainLayout";
 import Documents from "../components/main/Documents";
 import DocumentDetail from "../components/right/DocumentDetail";
 import EditControl from "../components/control/EditControl";
-import GoBackHeader from "../components/headers/GoBackHeader";
-import EditFooter from "../components/footers/EditFooter";
+import GoBackHeader from "../components/header/GoBackHeader";
+import EditFooter from "../components/footer/EditFooter";
 
 const onSwipeRight = (func) => ({ dir }) => dir === "Right" && func();
 

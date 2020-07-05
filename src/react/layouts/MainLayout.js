@@ -9,8 +9,8 @@ import Fab from "@material-ui/core/Fab";
 import { useScrolling } from "react-use";
 
 import Blank from "../components/Blank";
-import Header from "../components/headers/Header";
-import Footer from "../components/footers/Footer";
+import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer";
 import Sidebar from "../components/Sidebar";
 import Login from "../components/Login";
 import GlobalIndicator from "../components/GlobalIndicator";
