@@ -78,10 +78,10 @@
       <string>need photo library access to save pictures there</string>
     </edit-config>
     <custom-config-file parent="UIStatusBarHidden" platform="ios" target="*-Info.plist">
-        <true/>
+        <false/>
     </custom-config-file>
     <custom-config-file parent="UIViewControllerBasedStatusBarAppearance" platform="ios" target="*-Info.plist">
-        <false/>
+        <true/>
     </custom-config-file>
   </platform>
   <platform name="android">
