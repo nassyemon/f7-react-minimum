@@ -12,7 +12,7 @@ import { store, persistor } from "./redux/store";
 import { awaitReady, hideStatusBar, setWindowOpenToInAppBrower } from "./modules/cordovaUtils";
 
 // Import main App component
-import App from "./App";
+import App from "./react/App";
 // css
 import "typeface-roboto";
 import "react-html5-camera-photo/build/css/index.css";
@@ -36,8 +36,8 @@ awaitReady().then(() => {
   );
 
   if (module.hot) {
-    module.hot.accept("./App", () => {
-      const NextApp = require("./App").default;
+    module.hot.accept("./react/App", () => {
+      const NextApp = require("./react/App").default;
       ReactDOM.render(
         <AppContainer>
           <Provider store={store}>
