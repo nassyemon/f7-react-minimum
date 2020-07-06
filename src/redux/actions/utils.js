@@ -1,4 +1,5 @@
-import { requireAuth } from "./login";
+import { requireAuth, forceLogout } from "./login";
+import { UNAUTHORIZED } from "../../const/apiErrorCodes";
 
 export const apiRequestPrototype = (
   createStartAction,
@@ -19,8 +20,12 @@ export const apiRequestPrototype = (
     const payload = await apiCallback(sessionId, dispatch, getState);
     dispatch(createSuccessAction(payload));
   } catch (error) {
+    console.error(JSON.stringify(error));
+    if (error.code === UNAUTHORIZED) {
+      alert("セッションが無効になりました。再度ログインしてください。");
+      return dispatch(forceLogout());
+    }
     dispatch(createFailAction());
-    console.error(error);
     alert("エラーが発生しました。再度やり直してください");
   }
 };

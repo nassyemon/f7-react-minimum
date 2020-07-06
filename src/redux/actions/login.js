@@ -74,7 +74,7 @@ export const requireAuth = () => async (dispatch, getState) => {
 };
 
 // TODO
-function forceLogout() {
+export function forceLogout() {
   return {
     type: LOGOUT,
   };

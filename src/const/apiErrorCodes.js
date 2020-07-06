@@ -1,0 +1,2 @@
+export const UNAUTHORIZED = "UNAUTHORIZED";
+export const UNHANDLED_ERROR = "UNHANDLED_ERROR";
