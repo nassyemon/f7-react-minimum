@@ -1,5 +1,5 @@
 import React from "react";
-import Camera from "react-html5-camera-photo";
+import Html5CameraPhoto from "react-html5-camera-photo";
 import styled from "styled-components";
 
 const Root = styled.div`
@@ -7,13 +7,22 @@ const Root = styled.div`
   height: 100vh;
 `;
 
-export default ({ handleTakePhoto }) => (
-  <Root>
-    <Camera
-      idealFacingMode="FACING_MODES.ENVIRONMENT"
-      onTakePhoto={(dataUri) => {
-        handleTakePhoto(dataUri);
-      }}
-    />
-  </Root>
-);
+const StaticProperties = {
+  disableDefaultSwipe: true,
+};
+
+
+function Camera({ handleTakePhoto }) {
+  return (
+    <Root>
+      <Html5CameraPhoto
+        idealFacingMode="FACING_MODES.ENVIRONMENT"
+        onTakePhoto={(dataUri) => {
+          handleTakePhoto(dataUri);
+        }}
+      />
+    </Root>
+  );
+}
+
+export default Object.assign(Camera, StaticProperties);

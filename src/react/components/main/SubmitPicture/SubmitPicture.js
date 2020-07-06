@@ -8,6 +8,10 @@ import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 
+const StaticProperties = {
+  disableDefaultSwipe: false,
+};
+
 const styles = () => ({});
 
 const Root = styled(Container)``;
@@ -90,4 +94,4 @@ function SubmitPicture({
   );
 }
 
-export default withStyles(styles)(SubmitPicture);
+export default withStyles(styles)(Object.assign(SubmitPicture, StaticProperties));

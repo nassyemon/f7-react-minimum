@@ -15,8 +15,6 @@ import { history } from "../redux/store";
 import DefaultRoute from "./routes/DefaultRoute";
 import EmptyRoute from "./routes/EmptyRoute";
 import DocumentsRoute from "./routes/DocumentsRoute";
-import { goBack } from "../redux/actions/navigation";
-import { openSidePanel } from "../redux/actions/sidepanel";
 
 
 import Home from "./components/main/Home";
@@ -36,9 +34,7 @@ const NotFound = () => {
   return <div>NotFound???</div>;
 };
 
-const onSwipeRight = (func) => ({ dir }) => dir === "Right" && func();
-
-function App({ goBack, openSidePanel }) {
+function App() {
   return (
     <StylesProvider injectFirst>
       <MuiThemeProvider theme={theme}>
@@ -49,25 +45,19 @@ function App({ goBack, openSidePanel }) {
               <Switch>
                 <DefaultRoute path="/setting"
                   mainComponent={Setting}
-                  onSwiped={onSwipeRight(openSidePanel)}
                 />
                 <EmptyRoute path="/camera"
                   component={Camera}
-                  onSwiped={onSwipeRight(goBack)}
                 />
                 <DefaultRoute
                   path="/submit-picture"
                   mainComponent={SubmitPicture}
-                  onSwiped={onSwipeRight(openSidePanel)}
                 />
                 <DocumentsRoute
                   path="/documents"
-                  goBack={goBack}
-                  openSidePanel={openSidePanel}
                 />
                 <DefaultRoute path={["/", "/home"]}
                   mainComponent={Home}
-                  onSwiped={onSwipeRight(openSidePanel)}
                 />
                 <EmptyRoute component={NotFound} />
               </Switch>
@@ -81,8 +71,6 @@ function App({ goBack, openSidePanel }) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    goBack: () => dispatch(goBack()),
-    openSidePanel: () => dispatch(openSidePanel()),
   };
 };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PullToRefresh from "react-simple-pull-to-refresh";
 
 import Card from "@material-ui/core/Card";
@@ -10,6 +10,11 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Checkbox from "@material-ui/core/Checkbox";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
+
+
+const StaticProperties = {
+  disableDefaultSwipe: true,
+};
 
 const Root = styled.div`
   display: flex;
@@ -97,9 +102,9 @@ function Documents({
           <CircularProgress />
         </LoadingContainer>
       ) : (
-        <PullToRefresh onRefresh={reloadDocuments}>
-          {data?.length > 0
-            ? data.map(({ id, title, image_url, selected }) => (
+          <PullToRefresh onRefresh={reloadDocuments} pullingContent={null}>
+            {data?.length > 0
+              ? data.map(({ id, title, image_url, selected }) => (
                 <ContentCard key={id} onClick={onClickItem(id)} mode={mode}>
                   <ActionContainer mode={mode}>
                     <EditCheckbox
@@ -114,11 +119,11 @@ function Documents({
                   <ImageBox image={image_url} title="Image" />
                 </ContentCard>
               ))
-            : null}
-        </PullToRefresh>
-      )}
+              : null}
+          </PullToRefresh>
+        )}
     </Root>
   );
 }
 
-export default withStyles(() => ({}))(Documents);
+export default withStyles(() => ({}))(Object.assign(Documents, StaticProperties));

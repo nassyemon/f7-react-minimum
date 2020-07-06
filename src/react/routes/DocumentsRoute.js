@@ -9,11 +9,7 @@ import EditFooter from "../components/footer/EditFooter";
 import DeleteFooter from "../components/footer/DeleteFooter";
 import DeleteConfirm from "../components/bottom/DeleteConfirm";
 
-const onSwipeRight = (func) => ({ dir }) => dir === "Right" && func();
-
 export default function DocumentsRoute({
-  goBack,
-  openSidePanel,
   ...rest
 }) {
   return (
@@ -27,7 +23,6 @@ export default function DocumentsRoute({
                 mainComponent={Documents}
                 rightComponent={DocumentDetail}
                 controlComponent={EditControl}
-                onSwiped={onSwipeRight(openSidePanel)}
                 matchProps={matchProps}
                 control
               />)}
@@ -37,7 +32,6 @@ export default function DocumentsRoute({
               <MainLayout
                 mainComponent={Documents}
                 rightComponent={DocumentDetail}
-                onSwiped={onSwipeRight(openSidePanel)}
                 footerComponent={EditFooter}
                 matchProps={matchProps}
               />)}
@@ -48,7 +42,6 @@ export default function DocumentsRoute({
                 mainComponent={Documents}
                 rightComponent={DocumentDetail}
                 bottomComponent={DeleteConfirm}
-                onSwiped={onSwipeRight(openSidePanel)}
                 footerComponent={DeleteFooter}
                 matchProps={matchProps}
                 bottom
@@ -60,7 +53,6 @@ export default function DocumentsRoute({
                 headerComponent={GoBackHeader}
                 mainComponent={Documents}
                 rightComponent={DocumentDetail}
-                onSwiped={onSwipeRight(goBack)}
                 matchProps={matchProps}
                 right
               />)}

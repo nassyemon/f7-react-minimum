@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
+// import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core";
+
+const StaticProperties = {
+  disableDefaultSwipe: false,
+  canGoBack: true,
+};
 
 const Root = styled.div`
   padding: ${({ theme }) => theme.spacing(2)}px;
@@ -41,11 +46,13 @@ const Image = styled.img`
   object-fit: scale-down;
 `;
 
+/*
 const ButtonContainer = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
+*/
 
 function DocumentDetail({ id, data, loading, loaded, hasSession, onMount }) {
   const [prevId, setPrevId] = useState(null);
@@ -90,4 +97,4 @@ function DocumentDetail({ id, data, loading, loaded, hasSession, onMount }) {
     </Root>
   );
 }
-export default withStyles(() => ({}))(DocumentDetail);
+export default withStyles(() => ({}))(Object.assign(DocumentDetail, StaticProperties));

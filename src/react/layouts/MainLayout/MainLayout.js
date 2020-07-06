@@ -1,6 +1,4 @@
 import React, { Fragment, useRef } from "react";
-import { compose } from "recompose";
-import { connect } from "react-redux";
 import { Swipeable } from "react-swipeable";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
@@ -8,21 +6,12 @@ import Zoom from "@material-ui/core/Zoom";
 import Fab from "@material-ui/core/Fab";
 import { useScrolling } from "react-use";
 
-import { isOpen } from "../../redux/selectors/sidepanel";
-import { isSending as isPictureSending } from "../../redux/selectors/picture";
-import { hasSession } from "../../redux/selectors/login";
-import { closeSidepanel } from "../../redux/actions/sidepanel";
+import Sidebar from "../../components/Sidebar";
+import Login from "../../components/Login";
+import GlobalIndicator from "../../components/GlobalIndicator";
+import Toast from "../../components/Toast";
 
-import Blank from "../components/Blank";
-import None from "../components/None";
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
-import Sidebar from "../components/Sidebar";
-import Login from "../components/Login";
-import GlobalIndicator from "../components/GlobalIndicator";
-import Toast from "../components/Toast";
-
-import { withTransition } from "../utils/styled";
+import { withTransition } from "../../utils/styled";
 
 
 const styles = () => ({});
@@ -138,15 +127,26 @@ const ButtonContainer = styled.div`
   z-index: 800;
 `;
 
-function MainLayout({
-  isSidePanelOpen,
+function MaySwipeable({ disabled, children, onSwiped }) {
+  if (!disabled) {
+    return (
+      <Swipeable onSwiped={onSwiped}>
+        {children}
+      </Swipeable>
+    );
+  }
+  return children;
+}
+
+export function MainLayout({
   mainComponent: MainComponent,
-  rightComponent: RightComponent = Blank,
-  bottomComponent: BottomComponent = Blank,
-  footerComponent: FooterComponent = Footer,
-  controlComponent: ControlComponent = None,
-  headerComponent: HeaderComponent = Header,
-  sidepanelComponent: SidepanelComponent = Sidebar,
+  rightComponent: RightComponent,
+  bottomComponent: BottomComponent,
+  footerComponent: FooterComponent,
+  controlComponent: ControlComponent,
+  headerComponent: HeaderComponent,
+  sidepanelComponent: SidepanelComponent,
+  isSidePanelOpen,
   onSwiped,
   hasSession,
   closeSidepanel,
@@ -171,7 +171,7 @@ function MainLayout({
           <HeaderComponent {...matchProps} />
         </HeaderContainer>
         <Screen isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth} headerHeight={headerHeight}>
-          <Swipeable onSwiped={onSwiped}>
+          <MaySwipeable onSwiped={onSwiped} disabled={MainComponent.disableDefaultSwipe}>
             <MainPanel showRight={right} ref={mainRef} footerHeight={footerHeight} headerHeight={headerHeight}>
               <MainComponent
                 {...matchProps}
@@ -179,8 +179,8 @@ function MainLayout({
                 scrolling={mainScrolling}
               />
             </MainPanel>
-          </Swipeable>
-          <Swipeable onSwiped={onSwiped}>
+          </MaySwipeable>
+          <MaySwipeable onSwiped={onSwiped} disabled={RightComponent.disableDefaultSwipe}>
             <RightPanel showRight={right} ref={rightRef} footerHeight={footerHeight} headerHeight={headerHeight}>
               <RightComponent
                 {...matchProps}
@@ -188,8 +188,8 @@ function MainLayout({
                 scrolling={rightScrolling}
               />
             </RightPanel>
-          </Swipeable>
-          <Swipeable onSwiped={onSwiped}>
+          </MaySwipeable>
+          <MaySwipeable onSwiped={onSwiped} disabled={BottomComponent.disableDefaultSwipe}>
             <BottomPanel showBottom={bottom} ref={bottomRef} footerHeight={footerHeight} headerHeight={headerHeight}>
               <BottomComponent
                 {...matchProps}
@@ -197,7 +197,7 @@ function MainLayout({
                 scrolling={bottomScrolling}
               />
             </BottomPanel>
-          </Swipeable>
+          </MaySwipeable>
           <LoginPanel hasSession={hasSession} headerHeight={headerHeight} footerHeight={footerHeight}>
             <Login />
           </LoginPanel>
@@ -226,21 +226,4 @@ function MainLayout({
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  closeSidepanel: () => dispatch(closeSidepanel()),
-});
-
-const mapStateToProps = (state) => {
-  const pictureSending = isPictureSending(state);
-  const sending = [pictureSending].some(Boolean);
-  return {
-    sending,
-    hasSession: hasSession(state),
-    isSidePanelOpen: isOpen(state),
-  };
-};
-
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  withStyles(styles)
-)(MainLayout);
+export default withStyles(styles)(MainLayout);

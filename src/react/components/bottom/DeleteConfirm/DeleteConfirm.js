@@ -10,6 +10,12 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
 
+
+const StaticProperties = {
+  disableDefaultSwipe: false,
+  canGoBack: true,
+};
+
 const Root = styled.div`
   display: flex;
   align-items: top;
@@ -105,4 +111,4 @@ function DeleteConfirm({
   );
 }
 
-export default withStyles(() => ({}))(DeleteConfirm);
+export default withStyles(() => ({}))(Object.assign(DeleteConfirm, StaticProperties));

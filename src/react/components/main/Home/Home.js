@@ -6,6 +6,10 @@ import Typography from "@material-ui/core/Typography";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core";
 
+const StaticProperties = {
+  disableDefaultSwipe: false,
+};
+
 const Root = styled.div`
   display: flex;
   padding: ${({ theme }) => theme.spacing(2)}px;
@@ -40,4 +44,5 @@ function Home({ userName }) {
   );
 }
 
-export default withStyles(() => ({}))(Home);
+
+export default withStyles(() => ({}))(Object.assign(Home, StaticProperties));

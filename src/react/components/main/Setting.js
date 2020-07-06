@@ -18,6 +18,11 @@ import {
   swapThemeColors,
 } from "../../../redux/reducers/settings";
 
+
+const StaticProperties = {
+  disableDefaultSwipe: true,
+};
+
 const Settings = (props) => (
   <div>
     <Typography variant="h5">Settings</Typography>
@@ -67,4 +72,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+export default connect(mapStateToProps, mapDispatchToProps)(Object.assign(Settings, StaticProperties));
