@@ -200,7 +200,6 @@ export function MainLayout({
               footerHeight={footerHeight}
               headerHeight={headerHeight}
               noPaddingBottom={Right.controlScroll}
-              {...rightProps}
             >
               <Right
                 {...matchProps}
@@ -208,7 +207,7 @@ export function MainLayout({
                 sessionId={sessionId}
                 scrollingRef={selected === Right && forwardScrollingRef ? scrollingRef : null}
                 footerHeight={Right.controlScroll ? footerHeight : null}
-                {...bottomProps}
+                {...rightProps}
               />
             </RightPanel>
           </MaySwipeable>
@@ -226,6 +225,7 @@ export function MainLayout({
                 sessionId={sessionId}
                 scrollingRef={selected === Bottom && forwardScrollingRef ? scrollingRef : null}
                 footerHeight={Bottom.controlScroll ? footerHeight : null}
+                {...bottomProps}
               />
             </BottomPanel>
           </MaySwipeable>

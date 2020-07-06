@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { usingCordova } from "../../../../modules/cordovaUtils";
 import { goBack, moveToDocumentsDelete } from "../../../../redux/actions/navigation";
 import { closeSidepanel } from "../../../../redux/actions/sidepanel";
-import { deleteDocuments } from "../../../../redux/actions/documents";
 import { getSeleted } from "../../../../redux/selectors/documents";
 import EditFooter from "./EditFooter";
 

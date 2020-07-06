@@ -6,8 +6,8 @@ import Tab from "@material-ui/core/Tab";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
 
-import { withTransition } from "../../utils/styled";
-import Documents from "../../components/main/Documents";
+import { withTransition } from "../../../utils/styled";
+import Documents from "../../../components/main/Documents";
 
 
 const StaticProperties = {
@@ -34,7 +34,7 @@ const TabsContainer = styled.div`
   background-color: #f8f8f8;
 `;
 
-const Screen = styled.main`
+const Screen = styled.div`
   width: 300vw;
   height: 100%;
   flex-grow:1 ;
