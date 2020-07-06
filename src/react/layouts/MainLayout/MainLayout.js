@@ -139,62 +139,81 @@ function MaySwipeable({ disabled, children, onSwiped }) {
 }
 
 export function MainLayout({
-  mainComponent: MainComponent,
-  rightComponent: RightComponent,
-  bottomComponent: BottomComponent,
-  footerComponent: FooterComponent,
-  controlComponent: ControlComponent,
-  headerComponent: HeaderComponent,
-  sidepanelComponent: SidepanelComponent,
+  mainComponent: Main,
+  rightComponent: Right,
+  bottomComponent: Bottom,
+  footerComponent: Footer,
+  controlComponent: Control,
+  headerComponent: Header,
+  sidepanelComponent: Sidepanel,
   isSidePanelOpen,
   onSwiped,
   hasSession,
+  sessionId,
   closeSidepanel,
   matchProps,
   right,
   bottom,
   control,
+  selected,
+  forwardScrollingRef,
 }) {
-  const [mainRef, rightRef, bottomRef] = [useRef(null), useRef(null), useRef(null)];
-  const [mainScrolling, rightScrolling, bottomScrolling] = [mainRef, rightRef, bottomRef].map(useScrolling);
-  const scrolling = mainScrolling || rightScrolling;
+  const scrollingRef = useRef(null);
+  const scrolling = useScrolling(scrollingRef);
 
-  const footerHeight = FooterComponent.height;
-  const headerHeight = HeaderComponent.height;
-  const headerPaddingTop = HeaderComponent.paddingTop;
-  const sideBarWidth = SidepanelComponent.width;
-
+  const footerHeight = Footer.height;
+  const headerHeight = Header.height;
+  const headerPaddingTop = Header.paddingTop;
+  const sideBarWidth = Sidepanel.width;
   return (
     <Fragment>
       <Root>
         <HeaderContainer headerHeight={headerHeight} headerPaddingTop={headerPaddingTop}>
-          <HeaderComponent {...matchProps} />
+          <Header {...matchProps} />
         </HeaderContainer>
         <Screen isSidePanelOpen={isSidePanelOpen} sideBarWidth={sideBarWidth} headerHeight={headerHeight}>
-          <MaySwipeable onSwiped={onSwiped} disabled={MainComponent.disableDefaultSwipe}>
-            <MainPanel showRight={right} ref={mainRef} footerHeight={footerHeight} headerHeight={headerHeight}>
-              <MainComponent
+          <MaySwipeable onSwiped={onSwiped} disabled={Main.disableDefaultSwipe}>
+            <MainPanel
+              showRight={right}
+              ref={selected === Main && !forwardScrollingRef ? scrollingRef : null}
+              footerHeight={footerHeight}
+              headerHeight={headerHeight}
+            >
+              <Main
                 {...matchProps}
                 hasSession={hasSession}
-                scrolling={mainScrolling}
+                sessionId={sessionId}
+                scrollingRef={selected === Main && forwardScrollingRef ? scrollingRef : null}
               />
             </MainPanel>
           </MaySwipeable>
-          <MaySwipeable onSwiped={onSwiped} disabled={RightComponent.disableDefaultSwipe}>
-            <RightPanel showRight={right} ref={rightRef} footerHeight={footerHeight} headerHeight={headerHeight}>
-              <RightComponent
+          <MaySwipeable onSwiped={onSwiped} disabled={Right.disableDefaultSwipe}>
+            <RightPanel
+              showRight={right}
+              ref={selected === Right && !forwardScrollingRef ? scrollingRef : null}
+              footerHeight={footerHeight}
+              headerHeight={headerHeight}
+            >
+              <Right
                 {...matchProps}
                 hasSession={hasSession}
-                scrolling={rightScrolling}
+                sessionId={sessionId}
+                scrollingRef={selected === Right && forwardScrollingRef ? scrollingRef : null}
               />
             </RightPanel>
           </MaySwipeable>
-          <MaySwipeable onSwiped={onSwiped} disabled={BottomComponent.disableDefaultSwipe}>
-            <BottomPanel showBottom={bottom} ref={bottomRef} footerHeight={footerHeight} headerHeight={headerHeight}>
-              <BottomComponent
+          <MaySwipeable onSwiped={onSwiped} disabled={Bottom.disableDefaultSwipe}>
+            <BottomPanel
+              showBottom={bottom}
+              ref={selected === Bottom && !forwardScrollingRef ? scrollingRef : null}
+              footerHeight={footerHeight}
+              headerHeight={headerHeight}
+            >
+              <Bottom
                 {...matchProps}
                 hasSession={hasSession}
-                scrolling={bottomScrolling}
+                sessionId={sessionId}
+                scrollingRef={selected === Bottom && forwardScrollingRef ? scrollingRef : null}
               />
             </BottomPanel>
           </MaySwipeable>
@@ -207,10 +226,10 @@ export function MainLayout({
               onClick={closeSidepanel}
             />
           </Swipeable>
-          <ButtonContainer showRight={right} >
+          <ButtonContainer>
             <Zoom in={control && !isSidePanelOpen && !scrolling}>
               <Fab color="secondary" size="medium" aria-label="edit">
-                <ControlComponent {...matchProps} />
+                <Control {...matchProps} />
               </Fab>
             </Zoom>
           </ButtonContainer>
@@ -218,7 +237,7 @@ export function MainLayout({
       </Root>
       <Sidebar open={isSidePanelOpen} headerHeight={headerHeight} footerHeight={footerHeight} />
       <FooterContainer footerHeight={footerHeight} >
-        <FooterComponent {...matchProps} />
+        <Footer {...matchProps} />
       </FooterContainer>
       <GlobalIndicator />
       <Toast />

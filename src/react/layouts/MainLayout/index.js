@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { isOpen } from "../../../redux/selectors/sidepanel";
 import { isSending as isPictureSending } from "../../../redux/selectors/picture";
-import { hasSession } from "../../../redux/selectors/login";
+import { hasSession, getSessionId } from "../../../redux/selectors/login";
 import { closeSidepanel, openSidePanel } from "../../../redux/actions/sidepanel";
 import { goBack } from "../../../redux/actions/navigation";
 
@@ -28,6 +28,7 @@ const mapStateToProps = (state) => {
   return {
     sending,
     hasSession: hasSession(state),
+    sessionId: getSessionId(state),
     isSidePanelOpen: isOpen(state),
   };
 };
@@ -47,14 +48,15 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     bottom,
   } = ownProps;
   const { goBack, openSidePanel } = dispatchProps;
-  const selectedComponent = getSelectedComponent({
+  const selected = getSelectedComponent({
     mainComponent,
     rightComponent,
     bottomComponent,
     right,
     bottom,
   });
-  const canGoBack = selectedComponent.canGoBack;
+  const canGoBack = selected.canGoBack;
+  const forwardScrollingRef = selected.acceptScrollingRef;
 
   return {
     ...ownProps,
@@ -67,6 +69,8 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     controlComponent,
     headerComponent,
     sidepanelComponent,
+    selected,
+    forwardScrollingRef,
     onSwiped: typeof onSwiped === "function" ? onSwiped
       : onSwipedDefault({
         goBack,

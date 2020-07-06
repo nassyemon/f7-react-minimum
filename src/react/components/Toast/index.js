@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import Grow from "@material-ui/core/Grow";
 import styled from "styled-components";
-import { clearToast } from "../actions/../toast";
 import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
+import { clearToast } from "../../../redux/actions/toast";
 import { getMessage, getType, isVisible } from "../../../redux/selectors/toast";
 
 const ToastPaper = styled(Paper)`

@@ -69,6 +69,7 @@ function DeleteConfirm({
   loading,
   loaded,
   hasSession,
+  sessionId,
 }) {
   useEffect(() => {
     if (!loaded && !loading) {
@@ -79,7 +80,7 @@ function DeleteConfirm({
         }
       });
     }
-  }, [hasSession, loaded, loading, onMount]);
+  }, [hasSession, sessionId, loaded, loading, onMount]);
   if (data?.length < 1) {
     return <Redirect to="/" />;
   }

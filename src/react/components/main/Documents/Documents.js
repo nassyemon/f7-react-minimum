@@ -18,8 +18,8 @@ const StaticProperties = {
 
 const Root = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
 `;
 
@@ -82,6 +82,7 @@ function Documents({
   loading,
   loaded,
   hasSession,
+  sessionId,
   // loading,
   onClickItem,
 }) {
@@ -94,7 +95,7 @@ function Documents({
         }
       });
     }
-  }, [hasSession, loaded, loading, onMount]);
+  }, [hasSession, sessionId, loaded, loading, onMount]);
   return (
     <Root>
       {loading && data?.length < 1 ? (
@@ -121,7 +122,8 @@ function Documents({
               ))
               : null}
           </PullToRefresh>
-        )}
+        )
+      }
     </Root>
   );
 }

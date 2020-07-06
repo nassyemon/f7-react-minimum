@@ -54,7 +54,15 @@ const ButtonContainer = styled(Container)`
 `;
 */
 
-function DocumentDetail({ id, data, loading, loaded, hasSession, onMount }) {
+function DocumentDetail({
+  id,
+  data,
+  loading,
+  loaded,
+  hasSession,
+  sessionId,
+  onMount,
+}) {
   const [prevId, setPrevId] = useState(null);
   useEffect(() => {
     console.log("mounting document detail.");
@@ -68,7 +76,7 @@ function DocumentDetail({ id, data, loading, loaded, hasSession, onMount }) {
         }
       });
     }
-  }, [id, hasSession, prevId, onMount]);
+  }, [id, hasSession, sessionId, prevId, onMount]);
   if (loading || (id && prevId !== id)) {
     return (
       <LoadingContainer>
