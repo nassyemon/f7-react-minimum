@@ -41,7 +41,7 @@ const SelectButton = styled(Button)`
   width: ${({ theme }) => theme.spacing(15)}px;
 `
 
-const Screen = styled.main`
+const Screen = styled.div`
   width: 200vw;
   height: 100%;
   flex-grow:1 ;
@@ -52,7 +52,7 @@ const Screen = styled.main`
   flex-direction: row;
   align-items: flex-start;
   ${withTransition(["transform"])}
-  transform: translateX(${({ panel }) => panel > 0 ? `${panel} * -100}vw)` : "0px"};
+  ${({ panel }) => panel > 0 ? `transform: translateX(${panel * -100}vw)` : ""}
 `;
 
 const Panel = styled.div`
@@ -68,6 +68,7 @@ function DocumentsCollectionLayout({
   collectionIndex,
   ...rest
 }) {
+  console.error(collectionIndex);
   return (
     <Root>
       <SwitchContainer>
