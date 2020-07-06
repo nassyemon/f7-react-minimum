@@ -25,6 +25,7 @@ const Root = styled.div`
   position: relative;
   min-height: 100%;
   background-color: #ffffff;
+  ${({ footerHeight }) => footerHeight ? `padding-bottom: ${footerHeight};` : ""}
 `;
 
 // TODO: margin-top is temporary
@@ -70,6 +71,7 @@ function DeleteConfirm({
   loaded,
   hasSession,
   sessionId,
+  footerHeight,
 }) {
   useEffect(() => {
     if (!loaded && !loading) {
@@ -85,7 +87,7 @@ function DeleteConfirm({
     return <Redirect to="/" />;
   }
   return (
-    <Root>
+    <Root footerHeight={footerHeight}>
       {loading && data?.length < 1 ? (
         <LoadingContainer>
           <CircularProgress />

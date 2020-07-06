@@ -56,7 +56,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     bottom,
   });
   const canGoBack = selected.canGoBack;
-  const forwardScrollingRef = selected.acceptScrollingRef;
+  const forwardScrollingRef = selected.controlScroll;
 
   return {
     ...ownProps,

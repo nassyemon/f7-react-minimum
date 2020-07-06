@@ -21,7 +21,9 @@ const Root = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  ${({ footerHeight }) => footerHeight ? `padding-bottom: ${footerHeight};` : ""}
 `;
+
 
 // TODO: margin-top is temporary
 const LoadingContainer = styled.div`
@@ -85,6 +87,7 @@ function Documents({
   sessionId,
   // loading,
   onClickItem,
+  footerHeight,
 }) {
   useEffect(() => {
     if (!loaded && !loading) {
@@ -97,7 +100,7 @@ function Documents({
     }
   }, [hasSession, sessionId, loaded, loading, onMount]);
   return (
-    <Root>
+    <Root footerHeight={footerHeight}>
       {loading && data?.length < 1 ? (
         <LoadingContainer>
           <CircularProgress />

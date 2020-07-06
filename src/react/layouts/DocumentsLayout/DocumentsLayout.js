@@ -12,7 +12,7 @@ import Documents from "../../components/main/Documents";
 
 const StaticProperties = {
   disableDefaultSwipe: true,
-  acceptScrollingRef: true,
+  controlScroll: true,
 };
 
 const Root = styled.div`
