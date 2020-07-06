@@ -16,6 +16,7 @@ const Root = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  ${({ footerHeight }) => footerHeight ? `padding-bottom: ${footerHeight};` : ""}
 `;
 
 const ContentCard = styled(Card)`
@@ -24,9 +25,9 @@ const ContentCard = styled(Card)`
   margin-bottom: ${(props) => props.theme.spacing(1)}px;
 `;
 
-function Home({ userName }) {
+function Home({ userName, footerHeight }) {
   return (
-    <Root>
+    <Root footerHeight={footerHeight}>
       <ContentCard>
         <CardContent>
           {userName && (

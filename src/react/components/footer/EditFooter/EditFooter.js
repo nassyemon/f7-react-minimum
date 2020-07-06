@@ -47,9 +47,13 @@ function EditFooter({
   return (
     <Root {...StaticProperties}>
       <Messages show={selectedCount > 0}>
-        <Typography variant="h5">選択中&nbsp;</Typography>
-        <Typography variant="h4">{selectedCount}</Typography>
-        <Typography variant="h5">&nbsp;件</Typography>
+        {selectedCount > 0 && (
+          <>
+            <Typography variant="h5">選択中&nbsp;</Typography>
+            <Typography variant="h4">{selectedCount}</Typography>
+            <Typography variant="h5">&nbsp;件</Typography>
+          </>
+        )}
       </Messages>
       <Buttons showLabels {...StaticProperties}>
         <BottomNavigationAction

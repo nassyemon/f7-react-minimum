@@ -68,7 +68,7 @@ const Panel = styled.div`
   overflow-x: hidden;
   overflow-y: scroll;
   height: ${(props) => `calc(100vh - ${props.headerHeight}`});
-  padding-bottom: ${props => props.footerHeight};
+  padding-bottom: ${props => props.noPaddingBottom ? "0px" : props.footerHeight};
   ${withTransition(["transform", "height", "padding"])}
 `;
 
@@ -155,6 +155,9 @@ export function MainLayout({
   right,
   bottom,
   control,
+  mainProps,
+  rightProps,
+  bottomProps,
   selected,
   forwardScrollingRef,
 }) {
@@ -178,12 +181,15 @@ export function MainLayout({
               ref={selected === Main && !forwardScrollingRef ? scrollingRef : null}
               footerHeight={footerHeight}
               headerHeight={headerHeight}
+              noPaddingBottom={Main.controlScroll}
             >
               <Main
                 {...matchProps}
                 hasSession={hasSession}
                 sessionId={sessionId}
                 scrollingRef={selected === Main && forwardScrollingRef ? scrollingRef : null}
+                footerHeight={Main.controlScroll ? footerHeight : null}
+                {...mainProps}
               />
             </MainPanel>
           </MaySwipeable>
@@ -193,12 +199,14 @@ export function MainLayout({
               ref={selected === Right && !forwardScrollingRef ? scrollingRef : null}
               footerHeight={footerHeight}
               headerHeight={headerHeight}
+              noPaddingBottom={Right.controlScroll}
             >
               <Right
                 {...matchProps}
                 hasSession={hasSession}
                 sessionId={sessionId}
                 scrollingRef={selected === Right && forwardScrollingRef ? scrollingRef : null}
+                footerHeight={Right.controlScroll ? footerHeight : null}
               />
             </RightPanel>
           </MaySwipeable>
@@ -208,12 +216,14 @@ export function MainLayout({
               ref={selected === Bottom && !forwardScrollingRef ? scrollingRef : null}
               footerHeight={footerHeight}
               headerHeight={headerHeight}
+              noPaddingBottom={Bottom.controlScroll}
             >
               <Bottom
                 {...matchProps}
                 hasSession={hasSession}
                 sessionId={sessionId}
                 scrollingRef={selected === Bottom && forwardScrollingRef ? scrollingRef : null}
+                footerHeight={Bottom.controlScroll ? footerHeight : null}
               />
             </BottomPanel>
           </MaySwipeable>

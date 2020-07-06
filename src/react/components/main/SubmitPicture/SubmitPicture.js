@@ -22,6 +22,7 @@ const ImageBox = styled(Box)`
   max-height: 70vh;
   width: auto;
   height: auto;
+  ${({ footerHeight }) => footerHeight ? `padding-bottom: ${footerHeight};` : ""}
 `;
 
 const Image = styled.img`
@@ -52,6 +53,7 @@ function SubmitPicture({
   sending,
   onTitleChange,
   onClickSubmitButton,
+  footerHeight,
 }) {
   // TODO: refactor
   const onTitleChangeThrottled = useCallback(
@@ -65,7 +67,7 @@ function SubmitPicture({
     return <Redirect to="/" />;
   }
   return (
-    <Root>
+    <Root footerHeight={footerHeight}>
       <ImageBox>
         <Image src={picture.uri} />
       </ImageBox>

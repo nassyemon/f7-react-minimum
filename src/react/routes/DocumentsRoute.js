@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router";
 import MainLayout from "../layouts/MainLayout";
-import DocumentsLayout from "../layouts/DocumentsLayout";
+import DocumentCollectionsLayout from "../layouts/subLayouts/DocumentCollectionsLayout";
 import DocumentDetail from "../components/right/DocumentDetail";
 import EditControl from "../components/control/EditControl";
 import GoBackHeader from "../components/header/GoBackHeader";
@@ -20,7 +20,7 @@ export default function DocumentsRoute({
           <Route exact path={`${match.path}/`}
             render={(matchProps) => (
               <MainLayout
-                mainComponent={DocumentsLayout}
+                mainComponent={DocumentCollectionsLayout}
                 rightComponent={DocumentDetail}
                 controlComponent={EditControl}
                 matchProps={matchProps}
@@ -30,7 +30,7 @@ export default function DocumentsRoute({
           <Route exact path={`${match.path}/edit`}
             render={(matchProps) => (
               <MainLayout
-                mainComponent={DocumentsLayout}
+                mainComponent={DocumentCollectionsLayout}
                 rightComponent={DocumentDetail}
                 footerComponent={EditFooter}
                 matchProps={matchProps}
@@ -39,7 +39,7 @@ export default function DocumentsRoute({
           <Route exact path={`${match.path}/delete`}
             render={(matchProps) => (
               <MainLayout
-                mainComponent={DocumentsLayout}
+                mainComponent={DocumentCollectionsLayout}
                 rightComponent={DocumentDetail}
                 bottomComponent={DeleteConfirm}
                 footerComponent={DeleteFooter}
@@ -51,7 +51,7 @@ export default function DocumentsRoute({
             render={(matchProps) => (
               <MainLayout
                 headerComponent={GoBackHeader}
-                mainComponent={DocumentsLayout}
+                mainComponent={DocumentCollectionsLayout}
                 rightComponent={DocumentDetail}
                 matchProps={matchProps}
                 right

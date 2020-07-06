@@ -22,7 +22,7 @@ const StyledDrawer = styled(Drawer)`
   & > div {
     z-index: 1100;
     position: fixed;
-    top: ${(props) => props.headerHeight};
+    top: ${(props) => props.top};
     white-space: nowrap;
     width: ${({ open, width }) => (open ? width : "0px")};
     transition: ${({ theme }) =>
@@ -54,7 +54,7 @@ function Sidebar(props) {
   return (
     <Swipeable onSwipedLeft={closeSidepanel}>
       <StyledDrawer
-        headerHeight={headerHeight}
+        top={headerHeight}
         variant="permanent"
         width={sideBarWidth}
         open={open}

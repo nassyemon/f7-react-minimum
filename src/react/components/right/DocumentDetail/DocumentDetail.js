@@ -17,6 +17,7 @@ const Root = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  ${({ footerHeight }) => footerHeight ? `padding-bottom: ${footerHeight};` : ""}
 `;
 
 // TODO: margin-top is temporary
@@ -62,6 +63,7 @@ function DocumentDetail({
   hasSession,
   sessionId,
   onMount,
+  footerHeight,
 }) {
   const [prevId, setPrevId] = useState(null);
   useEffect(() => {
@@ -89,7 +91,7 @@ function DocumentDetail({
   }
   const { image_url, title } = data;
   return (
-    <Root>
+    <Root footerHeight={footerHeight}>
       <TypoBox>
         <Typography align="left" variant="h5">
           {title}

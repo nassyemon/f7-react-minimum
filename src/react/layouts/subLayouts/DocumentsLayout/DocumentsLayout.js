@@ -6,13 +6,13 @@ import Tab from "@material-ui/core/Tab";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
 
-import { withTransition } from "../../utils/styled";
-import Documents from "../../components/main/Documents";
+import { withTransition } from "../../../utils/styled";
+import Documents from "../../../components/main/Documents";
 
 
 const StaticProperties = {
   disableDefaultSwipe: true,
-  acceptScrollingRef: true,
+  controlScroll: true,
 };
 
 const Root = styled.div`
