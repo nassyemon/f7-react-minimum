@@ -10,8 +10,8 @@ const mapStateToProps = (state, { match }) => {
 
 const mapDispatchToProps = (dispatch, { hasSession, match }) => {
   return {
-    onClickLeft: () => dispatch(moveToDocumentsLeft()),
-    onClickRight: () => dispatch(moveToDocumentsRight()),
+    moveToLeft: () => dispatch(moveToDocumentsLeft()),
+    moveToRight: () => dispatch(moveToDocumentsRight()),
   };
 };
 

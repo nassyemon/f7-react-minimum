@@ -7,6 +7,8 @@ import EditFooter from "../../components/footer/EditFooter";
 import DeleteFooter from "../../components/footer/DeleteFooter";
 import DeleteConfirm from "../../components/bottom/DeleteConfirm";
 
+const defaultTabIndex = 0;
+
 export default function RouteGroup(paths) {
   const arrayEnsured = Array.isArray(paths) ? paths : [paths];
   return arrayEnsured.map(path => [
@@ -15,7 +17,7 @@ export default function RouteGroup(paths) {
         <BaseLayout
           matchProps={matchProps}
           footerComponent={EditFooter}
-          mainProps={getMainProps()}
+          mainProps={getMainProps(defaultTabIndex)}
         />)}
     />,
     <Route exact path={`${path}/delete`}
@@ -24,7 +26,7 @@ export default function RouteGroup(paths) {
           matchProps={matchProps}
           bottomComponent={DeleteConfirm}
           footerComponent={DeleteFooter}
-          mainProps={getMainProps()}
+          mainProps={getMainProps(defaultTabIndex)}
           bottom
         />)}
     />,
@@ -33,24 +35,32 @@ export default function RouteGroup(paths) {
         <BaseLayout
           headerComponent={GoBackHeader}
           matchProps={matchProps}
-          mainProps={getMainProps()}
+          mainProps={getMainProps(defaultTabIndex)}
           right
         />)}
     />,
-    <Route exact path={`${path}/`}
+    <Route exact path={[`${path}/`, `${path}/item1`]}
       render={(matchProps) => (
         <BaseLayout
           matchProps={matchProps}
           controlComponent={EditControl}
           control
-          mainProps={getMainProps()}
+          mainProps={getMainProps(0)}
+        />)}
+    />,
+    <Route exact path={`${path}/item2`}
+      render={(matchProps) => (
+        <BaseLayout
+          matchProps={matchProps}
+          mainProps={getMainProps(1)}
         />)}
     />
   ]).reduce((acc, value) => [...acc, ...value], []);
 }
 
-function getMainProps() {
+function getMainProps(tabIndex) {
   return {
     collectionIndex: 1,
+    tabIndex,
   }
 }

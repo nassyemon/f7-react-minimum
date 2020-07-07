@@ -1,27 +1,27 @@
 import { compose } from "recompose";
 import { connect } from "react-redux";
-import DocumentsLayout from "./DocumentsLayout";
+import DocumentsRightLayout from "./DocumentsRightLayout";
 import {
-  moveToDocumentsLeftItem1,
-  moveToDocumentsLeftItem2,
-  moveToDocumentsLeftItem3,
+  moveToDocumentsRightItem1,
+  moveToDocumentsRightItem2,
 } from "../../../../redux/actions/navigation";
+
 
 const mapStateToProps = (state, { match }) => {
   return {
   };
 };
 
+
 const mapDispatchToProps = (dispatch, { hasSession, match }) => {
   return {
-    moveToItem1: () => dispatch(moveToDocumentsLeftItem1()),
-    moveToItem2: () => dispatch(moveToDocumentsLeftItem2()),
-    moveToItem3: () => dispatch(moveToDocumentsLeftItem3()),
+    moveToItem1: () => dispatch(moveToDocumentsRightItem1()),
+    moveToItem2: () => dispatch(moveToDocumentsRightItem2()),
   };
 };
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  const { moveToItem1, moveToItem2, moveToItem3 } = dispatchProps;
+  const { moveToItem1, moveToItem2 } = dispatchProps;
   return {
     ...stateProps,
     ...dispatchProps,
@@ -32,8 +32,6 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
           return moveToItem1();
         case 1:
           return moveToItem2();
-        case 2:
-          return moveToItem3();
         default:
           return null;
       }
@@ -41,4 +39,4 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   }
 }
 
-export default compose(connect(mapStateToProps, mapDispatchToProps, mergeProps))(DocumentsLayout);
+export default compose(connect(mapStateToProps, mapDispatchToProps, mergeProps))(DocumentsRightLayout);

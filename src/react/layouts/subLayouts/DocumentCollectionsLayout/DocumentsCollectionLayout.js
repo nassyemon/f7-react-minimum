@@ -1,12 +1,14 @@
 import React from "react";
 import Button from '@material-ui/core/Button';
+import { Swipeable } from "react-swipeable";
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
 
 import { withTransition } from "../../../utils/styled";
-import DocumentsLayout from "../DocumentsLayout";
+import DocumentsLeftLayout from "../DocumentsLayout";
+import DocumentsRightLayout from "../DocumentsRightLayout";
 
 
 const StaticProperties = {
@@ -37,9 +39,30 @@ const SwitchContainer = styled.div`
   justify-content: center;
 `;
 
+const SlideButtonContainer = styled.div`
+  display: flex;
+  position: relative;
+  background-color: #dfdfdf;
+  position: relative;
+`;
+
+const SlideButtonGroup = styled(ButtonGroup)`
+  width: ${({ theme }) => theme.spacing(30)}px;
+`
+
 const SelectButton = styled(Button)`
   width: ${({ theme }) => theme.spacing(15)}px;
+  z-index: 100;
 `
+
+const SelectedBox = styled.div`
+  width: ${({ theme }) => theme.spacing(15)}px;
+  height: 100%;
+  background-color: #ffffff;
+  position: absolute;
+  left: 0px;
+  ${withTransition(["transform"])}
+  ${({ panel, theme }) => panel > 0 ? `transform: translateX(${panel * theme.spacing(15)}px)` : ""}`;
 
 const Screen = styled.div`
   width: 200vw;
@@ -62,27 +85,33 @@ const Panel = styled.div`
 `;
 
 function DocumentsCollectionLayout({
-  onClickLeft,
-  onClickRight,
+  moveToLeft,
+  moveToRight,
   scrollingRef,
   collectionIndex,
   ...rest
 }) {
-  console.error(collectionIndex);
+  const left = collectionIndex === 0;
+  const right = collectionIndex === 1;
   return (
     <Root>
-      <SwitchContainer>
-        <ButtonGroup aria-label="large outlined primary button group">
-          <SelectButton onClick={onClickLeft}>左表示</SelectButton>
-          <SelectButton onClick={onClickRight}>右表示</SelectButton>
-        </ButtonGroup>
-      </SwitchContainer>
+      <Swipeable onSwipedLeft={moveToLeft} onSwipedRight={moveToRight}>
+        <SwitchContainer>
+          <SlideButtonContainer>
+            <SlideButtonGroup>
+              <SelectButton selected={left} onClick={!left ? moveToLeft : undefined}>左表示</SelectButton>
+              <SelectButton selected={right} onClick={!right ? moveToRight : undefined}>右表示</SelectButton>
+            </SlideButtonGroup>
+            <SelectedBox panel={collectionIndex} />
+          </SlideButtonContainer>
+        </SwitchContainer>
+      </Swipeable>
       <Screen panel={collectionIndex}>
         <Panel >
-          <DocumentsLayout {...rest} scrollingRef={collectionIndex === 0 ? scrollingRef : null} />
+          <DocumentsLeftLayout {...rest} scrollingRef={left ? scrollingRef : null} />
         </Panel>
         <Panel >
-          <DocumentsLayout {...rest} scrollingRef={collectionIndex === 1 ? scrollingRef : null} />
+          <DocumentsRightLayout {...rest} scrollingRef={right ? scrollingRef : null} />
         </Panel>
       </Screen>
     </Root>

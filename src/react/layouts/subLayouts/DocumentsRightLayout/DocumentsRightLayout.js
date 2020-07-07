@@ -74,9 +74,8 @@ function DocumentsLayout({
           textColor="primary"
           variant="fullWidth"
         >
-          <Tab label="左1番パネル" />
-          <Tab label="左2番パネル" />
-          <Tab label="左3番パネル" />
+          <Tab label="右1番パネル" />
+          <Tab label="右2番パネル" />
         </Tabs>
       </TabsContainer>
       <Screen tabIndex={tabIndex}>
@@ -86,12 +85,7 @@ function DocumentsLayout({
           </Swipeable>
         </Panel>
         <Panel ref={tabIndex === 1 ? scrollingRef : null}>
-          <Swipeable onSwipedRight={moveToItem1} onSwipedLeft={moveToItem3}>
-            <Documents {...rest} />
-          </Swipeable>
-        </Panel>
-        <Panel ref={tabIndex === 2 ? scrollingRef : null}>
-          <Swipeable onSwipedRight={moveToItem2}>
+          <Swipeable onSwipedRight={moveToItem1}>
             <Documents {...rest} />
           </Swipeable>
         </Panel>
