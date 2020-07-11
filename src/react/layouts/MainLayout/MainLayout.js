@@ -41,7 +41,7 @@ const HeaderContainer = styled.div`
   height: ${(props) => props.headerHeight};
   padding-top: ${(props) => props.headerPaddingTop};
   width: 100vw;
-  position: fixed;
+  position: absolute;
   display: flex;
   background: #fcfcfc;
   display: flex;
@@ -165,8 +165,8 @@ export function MainLayout({
   const scrolling = useScrolling(scrollingRef);
 
   const footerHeight = Footer.height;
-  const headerHeight = Header.height;
-  const headerPaddingTop = Header.paddingTop;
+  const headerHeight = `calc(${Header.height} + 16px)`;
+  const headerPaddingTop = "16px";
   const sideBarWidth = Sidepanel.width;
   return (
     <Fragment>

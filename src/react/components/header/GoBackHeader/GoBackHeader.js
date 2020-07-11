@@ -11,8 +11,7 @@ const styles = (theme) => ({});
 
 //  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
 const StaticProperties = {
-  height: "56px",
-  paddingTop: "16px",
+  height: "40px",
 };
 
 const Headerbar = styled(AppBar)`
@@ -23,7 +22,7 @@ const Headerbar = styled(AppBar)`
 `;
 
 const AppToolbar = styled(Toolbar)`
-height: ${({ height }) => height};
+  height: ${({ height }) => height};
   min-height: 0px;
 `;
 
@@ -35,8 +34,8 @@ const HeaderTitle = styled(Typography)`
 function GoBackHeader(props) {
   const { onClickBack } = props;
   return (
-    <Headerbar position="fixed" elevation={1}  {...StaticProperties}>
-      <AppToolbar disableGutters>
+    <Headerbar elevation={1}>
+      <AppToolbar disableGutters height={StaticProperties.height}>
         <Fragment>
           <IconButton color="inherit" aria-label="back" onClick={onClickBack}>
             <BackIcon />

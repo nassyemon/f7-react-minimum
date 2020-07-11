@@ -12,8 +12,7 @@ const styles = (theme) => ({});
 //  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
 
 const StaticProperties = {
-  height: "56px",
-  paddingTop: "16px",
+  height: "40px",
 };
 
 const Headerbar = styled(AppBar)`
@@ -25,6 +24,7 @@ const Headerbar = styled(AppBar)`
 
 const AppToolbar = styled(Toolbar)`
   min-height: 0px;
+  height: ${({ height }) => height};
 `;
 
 const HeaderTitle = styled(Typography)`
@@ -35,8 +35,8 @@ const HeaderTitle = styled(Typography)`
 function Header(props) {
   const { onClicHamberger } = props;
   return (
-    <Headerbar position="fixed" elevation={1}>
-      <AppToolbar disableGutters>
+    <Headerbar elevation={1}>
+      <AppToolbar disableGutters height={StaticProperties.height}>
         <Fragment>
           <IconButton
             color="inherit"
